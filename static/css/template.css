@@ -6,19 +6,21 @@
 #bg-1{
     margin-top:64px;
     padding-bottom:20px;
-    background-color:#1d1e1e;
-    border-top:5px solid #c8133e;
-    border-bottom:5px solid #c8133e;
     padding-top:32px;
     padding-bottom:79px;
 }
-#label-1{
-    position:absolute;
-    top:150px;
-    left:40%;
-}
 .WhiteT{
     color:#fff;
+}
+header{
+    background-color: #1d1e1e;
+    border-top:5px solid #c8133e;
+    border-bottom:5px solid #c8133e;
+}
+footer{
+    background-color: #1d1e1e;
+    border-top:5px solid #c8133e;
+    border-bottom:5px solid #c8133e;
 }
 body{
     margin-left: 0px;
@@ -31,7 +33,6 @@ body{
     z-index:999;
     height:100px;
     width: 200px;
-    background-color: #1d1e1e;
     border-radius: 200px 200px 0 0;
 }
 #header-bottom{
@@ -42,7 +43,6 @@ body{
     height:150px;
     width: 200px;
     text-align: center;
-    background-color: #1d1e1e;
     border-radius: 0 0 200px 200px;
 }
 .video{
