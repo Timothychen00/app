@@ -45,3 +45,8 @@ body{
     background-color: #1d1e1e;
     border-radius: 0 0 200px 200px;
 }
+.video{
+    position:absolute;
+    left: 23%;
+    top:550px
+}

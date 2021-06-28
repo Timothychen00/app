@@ -7,13 +7,15 @@
         <link rel="stylesheet" href="{{ url_for('static',filename='css/template.css') }}">
     </head>
     <body>
-        <header class="aligncenter WhiteT" id="header-bottom"><br/><br/><br/>探索你的夢想</header>
-        <header class="aligncenter" id="header-top"></header>
-
-        <header id="bg-1" >
-            <img src="{{url_for('static', filename='title.webp')}}" class="aligncenter">
+        <header>
+            <div class="WhiteT" id="header-bottom"><br/><br/><br/>探索你的夢想</div>
+            <div id="header-top"></div>
+            <div id="bg-1">
+                <img src="{{url_for('static', filename='title.webp')}}" class="aligncenter">
+            </div>
         </header>
 
+        <iframe class="video" width="683" height="384" src="https://www.youtube.com/embed/xxeeNvRsXOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
     </body>
 </html>
