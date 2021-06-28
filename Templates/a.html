@@ -3,9 +3,17 @@
     <head>
         <meta charset="utf-8"></meta>
         <title>首頁</title>
+        <link rel="icon" href="{{url_for('static',filename='logo.ico')}}"/>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/template.css') }}">
     </head>
     <body>
-    <h1>去你媽個雞</h1>
+        <header id="header-top"></header>
+        <header class="WhiteT" id="header-bottom"><br/><br/><br/>探索你的夢想</header>
+        <header id="bg-1" >
+            <img src="{{url_for('static', filename='title.webp')}}" class="aligncenter">
+        </header>
 
+
+        
     </body>
 </html>
