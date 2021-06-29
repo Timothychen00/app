@@ -12,6 +12,15 @@
     padding-top:32px;
     padding-bottom:79px;
 }
+footer{
+    background-color: #1d1e1e;
+    border-top:5px solid #c8133e;
+    border-bottom:5px solid #c8133e;
+    position: absolute;
+    margin-bottom:0;
+    margin-bottom: 20px;
+}
+
 .WhiteT{
     color:#fff;
 }
@@ -41,7 +50,10 @@ body{
     background-color: #1d1e1e;
 }
 .video{
-    position:absolute;
+    position:relative;
     left: 23%;
-    top:550px
+    top:50px
+}
+.content-title{
+    align-self:center;
 }
