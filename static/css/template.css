@@ -13,6 +13,10 @@
     padding-bottom:79px;
     height: 290px;
 }
+header div{
+    background-color: #1d1e1e;
+
+}
 footer{
     background-color: #1d1e1e;
     border-top:5px solid #c8133e;
