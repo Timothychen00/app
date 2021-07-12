@@ -12,7 +12,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed top-0 vw-100 m-0">
         <div class="container-fluid g-3">
             <a class="row gx-3 navbar-brand" href="#">
-                <img src="logo.ico" alt="" class="col-2 align-content-center ">創造娛樂工作室
+                <img src="{{url_for('static',filename='logo.ico')}}" alt="" class="col-2 align-content-center ">創造娛樂工作室
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -67,7 +67,7 @@
         <div class="WhiteT" id="header-bottom"><br /><br /><br />探索你的夢想</div>
         <div id="header-top"></div>
         <div id="header-bg-1">
-            <img src="title.webp" class="aligncenter">
+            <img src=""{{ url_for('static',filename='title.webp') }}"" class="aligncenter">
         </div>
     </header>
 
