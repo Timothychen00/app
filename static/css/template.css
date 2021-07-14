@@ -88,11 +88,8 @@ footer a{
   text-decoration: none;
 }
 footer ul>li:first-child a{
-  color: #a8a8a8;
+  color: #adb5bd;
   font-weight: bold;
-}
-footer ul>li:first-child{
-border: bottom 2px white;
 }
 footer .border-bottom{
   border-bottom: white 1rem;
@@ -100,10 +97,7 @@ footer .border-bottom{
 footer a:focus,footer a:hover{
   text-decoration: white underline;
 }
-
-
-
-
+/* sharing_button */
 .resp-sharing-button__link,
 .resp-sharing-button__icon {
 display: inline-block
