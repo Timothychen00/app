@@ -79,6 +79,7 @@ footer{
 }
 footer ul>li:not(:first-child) a{
   color: #e7e7e7;
+  font-weight: 200;
 }
 footer li{
   list-style: none;
