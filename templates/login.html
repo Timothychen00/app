@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<div class="container-fluid">
+    <div class="row justify-content-center text-center">
+        <div class="col-12 h1 mt-5 mb-4">
+            登錄
+        </div>
+        <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/register" method="POST" novalidate>
+            {{ form.csrf_token() }}
+            <div class="mb-4">
+                <label for="username" class="form-label h5">用戶名稱</label>
+                {{ form.username(class_="form-control"+ (" is-invalid" if form.username.errors else ""),id="username") }}
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.username.errors %}
+                            {% for error in form.username.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+
+            </div>
+            <div class="mb-2">
+                <label for="password" class="form-label h5">密碼</label>
+                {{ form.password(class_="form-control"+(" is-invalid" if form.password.errors else ""),id="password") }}
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.password.errors %}
+                            {% for error in form.password.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="mb-3">
+                <a href="/register">還沒有帳戶？註冊</a>
+            </div>
+            {{form.submit(class_="btn btn-primary mb-5",onclick="ResetCheckbox();",value="送出")}}
+        </form>
+    </div>
+</div>
+{% endblock main_content %}

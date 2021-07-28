@@ -6,22 +6,37 @@
     </meta>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1">
     <title>首頁</title>
-    <link rel="icon" href="{{url_for('static',filename='logo.ico')}}" />
-    <link rel="stylesheet" href="{{url_for('static',filename='css/template.css')}}">
+    <link rel="icon" href="/static/logo.ico" />
+    <link rel="stylesheet" href="/static/css/template.css">
     <!--Bootstrap5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--checkbox validation javascript-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+        <script>
+        const checkbox=document.getElementById('checkbox');
+        const forms=document.querySelectorAll('.needs-validation');
 
+        function CheckboxValidation() {
+            if(checkbox.checked==true){
+                checkbox.className='form-check-input is-valid';
+            }else{
+                checkbox.className='form-check-input is-invalid';
+            }
+        }
+        function ResetCheckbox(){
+            checkbox.checked=false;
+        }
+    </script>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed top-0 vw-100 m-0">
         <div class="container-fluid g-3">
-            <a class="gx-3 navbar-brand me-0" href="#">
-                <img src="{{url_for('static',filename='logo.ico')}}" alt="" height="40" weight="30">
+            <a class="gx-3 navbar-brand me-0" href="/">
+                <img src="/static/logo.ico" alt="" height="40" class="pe-2" weight="30">
                 創造娛樂工作室
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -32,13 +47,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">首頁</a>
+                        <a class="nav-link {% if page=="home"%}active{% endif %}" aria-current="page" href="/">首頁</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">最新</a>
+                        <a class="nav-link {% if page=="newest"%}active{% endif %}" href="/newest">最新</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle ps-0" href="/newest" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             我們的服務
                         </a>
@@ -48,7 +63,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="https:www.google.com" id="navbarDropdown"
+                        <a class="nav-link dropdown-toggle" href="/newest" id="navbarDropdown"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             關於我們
                         </a>
@@ -60,16 +75,19 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">加入我們</a>
+                        <a class="nav-link {% if page=="join"%}active{% endif %}" href="/join" tabindex="-1" aria-disabled="true">加入我們</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">活動資訊</a>
+                        <a class="nav-link {% if page=="activities"%}active{% endif %}" href="/activities" tabindex="-1" aria-disabled="true">活動資訊</a>
                     </li>
                 </ul>
-                <button class="btn btn-outline-success" type="submit">登錄/注冊</button>
+                <button class="btn btn-outline-success {% if page=="login" or page=="register" %}active{% endif %}" onclick="javascript:location.href='/login'" type="button">登錄/注冊</button>
             </div>
         </div>
     </nav>
+
+<main>
+{% block main_content %}
     <!-- header -->
     <div class="container-fluid">
         <div class="row gy-0">
@@ -78,7 +96,7 @@
             </div>
             <div class="col-12 p-0" style="margin-top: -25px;">
                 <div class="header-body pt-4 pb-4 d-flex justify-content-center">
-                    <img src="{{url_for('static',filename='title.png')}}" class="img-fluid ">
+                    <img src="/static/title.png" class="img-fluid ">
                 </div>
             </div>
             <div class="col-12">
@@ -100,6 +118,8 @@
             <h1 class="fw-bold">最新探索營隊資訊</h1><br />
         </div>
     </div>
+{% endblock main_content %}
+</main>
 
     <footer height="70" class="container-fluid WhiteT">
         <div class="row pt-3 px-4 justify-content-center text-center">
@@ -139,6 +159,8 @@
                     </li>
                 </ul>
             </div>
+
+
             <div class="col-12 d-flex justify-content-center p-0">
                 <ul class="h-100 p-0">
                     <!-- Sharingbutton Facebook -->
