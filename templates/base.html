@@ -47,12 +47,12 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {% if page=="newest"%}active{% endif %}" href="/newest">最新</a>
+                        <a class="nav-link {% if page=="newest"%}active{% endif %}" style="white-space:pre" href="/newest">最 新</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle ps-0" href="/newest" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="/newest" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            我們的服務
+                            學習環境
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">線下營隊</a></li>
@@ -75,7 +75,7 @@
                         <a class="nav-link {% if page=="join"%}active{% endif %}" href="/join" tabindex="-1" aria-disabled="true">加入我們</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if page=="activities"%}active{% endif %}" href="/activities" tabindex="-1" aria-disabled="true">活動資訊</a>
+                        <a class="nav-link pe-4 {% if page=="activities"%}active{% endif %}" href="/activities" tabindex="-1" aria-disabled="true">活動資訊</a>
                     </li>
                 </ul>
                 <button class="btn btn-outline-success {% if page=="login" or page=="register" %}active{% endif %}" onclick="javascript:location.href='/login'" type="button">登入/註冊</button>
