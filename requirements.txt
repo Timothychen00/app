@@ -1,6 +1,5 @@
 Flask
 gunicorn
 Flask-Login==0.4.1
-os
 flask_wtf
 wtfroms
