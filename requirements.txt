@@ -1,5 +1,5 @@
 Flask
 gunicorn
 Flask-Login==0.4.1
-flask_wtf
-wtfroms
+Flask-WTF==0.15.1
+WTForms==2.3.3
