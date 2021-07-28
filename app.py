@@ -3,7 +3,7 @@ from forms import RegisterForm,LoginForm
 #建立app物件
 app=Flask(__name__)
 #密鑰 csrf,session,login
-app.secret_key="wawodjjoijqo"
+app.secret_key="wawodjjoijqon"
 
 #首頁
 @app.route("/")
