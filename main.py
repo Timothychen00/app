@@ -27,7 +27,7 @@ def register():
     return render_template("register.html",form=form,page="register")
 
 #登錄頁面
-@app.route("/login")
+@app.route("/login",methods=["GET","POST"])
 def login():
     form=LoginForm()
     if form.validate_on_submit():
