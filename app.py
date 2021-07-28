@@ -1,10 +1,9 @@
 from flask import Flask,render_template,redirect,request
 from forms import RegisterForm,LoginForm
-import os
 #建立app物件
 app=Flask(__name__)
 #密鑰 csrf,session,login
-app.secret_key=os.urandom(16).hex()
+app.secret_key="wawodjjoijqo"
 
 #首頁
 @app.route("/")
