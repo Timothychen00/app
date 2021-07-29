@@ -1,68 +1,24 @@
 .helper{
     font-size: 0.75rem;
 }
-.header-body{
-    border-top:5px solid #c8133e;
-    border-bottom:5px solid #c8133e;
-    background-color:#1d1e1e;
-    z-index: 5;
-    margin-top: -25px;
-}
 main{
-    margin-top: 3.75rem ;
-    min-height: calc(100vh - 3.75rem - 246px);
-}
-.header-top{
-    margin-top: 30px;
-    background-color:#1d1e1e;
-    height:100px;
-    width: 200px;
-    border-radius: 200px 200px 0 0;
-    z-index: 6;
-}
-@media screen and (max-width:576px) {
-.header-top{
-    margin-top: 60px;
-    background-color:#1d1e1e;
-    height:50px;
-    width: 100px;
-    border-radius: 100px 100px 0 0;
-    z-index: 6;
-    margin-bottom: 20px;
-}
-}
-.header-bottom{
-    background-color:#1d1e1e;
-    height:100px;
-    width: 200px;
-    border-radius: 0 0 200px 200px;
-    z-index: 6;
-    margin-top: -10px;
-    margin-top: -50px;
-}
-@media screen and (max-width:576px) {
-    .header-bottom{
-        background-color:#1d1e1e;
-        height:50px;
-        width: 100px;
-        border-radius: 0 0 100px 100px;
-        z-index: 6;
-        margin-top: -10px;
-        margin-top: -25px;
-    }
+    min-height: calc(100vh- 246px);
 }
 .header-img{
     object-fit: contain;
-    max-height: 290px;
-    width: auto;
+    max-height: 550px;
 }
 .aligncenter {
     clear: both;
     display: block;
     margin: auto;
 }
+.title-logo{
+    margin-top: -600px;
+}
 body{
     z-index: 0;
+    color: #333365;
 }
 nav{
     z-index: 999;
@@ -76,14 +32,14 @@ nav{
     margin-bottom: 30px;
 }
 footer{
-    border-top:5px solid #c8133e;
+    border-top:3px solid #333365;
     background-color:#1d1e1e;
 }
 .WhiteT{
     color:#c1c1c1;
 }
 footer ul>li:not(:first-child) a{
-    color: #e7e7e7;
+    color: white;
     font-weight: 200;
 }
 footer li{
@@ -93,7 +49,7 @@ footer a{
     text-decoration: none;
 }
 footer ul>li:first-child a{
-    color: #adb5bd;
+    color: white;
     font-weight: bold;
 }
 footer .border-bottom{
@@ -180,4 +136,15 @@ footer a:focus,footer a:hover{
 .main-contents{
     margin-top: 60px;
     margin-bottom: 150px;
+}
+button{
+    border-color: #333365!important;
+    color:#333365!important;
+}
+button:hover{
+    background-color: #333365!important;
+    color:white!important;
+}
+.border-custom{
+    border-bottom: 2px solid #333365!important;
 }
