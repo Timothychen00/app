@@ -148,3 +148,7 @@ button:hover{
 .border-custom{
     border-bottom: 2px solid #333365!important;
 }
+button.active{
+    background-color: #333365!important;
+    color:white!important;
+}
