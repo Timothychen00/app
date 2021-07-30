@@ -20,7 +20,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light top-0 pt-0 vw-100 m-0">
         <div class="container-fluid g-3 border-custom pt-0">
-            <a class="gx-3 navbar-brand me-3" href="/">
+            <a class="gx-3 navbar-brand ms-5 me-5" href="/">
                 <img src="/static/logo-nb.ico" alt="" height="40" weight="30">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -30,21 +30,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <li class="nav-item pe-5">
                         <a class="nav-link {% if page=="newest"%}active{% endif %}" style="white-space:pre"
                             href="/newest">關於我們</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown pe-5">
                         <a class="nav-link dropdown-toggle" href="/newest" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             學習環境
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">線下營隊</a></li>
                             <li><a class="dropdown-item" href="#">線上教育平臺</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown pe-5">
                         <a class="nav-link dropdown-toggle" href="/newest" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             加入我們
@@ -57,7 +57,7 @@
                         </ul>
                     </li>
                 </ul>
-                <button class="btn btn-outline-success {% if page=="login" or page=="register" %}active{% endif %}"
+                <button class="btn btn-outline-success me-5 {% if page=="login" or page=="register" %}active{% endif %}"
                     onclick="javascript:location.href='/login'" type="button" style="white-space:pre">  登入  </button>
             </div>
         </div>
