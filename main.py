@@ -39,17 +39,17 @@ def seccessful():
     return "成功註冊"
 
 #最新消息頁面
-@app.route("/newest")
-def newest():
-    return render_template("newest.html",page="newest")
-#活動資訊頁面
-@app.route("/activities")
-def activities():
-    return render_template("activities.html",page="activities")
+@app.route("/about")
+def about():
+    return render_template("about.html",page="about")
 #加入我們頁面
 @app.route("/join")
 def join():
     return render_template("join.html",page="join")
+#學習環境頁面
+@app.route("/environment")
+def environment():
+    return render_template("environment.html",page="joenvironment")
 
 if __name__=="__main__":
     app.run(debug=True)
