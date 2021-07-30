@@ -32,14 +32,14 @@ nav{
     margin-bottom: 30px;
 }
 footer{
-    border-top:3px solid #333365;
-    background-color:#1d1e1e;
+    border-top:2px solid #333365;
+    background-color:#e5e5e5;
 }
 .WhiteT{
-    color:#c1c1c1;
+    color:white;
 }
 footer ul>li:not(:first-child) a{
-    color: white;
+    color: #333365;
     font-weight: 200;
 }
 footer li{
@@ -49,7 +49,7 @@ footer a{
     text-decoration: none;
 }
 footer ul>li:first-child a{
-    color: white;
+    color: #333365;
     font-weight: bold;
 }
 footer .border-bottom{
