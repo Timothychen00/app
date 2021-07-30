@@ -1,3 +1,5 @@
 
 static/Icon
 static/.DS_Store
+*.DS_Store
+*Icon
