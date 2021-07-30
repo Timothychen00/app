@@ -78,4 +78,18 @@
         </form>
     </div>
 </div>
+<script>
+    const checkbox = document.getElementById('checkbox');
+
+    function CheckboxValidation() {
+        if (checkbox.checked == true) {
+            checkbox.className = 'form-check-input is-valid';
+        } else {
+            checkbox.className = 'form-check-input is-invalid';
+        }
+    }
+    function ResetCheckbox() {
+        checkbox.checked = false;
+    }
+</script>
 {% endblock main_content %}
