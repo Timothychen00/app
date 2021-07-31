@@ -22,7 +22,7 @@
             </div>
             <div class="mb-4">
                 <label for="content" class="form-label h5" style="margin-left:auto;margin-right:auto" >內容</label>
-                {{ form.content(class_="form-control"+ (" is-invalid" if form.content.errors else ""),id="content",style="width:400px;height:250px") }}
+                {{ form.content(class_="form-control"+ (" is-invalid" if form.content.errors else ""),id="content",style="height:250px") }}
                 <div class="invalid-feedback">
                     <ul>
                         {% if form.content.errors %}
