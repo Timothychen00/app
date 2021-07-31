@@ -1,11 +1,52 @@
 {% extends 'base.html' %}
 {% block main_content %}
-<button type="button" onclick="javascript:location.href='/dashboard/upload'">upload</button>
-<ul>
-{% for i in results %}
-    {%if i['content']!=None %}
-    <li>{{i["content"]}}|{{i['by']}}</li>
-    {%endif%}
-{% endfor %}
-</ul>
+<div class="container-fluid text-center">
+    <table width="1200" border="0" class="table table-bordered table-condensed" >
+        <tr>
+            <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>公佈欄</strong></div></td>
+        </tr>
+        <tr>
+            <td>
+                <div id="heig">
+                    <form action="" method="post" name="like" class="form-inline text-start" id="like">
+                        <strong>搜尋標題: </strong>
+                        <label>
+                            <input type="text" name="title"/>
+                        </label>
+                        <button class="btn" type="submit">搜尋</button>
+                    </form>
+                </div>
+            </td>
+            <td>
+                <div align="center">
+                <a href="/dashboard/upload/"><button class="btn" type="button">新增公告</button></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><table width="1200" border="0"  class="table table-bordered table-condensed table-striped table-hover">
+        <tr>
+            <td id="color"><div align="center"><strong>編號</strong></div></td>
+            <td id="color"><div align="center"><strong>標題</strong></div></td>
+            <td id="color"><div align="center"><strong>署名</strong></div></td>
+            <td id="color"><div align="center"><strong>時間</strong></div></td>
+            <td id="color"><div align="center"><strong>管理</strong></div></td>
+        </tr>
+        {% for i in results %}
+            <tr>
+                {%if i['content']!=None %}
+                    <td>{{i["_id"]}}</td>
+                    <td><a href="/dashboard/{{i['title']}}">{{i["title"]}}</a></td>
+                    <td>{{i["by_name"]}}</td>
+                    <td>{{i["time"]}}</td>
+                    <td><a href="/dashboard/{{i['title']}}/delete">刪除</a></td>
+                {%endif%}
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
 {% endblock main_content %}
+{% block footer %}
+{% endblock footer %}

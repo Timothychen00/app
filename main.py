@@ -3,6 +3,7 @@ from forms import RegisterForm,LoginForm
 import pymongo
 from forms import DashForm
 import os
+import time
 # from wtforms import StringField,PasswordField,SubmitField
 # pip3 install email_validator
 #建立app物件
@@ -53,6 +54,10 @@ def join():
 def environment():
     return render_template("environment.html",page="joenvironment")
 
+
+
+#內部行政系統——————————————————————————————————————————
+#布告欄
 @app.route('/dashboard/')
 def dashboard():
     client = pymongo.MongoClient("mongodb+srv://admin-mangodb-1:Roottimothychen@cluster0-development.ao9sl.mongodb.net/test?retryWrites=true&w=majority")
@@ -60,6 +65,24 @@ def dashboard():
     collection=db.dashboard#操作users集合
     results=collection.find()
     return render_template('dashboard.html',results=results)
+
+@app.route('/dashboard/<title>')
+def contentspace(title):
+    client = pymongo.MongoClient("mongodb+srv://admin-mangodb-1:Roottimothychen@cluster0-development.ao9sl.mongodb.net/test?retryWrites=true&w=majority")
+    db = client.herokuweb#選擇操作test資料庫
+    collection=db.dashboard#操作users集合
+    result=collection.find_one({"title":title})
+    return render_template('dashboard-each.html',result=result)
+
+@app.route('/dashboard/<title>/delete')
+def delete(title):
+    client = pymongo.MongoClient("mongodb+srv://admin-mangodb-1:Roottimothychen@cluster0-development.ao9sl.mongodb.net/test?retryWrites=true&w=majority")
+    db = client.herokuweb#選擇操作test資料庫
+    collection=db.dashboard#操作users集合
+    result=collection.remove({"title":title})
+    return redirect("/dashboard/")
+
+
 
 @app.route('/dashboard/upload/',methods=['GET','POST'])
 def upload():
@@ -69,11 +92,12 @@ def upload():
         db = client.herokuweb#選擇操作test資料庫
         collection=db.dashboard#操作users集合
         collection.insert_one({
-            "time":"1231231313",
+            "time":time.strftime("%Y-%m-%d %I:%M:%S %p", time.localtime()),
+            "title":form.title.data,
             "content":form.content.data,
-            "by":form.by_name.data
+            "by_name":form.by_name.data
         })
-        return redirect('dashboard')
+        return redirect('/dashboard/')
     return render_template("upload.html",form=form)
 
 if __name__=="__main__":

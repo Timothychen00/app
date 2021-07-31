@@ -166,3 +166,9 @@ button.active{
       margin-top:10px;
   }
 }
+#heig{
+    height:10px;
+}
+#color{
+    background-color: #E5E5E5;
+}

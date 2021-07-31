@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<a href="/dashboard/"><button class="btn">返回</button></a>
+<div class="container-fluid text-center">
+    <div><h3>編號:</h3>{{result['_id']}}</div>
+    <div><h3>標題:</h3>{{result['title']}}</div>
+    <div><h3>內容:</h3>{{result['content']}}</div>
+    <div><h3>署名:</h3>{{result['by_name']}}</div>
+    <div><h3>時間:</h3>{{result['time']}}</div>
+</div>
+{% endblock main_content %}
+{% block footer %}
+{% endblock footer %}

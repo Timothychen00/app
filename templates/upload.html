@@ -7,8 +7,21 @@
         </div>
         <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/dashboard/upload/" method="POST" novalidate>
             {{ form.csrf_token() }}
+            <div class="mb-2">
+                <label for="name" class="form-label h5">標題</label>
+                {{ form.title(class_="form-control"+(" is-invalid" if form.title.errors else ""),id="name") }}
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.title.errors %}
+                            {% for error in form.title.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
             <div class="mb-4">
-                <label for="content" class="form-label h5">內容</label>
+                <label for="content" class="form-label h5" style="margin-left:auto;margin-right:auto" >內容</label>
                 {{ form.content(class_="form-control"+ (" is-invalid" if form.content.errors else ""),id="content",style="width:400px;height:250px") }}
                 <div class="invalid-feedback">
                     <ul>
