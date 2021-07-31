@@ -73,7 +73,7 @@ def upload():
             "content":form.content.data,
             "by":form.by_name.data
         })
-        return "送出成功"
+        return redirect('dashboard')
     return render_template("upload.html",form=form)
 
 if __name__=="__main__":
