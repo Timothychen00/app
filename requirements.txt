@@ -3,4 +3,4 @@ gunicorn
 Flask-WTF==0.15.1
 WTForms==2.3.3
 email_validator
-'pymongo[srv]'
+pymongo[srv]
