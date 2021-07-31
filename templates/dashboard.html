@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<button type="button" onclick="javascript:location.href='/dashboard/upload'">upload</button>
+<ul>
+{% for i in results %}
+    {%if i['content']!=None %}
+    <li>{{i["content"]}}|{{i['by']}}</li>
+    {%endif%}
+{% endfor %}
+</ul>
+{% endblock main_content %}

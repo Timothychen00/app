@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<div class="container-fluid">
+    <div class="row justify-content-center text-center">
+        <div class="col-12 h1 mt-5 mb-4">
+            上傳
+        </div>
+        <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/dashboard/upload/" method="POST" novalidate>
+            {{ form.csrf_token() }}
+            <div class="mb-4">
+                <label for="content" class="form-label h5">內容</label>
+                {{ form.content(class_="form-control"+ (" is-invalid" if form.content.errors else ""),id="content",style="width:400px;height:250px") }}
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.content.errors %}
+                            {% for error in form.content.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+
+            </div>
+            <div class="mb-2">
+                <label for="name" class="form-label h5">署名</label>
+                {{ form.by_name(class_="form-control"+(" is-invalid" if form.by_name.errors else ""),id="name") }}
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.by_name.errors %}
+                            {% for error in form.by_name.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            {{form.submit(class_="btn btn-primary mb-5",onclick="ResetCheckbox();",value="送出")}}
+        </form>
+    </div>
+</div>
+<script>
+    const checkbox = document.getElementById('checkbox');
+    function ResetCheckbox() {
+        checkbox.checked = false;
+    }
+</script>
+{% endblock main_content %}

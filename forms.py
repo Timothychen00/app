@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 # from wtforms import StringField,PasswordField,SubmitField
 from wtforms.fields.html5 import EmailField
-from wtforms.fields import StringField,PasswordField,SubmitField,BooleanField
+from wtforms.fields import StringField,PasswordField,SubmitField,BooleanField,TextAreaField
 from wtforms.validators import Email, EqualTo,Length,InputRequired, ValidationError,Regexp
 # pip3 install email_validator
 class RegisterForm(FlaskForm):
@@ -20,3 +20,7 @@ class LoginForm(FlaskForm):
     remember=BooleanField("記住我")
     submit=SubmitField("Submit")
 
+class DashForm(FlaskForm):
+    content=TextAreaField("輸入內容",validators=[InputRequired()])
+    by_name=StringField("署名",validators=[InputRequired()])
+    submit=SubmitField('送出')

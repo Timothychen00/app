@@ -1,5 +1,7 @@
 from flask import Flask,render_template,redirect,request
 from forms import RegisterForm,LoginForm
+import pymongo
+from forms import DashForm
 import os
 # from wtforms import StringField,PasswordField,SubmitField
 # pip3 install email_validator
@@ -50,6 +52,29 @@ def join():
 @app.route("/environment")
 def environment():
     return render_template("environment.html",page="joenvironment")
+
+@app.route('/dashboard/')
+def dashboard():
+    client = pymongo.MongoClient("mongodb+srv://admin-mangodb-1:Roottimothychen@cluster0-development.ao9sl.mongodb.net/test?retryWrites=true&w=majority")
+    db = client.herokuweb#選擇操作test資料庫
+    collection=db.dashboard#操作users集合
+    results=collection.find()
+    return render_template('dashboard.html',results=results)
+
+@app.route('/dashboard/upload/',methods=['GET','POST'])
+def upload():
+    form=DashForm()
+    if form.validate_on_submit():
+        client = pymongo.MongoClient("mongodb+srv://admin-mangodb-1:Roottimothychen@cluster0-development.ao9sl.mongodb.net/test?retryWrites=true&w=majority")
+        db = client.herokuweb#選擇操作test資料庫
+        collection=db.dashboard#操作users集合
+        collection.insert_one({
+            "time":"1231231313",
+            "content":form.content.data,
+            "By":form.by_name.data
+        })
+        return "送出成功"
+    return render_template("upload.html",form=form)
 
 if __name__=="__main__":
     app.run(debug=True)
