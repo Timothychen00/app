@@ -71,7 +71,7 @@ def upload():
         collection.insert_one({
             "time":"1231231313",
             "content":form.content.data,
-            "By":form.by_name.data
+            "by":form.by_name.data
         })
         return "送出成功"
     return render_template("upload.html",form=form)
