@@ -22,6 +22,6 @@ class LoginForm(FlaskForm):
 
 class DashForm(FlaskForm):
     content=TextAreaField("輸入內容",validators=[InputRequired()])
-    by_name=StringField("署名",validators=[InputRequired()])
+    by_name=StringField("發佈人",validators=[InputRequired()])
     title=StringField("標題",validators=[InputRequired()])
     submit=SubmitField('送出')
