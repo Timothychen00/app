@@ -14,7 +14,7 @@ app.secret_key=os.urandom(16).hex()
 #首頁
 @app.route("/")
 def home():
-    return render_template("base.html",page="home")
+    return render_template("base.html")
 
 #註冊頁面
 @app.route("/register",methods=["GET","POST"])

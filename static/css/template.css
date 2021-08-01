@@ -156,14 +156,15 @@ button.active{
   .navbar .has-megamenu{position:static!important;}
   .navbar .megamenu{
       left: 132px; right:0; width:500px; margin-top:0;
+      top:48px;
     }
 
 }
 @media(max-width: 991px){
   .navbar.fixed-top .navbar-collapse, .navbar.sticky-top .navbar-collapse{
-    overflow-y: auto;
-      max-height: 90vh;
-      margin-top:10px;
+    overflow-y: auto!important;
+      max-height: 90vh!important;
+      margin-top:10px!important;
   }
 }
 #heig{
@@ -171,4 +172,7 @@ button.active{
 }
 #color{
     background-color: #E5E5E5;
+}
+.dropdown-toggle::after {
+    content: none;
 }
