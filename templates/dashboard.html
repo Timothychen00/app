@@ -39,7 +39,7 @@
                     <td><a href="/dashboard/{{i['title']}}">{{i["title"]}}</a></td>
                     <td>{{i["by_name"]}}</td>
                     <td>{{i["time"]}}</td>
-                    <td><a href="#" onclick="delete_confirm('{{i['title']}}\'')">刪除</a></td>
+                    <td><a href="#" onclick="delete_confirm('{{i['title']}}')">刪除</a></td>
                 {%endif%}
             </tr>
         {% endfor %}
@@ -52,7 +52,7 @@
 {% block script %}
     <script charset="big5">
         function delete_confirm(title){
-            var delete_window=confirm("確定要刪除嗎？");
+            var delete_window=confirm("確定要刪除"+title+"嗎？");
             if (delete_window==true){
                 location.href="/dashboard/"+title+"/delete"
             }
