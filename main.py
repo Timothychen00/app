@@ -60,7 +60,7 @@ def environment():
 #布告欄
 @app.route('/dashboard/')
 def dashboard():
-    client = pymongo.MongoClient("mongodb+srv://admin-mangodb-1:Roottimothychen@cluster0-development.ao9sl.mongodb.net/test?retryWrites=true&w=majority")
+    client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.jyp4y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = client.herokuweb#選擇操作test資料庫
     collection=db.dashboard#操作users集合
     results=collection.find()
@@ -68,15 +68,16 @@ def dashboard():
 
 @app.route('/dashboard/<title>')
 def contentspace(title):
-    client = pymongo.MongoClient("mongodb+srv://admin-mangodb-1:Roottimothychen@cluster0-development.ao9sl.mongodb.net/test?retryWrites=true&w=majority")
+    client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.jyp4y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = client.herokuweb#選擇操作test資料庫
     collection=db.dashboard#操作users集合
+
     result=collection.find_one({"title":title})
     return render_template('dashboard-each.html',result=result)
 
 @app.route('/dashboard/<title>/delete')
 def delete(title):
-    client = pymongo.MongoClient("mongodb+srv://admin-mangodb-1:Roottimothychen@cluster0-development.ao9sl.mongodb.net/test?retryWrites=true&w=majority")
+    client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.jyp4y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = client.herokuweb#選擇操作test資料庫
     collection=db.dashboard#操作users集合
     result=collection.remove({"title":title})
@@ -88,7 +89,7 @@ def delete(title):
 def upload():
     form=DashForm()
     if form.validate_on_submit():
-        client = pymongo.MongoClient("mongodb+srv://admin-mangodb-1:Roottimothychen@cluster0-development.ao9sl.mongodb.net/test?retryWrites=true&w=majority")
+        client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.jyp4y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
         db = client.herokuweb#選擇操作test資料庫
         collection=db.dashboard#操作users集合
         collection.insert_one({
