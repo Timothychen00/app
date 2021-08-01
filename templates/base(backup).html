@@ -11,64 +11,44 @@
     <!--Bootstrap5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light top-0 pt-0 vw-100 m-0">
-<div class="container-fluid border-custom">
-    <a class="gx-3 navbar-brand ms-5 me-5" href="/">
-        <img src="/static/logo-nb.ico" alt="" height="40" weight="30">
-    </a>
-	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class="container-fluid">
+	<a class="navbar-brand" href="#">Brand</a>
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="main_nav">
 		<ul class="navbar-nav">
+			<li class="nav-item active"> <a class="nav-link" href="#">Home </a> </li>
+			<li class="nav-item"><a class="nav-link" href="#"> About </a></li>
+			<li class="nav-item"><a class="nav-link" href="#"> Services </a></li>
 			<li class="nav-item dropdown has-megamenu">
-				<a class="nav-link dropdown" href="#" id="title" data-bs-toggle="dropdown" style="white-space:pre">關於我們            學習環境            加入我們</a>
+				<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Mega menu  </a>
 				<div class="dropdown-menu megamenu" role="menu">
-					<div class="row g-3">
-						<div class="col-lg-4 col-6">
-							<div class="col-megamenu">
-								<a href="/about" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">關於我們</h6></a>
-								<ul class="list-unstyled">
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">組織架構</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-4 col-6">
-							<div class="col-megamenu">
-                                <a href="/environment" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">學習環境</h6></a>
-								<ul class="list-unstyled">
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-4 col-6">
-							<div class="col-megamenu">
-                                <a href="/join" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">加入我們</h6></a>
-								<ul class="list-unstyled text-start">
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+					This is content of megamenu. <br>
+				       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.
+				</div> <!-- dropdown-mega-menu.// -->
 			</li>
-            <li class="nav-item ms-5">
-                <a class="nav-link" href="/dashboard/">辦公系統</a>
-            </li>
 		</ul>
-        <button class="ms-auto btn btn-outline-success me-5 {% if page=="login" or page=="register" %}active{% endif %}"
-                    onclick="javascript:location.href='/login'" type="button" style="white-space:pre">  登入  </button>
-	</div>
-</div>
+		<ul class="navbar-nav ms-auto">
+			<li class="nav-item"><a class="nav-link" href="#"> Menu item </a></li>
+			<li class="nav-item dropdown">
+				<a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Dropdown right </a>
+			    <ul class="dropdown-menu dropdown-menu-end">
+				  <li><a class="dropdown-item" href="#"> Submenu item 1</a></li>
+				  <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
+			    </ul>
+			</li>
+		</ul>
+	</div> <!-- navbar-collapse.// -->
+</div> <!-- container-fluid.// -->
 </nav>
 
     <main>
@@ -171,7 +151,13 @@
 {% endblock footer %}
 
     <script>
-        document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("DOMContentLoaded", function(){
+        document.querySelectorAll('.dropdown-menu').forEach(function(element){
+        	element.addEventListener('click', function () {
+        		x.stopPropagation();
+        	});
+        })
+
         // make it as accordion for smaller screens
         if (window.innerWidth > 992) {
 
