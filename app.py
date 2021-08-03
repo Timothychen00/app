@@ -1,11 +1,8 @@
 from flask import Flask,render_template,redirect,request,session,flash
-from flask_login import login_user,login_required,logout_user
-from werkzeug.security import check_password_hash #checking password
 from forms import RegisterForm,LoginForm,DashForm
-import time
 import os,pymongo,time
-from flask_login import LoginManager
 from user.models import User
+from functools import wraps
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件
@@ -15,29 +12,37 @@ db = client.herokuweb
 collection=db.users
 
 app=Flask(__name__)
-login_manager = LoginManager()
-login_manager.login_view = 'login'
-login_manager.login_message_category = 'info'
-login_manager.login_message = 'Access denied.'
-login_manager.init_app(app)
 app.secret_key=os.urandom(16).hex()#密鑰 csrf,session,login
 
 #ROUTES---------------
-#flask login_manager
-@login_manager.user_loader
-def load_user(user_id):
-    if collection.find_one({'_id':user_id}) is not None:
-        curr_user = User()
-        curr_user.id = user_id
-        return curr_user
+
+#裝飾器
+def login_required(f):
+    @wraps(f)
+    def wrap(*args,**kwargs):
+        if 'loggedin' in session:
+            return f(*args,**kwargs)
+        else:
+            flash('請先登錄')
+            return redirect('/login')
+    return wrap
 
 #註冊頁面
 @app.route("/register",methods=["GET","POST"])
 def register():
     form=RegisterForm()
     if form.validate_on_submit():
-        # AddUserData(form.username.data,form.email.data,form.password.data)
-        return User().sign_up(form)
+        #sign up
+        result=User().sign_up(form)
+        #email username error
+        if 'name_error' in result or 'email_error' in result:
+            if 'name_error' in result:
+                form.username.errors.append(result['name_error'])
+            if 'email_error' in result:
+                form.email.errors.append(result['email_error'])
+            return render_template("register.html",form=form,page="register")
+        #註冊沒有錯誤，引導到登錄介面
+        return redirect('login')
     return render_template("register.html",form=form,page="register")
 
 #登錄頁面
@@ -45,36 +50,35 @@ def register():
 def login():
     form=LoginForm()
     if form.validate_on_submit():
-        # return "成功登錄"
-        user = collection.find_one({'username':form.username.data})
-        if user is not None and check_password_hash(user['password'],form.password.data):
-            user_id=user['_id']
-            curr_user = User()
-            curr_user.id = user_id
-
-            # 通過Flask-Login的login_user方法登入使用者
-            login_user(curr_user)
-
-            return redirect('/')
-
-        flash('Wrong username or password!')
+        result=User().login(form.username.data,form.password.data)
+        #用戶名或密碼錯誤
+        if 'name_error' in result:
+            form.username.errors.append(result['name_error'])
+            return render_template("login.html",form=form,page="login")
+        if 'password_error' in result:
+            form.password.errors.append(result['password_error'])
+            return render_template("login.html",form=form,page="login")
+        #成功登錄
+        return redirect('/')
     return render_template("login.html",form=form,page="login")
 
+#登出
 @app.route('/logout')
-@login_required
 def logout():
-    logout_user()
-    return 'Logged out successfully!'
+    User().log_out()
+    return redirect('/')
 
 #內部行政系統——————————————————————————————————————————
 #布告欄
 @app.route('/dashboard/')
+@login_required
 def dashboard():
     collection=db.dashboard#操作users集合
     results=collection.find()
     return render_template('dashboard.html',results=results)
 
 @app.route('/dashboard/<title>')
+@login_required
 def contentspace(title):
     collection=db.dashboard#操作users集合
 
@@ -82,6 +86,7 @@ def contentspace(title):
     return render_template('dashboard-each.html',result=result)
 
 @app.route('/dashboard/<title>/delete')
+@login_required
 def delete(title):
     collection=db.dashboard#操作users集合
     result=collection.remove({"title":title})
@@ -89,6 +94,7 @@ def delete(title):
 
 
 @app.route('/dashboard/upload/',methods=['GET','POST'])
+@login_required
 def upload():
     form=DashForm()
     if form.validate_on_submit():
@@ -102,13 +108,13 @@ def upload():
         return redirect('/dashboard/')
     return render_template("upload.html",form=form)
 
-#static
+
 #首頁
 @app.route("/")
 def home():
+    if 'logged_in' in session and session['logged_in']:
+        return render_template("base.html",page="home",user=session['current_user'])
     return render_template("base.html",page="home")
-
-
 
 @app.route("/successful")
 def seccessful():
