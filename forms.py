@@ -18,6 +18,7 @@ class LoginForm(FlaskForm):
     #field(標籤文字，驗證方式)
     username=StringField("Username",validators=[InputRequired("此為必填欄目"),Length(min=6,max=20,message="請輸入6至20位的用戶名稱")])
     password=PasswordField("Password",validators=[InputRequired("此為必填欄目"),Length(min=8,max=20,message="請輸入8至20位之間的密碼"),Regexp(regex="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d$@$!%*?&]{8,20}",message='密码至少包含1个大写字母，1个小写字母，1个数字')])
+    remember=BooleanField('remember me')
     submit=SubmitField("Submit")
 
 class DashForm(FlaskForm):
