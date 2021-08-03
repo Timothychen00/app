@@ -9,21 +9,20 @@ from user.models import User
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件
+
+client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.jyp4y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+db = client.herokuweb
+collection=db.users
+
 app=Flask(__name__)
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 login_manager.login_message = 'Access denied.'
 login_manager.init_app(app)
+app.secret_key=os.urandom(16).hex()#密鑰 csrf,session,login
 
-client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.jyp4y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-db = client.herokuweb
-collection=db.users
-#密鑰 csrf,session,login
-app.secret_key=os.urandom(16).hex()
-# session["user_list"]=[]
-
-
+#ROUTES---------------
 #flask login_manager
 @login_manager.user_loader
 def load_user(user_id):
@@ -103,7 +102,7 @@ def upload():
         return redirect('/dashboard/')
     return render_template("upload.html",form=form)
 
-
+#static
 #首頁
 @app.route("/")
 def home():
