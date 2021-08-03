@@ -20,7 +20,7 @@ app.secret_key=os.urandom(16).hex()#密鑰 csrf,session,login
 def login_required(f):
     @wraps(f)
     def wrap(*args,**kwargs):
-        if 'loggedin' in session:
+        if 'logged_in' in session:
             return f(*args,**kwargs)
         else:
             flash('請先登錄')
