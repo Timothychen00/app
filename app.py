@@ -1,4 +1,3 @@
-from re import A
 from flask import Flask,render_template,redirect,request,session,flash
 from forms import RegisterForm,LoginForm,DashForm
 import os,pymongo,time,datetime
