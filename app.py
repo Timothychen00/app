@@ -35,11 +35,11 @@ def register():
         #sign up
         result=User().sign_up(form)
         #email username error
-        if 'name_error' in result or 'email_error' in result:
-            if 'name_error' in result:
-                form.username.errors.append(result['name_error'])
-            if 'email_error' in result:
-                form.email.errors.append(result['email_error'])
+        if 'name_error' in result:
+            form.username.errors.append(result['name_error'])
+            return render_template("register.html",form=form,page="register")
+        if 'email_error' in result:
+            form.email.errors.append(result['email_error'])
             return render_template("register.html",form=form,page="register")
         #註冊沒有錯誤，引導到登錄介面
         return redirect('login')
