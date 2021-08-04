@@ -65,9 +65,9 @@
                 <a class="nav-link" href="/dashboard/">辦公系統</a>
             </li>
 		</ul>
-        {% if user %}
+        {% if 'logged_in' in session and session['logged_in'] %}
             <span class="nav-item ms-auto pe-3">
-                {{user['username']}}<a href="/logout">,登出</a>
+                {{session['current_user']['username']}}<a href="/logout">,登出</a>
             </span>
         {% else %}
         <button class="ms-auto btn btn-outline-success me-5 {% if page=="login" or page=="register" %}active{% endif %}"
@@ -206,6 +206,7 @@
         });
     </script>
     {% block script %}
+    {% endblock script %}
     <script>
         {% with messages=get_flashed_messages() %}
             {% if messages %}
@@ -219,6 +220,5 @@
             checkbox.checked=false
         }
     </script>
-    {% endblock script %}
 </body>
 </html>

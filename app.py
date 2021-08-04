@@ -18,20 +18,13 @@ app.permanent_session_lifetime=datetime.timedelta(hours=2)
 #ROUTES---------------
 
 #裝飾器
-def login_required(f):
-    @wraps(f)
-    def wrap(*args,**kwargs):
-        if 'logged_in' in session:
-            return f(*args,**kwargs)
-        else:
-            flash('請先登錄')
-            return redirect('/login')
-    return wrap
+from decorators import login_required,authority_admin,authority_staff
 
 #註冊頁面
 @app.route("/register",methods=["GET","POST"])
 def register():
     form=RegisterForm()
+    session['from']=request.path
     if form.validate_on_submit():
         #sign up
         result=User().sign_up(form)
@@ -50,6 +43,7 @@ def register():
 @app.route("/login",methods=["GET","POST"])
 def login():
     form=LoginForm()
+    session['from']=request.path
     if form.validate_on_submit():
         result=User().login(form.username.data,form.password.data)
         #用戶名或密碼錯誤
@@ -73,29 +67,33 @@ def logout():
 #布告欄
 @app.route('/dashboard/')
 @login_required
+@authority_staff
 def dashboard():
     collection=db.dashboard#操作users集合
     results=collection.find()
+    session['from']=request.path
     return render_template('dashboard.html',results=results)
 
 @app.route('/dashboard/<title>')
 @login_required
+@authority_staff
 def contentspace(title):
     collection=db.dashboard#操作users集合
-
     result=collection.find_one({"title":title})
     return render_template('dashboard-each.html',result=result)
 
 @app.route('/dashboard/<title>/delete')
 @login_required
+@authority_admin
 def delete(title):
     collection=db.dashboard#操作users集合
-    result=collection.remove({"title":title})
+    collection.remove({"title":title})
     return redirect("/dashboard/")
 
 
 @app.route('/dashboard/upload/',methods=['GET','POST'])
 @login_required
+@authority_admin
 def upload():
     form=DashForm()
     if form.validate_on_submit():
@@ -107,31 +105,30 @@ def upload():
             "by_name":form.by_name.data
         })
         return redirect('/dashboard/')
+    session['from']=request.path
     return render_template("upload.html",form=form)
 
 
 #首頁
 @app.route("/")
 def home():
-    if 'logged_in' in session and session['logged_in']:
-        return render_template("base.html",page="home",user=session['current_user'])
+    session['from']=request.path
     return render_template("base.html",page="home")
-
-@app.route("/successful")
-def seccessful():
-    return "成功註冊"
 
 #最新消息頁面
 @app.route("/newest")
 def newest():
+    session['from']=request.path
     return render_template("newest.html",page="newest")
 #活動資訊頁面
 @app.route("/activities")
 def activities():
+    session['from']=request.path
     return render_template("activities.html",page="activities")
 #加入我們頁面
 @app.route("/join")
 def join():
+    session['from']=request.path
     return render_template("join.html",page="join")
 
 
