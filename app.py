@@ -34,16 +34,12 @@ def register():
     if form.validate_on_submit():
         #sign up
         result=User().sign_up(form)
-        print(result)
         #email username error
         if 'name_error' in result or 'email_error' in result:
-            print(1)
             if 'name_error' in result:
                 form.username.errors.append(result['name_error'])
-                print('name')
             if 'email_error' in result:
                 form.email.errors.append(result['email_error'])
-                print('email')
             return render_template("register.html",form=form,page="register")
         #註冊沒有錯誤，引導到登錄介面
         return redirect('login')

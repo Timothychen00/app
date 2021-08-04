@@ -69,8 +69,6 @@
             <span class="nav-item ms-auto pe-3">
                 {{user['username']}}<a href="/logout">,登出</a>
             </span>
-            <button class="btn btn-outline-success me-5 {% if page=="login" or page=="register" %}active{% endif %}"
-                onclick="javascript:location.href='/login'" type="button" style="white-space:pre">  登入  </button>
         {% else %}
         <button class="ms-auto btn btn-outline-success me-5 {% if page=="login" or page=="register" %}active{% endif %}"
                     onclick="javascript:location.href='/login'" type="button" style="white-space:pre">  登入  </button>
@@ -216,6 +214,10 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
+        window.onload=function(){
+            var checkbox=document.getElementById('checkbox')
+            checkbox.checked=false
+        }
     </script>
     {% endblock script %}
 </body>
