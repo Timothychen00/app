@@ -1,6 +1,7 @@
+from re import A
 from flask import Flask,render_template,redirect,request,session,flash
 from forms import RegisterForm,LoginForm,DashForm
-import os,pymongo,time
+import os,pymongo,time,datetime
 from user.models import User
 from functools import wraps
 #pip3 install 'pymongo[srv]'
@@ -13,7 +14,7 @@ collection=db.users
 
 app=Flask(__name__)
 app.secret_key=os.urandom(16).hex()#密鑰 csrf,session,login
-
+app.permanent_session_lifetime=datetime.timedelta(hours=2)
 #ROUTES---------------
 
 #裝飾器
