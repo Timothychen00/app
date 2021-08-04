@@ -2,7 +2,6 @@ from flask import Flask,render_template,redirect,request,session,flash
 from forms import RegisterForm,LoginForm,DashForm
 import os,pymongo,time,datetime
 from user.models import User
-from functools import wraps
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件
