@@ -25,7 +25,7 @@ class User():
         if db.users.find_one({'email':user['email']}):
             return {'email_error':'此郵箱已經註冊'}
         db.users.insert_one(user)
-        self.start_session(user)
+        # self.start_session(user)
         return user
 
     def login(self,username,password):

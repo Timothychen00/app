@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            {{form.submit(class_="btn btn-primary mb-5",onclick="ResetCheckbox();",value="送出")}}
+            {{form.submit(class_="btn btn-primary mb-5",value="送出")}}
         </form>
     </div>
 </div>
@@ -87,9 +87,6 @@
         } else {
             checkbox.className = 'form-check-input is-invalid';
         }
-    }
-    function ResetCheckbox() {
-        checkbox.checked = false;
     }
 </script>
 {% endblock main_content %}
