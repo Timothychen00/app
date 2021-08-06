@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<div class="container-fluid text-center">
+    <ul class="row mt-2 row-cols-md-6 row-cols-3">
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/dashboard/'" class="btn btn-outline-success" style="white-space:pre">  公告區  </button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/attendance/'" class="btn btn-outline-success">差勤系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/bulletin/'" class="btn btn-outline-success active">公文系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/leave/'" class="btn btn-outline-success">請假系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/task/'" class="btn btn-outline-success">任務系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/finance/'" class="btn btn-outline-success">財務系統</button></li>
+    </ul>
+    <div class='row justify-content-center mt-5'>
+        <div style='font-size:5rem' class='col-lg-5 col-12 col-md-8 mb-5 border border-5 border-dark'>公文系統</div>
+    </div>
+    <div class='row justify-content-center'>
+        <div class='col-lg-8 col-12 text-center'>
+            <h1>公文系統一覽</h1>
+            <iframe height='600' width='100%' src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT8tQ8ZYKjeFmkEztLr0uYU6dmTYSKjp0W15bSAKhC-quk_Guc5WeX365M6_Dd4C2l-pBEI5PoJC2Ip/pubhtml?gid=1348556579&amp;single=true&amp;widget=true&amp;headers=false"></iframe>        </div>
+        </div>
+    </div>
+    <div class='row mt-5 mb-5 justify-content-center'>
+        <div class='col-lg-1 col-3 offset-0 text-center'>
+            <button class="btn mt-3 px-4 pt-3 pb-3 btn-outline-success">公文系統</button>
+        </div>
+        <div class='col-lg-5 col-12 text-center'>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfzjbpvaKb9VJ5O_Do6-EGON1G_vCboQzFUimLP7_LpWUmBBw/viewform?embedded=true" width="100%" height="1003" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
+        </div>
+    <div class='row mt-5 mb-5 justify-content-center'>
+        <div class='col-lg-10 col-12 text-center'>
+            <h1>行政參考文件</h1>
+            <iframe allowtransparency="false" height="300" src="https://drive.google.com/embeddedfolderview?authuser=0&hl=zh_TW&id=1e2jnjfgpgGBjknHzzvlgTTrlR0SQcD0M" width="100%"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock main_content %}
+
+
+
+
+
+

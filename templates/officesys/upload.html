@@ -5,7 +5,7 @@
         <div class="col-12 h1 mt-5 mb-4">
             上傳
         </div>
-        <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/dashboard/upload/" method="POST" novalidate>
+        <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/officesys/dashboard/upload/" method="POST" novalidate>
             {{ form.csrf_token() }}
             <div class="mb-2">
                 <label for="name" class="form-label h5">標題</label>
@@ -27,20 +27,6 @@
                     <ul>
                         {% if form.content.errors %}
                             {% for error in form.content.errors %}
-                                <li>{{error}}</li>
-                            {% endfor %}
-                        {% endif %}
-                    </ul>
-                </div>
-
-            </div>
-            <div class="mb-2">
-                <label for="name" class="form-label h5">發佈人</label>
-                {{ form.by_name(class_="form-control"+(" is-invalid" if form.by_name.errors else ""),id="name") }}
-                <div class="invalid-feedback">
-                    <ul>
-                        {% if form.by_name.errors %}
-                            {% for error in form.by_name.errors %}
                                 <li>{{error}}</li>
                             {% endfor %}
                         {% endif %}

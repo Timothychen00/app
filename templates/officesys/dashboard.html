@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 {% block main_content %}
 <div class="container-fluid text-center">
+    <ul class="row mt-2 row-cols-md-6 row-cols-3">
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/dashboard/'" class="btn btn-outline-success active" style="white-space:pre">  公告區  </button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/attendance/'" class="btn btn-outline-success">差勤系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/bulletin/'" class="btn btn-outline-success">公文系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/leave/'" class="btn btn-outline-success">請假系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/task/'" class="btn btn-outline-success">任務系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/finance/'" class="btn btn-outline-success">財務系統</button></li>
+    </ul>
     <table width="1200" border="0" class="table table-bordered table-condensed" >
         <tr>
-            <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>公佈欄</strong></div></td>
+            <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>公告區</strong></div></td>
         </tr>
         <tr>
             <td>
@@ -19,7 +27,7 @@
             </td>
             <td>
                 <div align="center">
-                <a href="/dashboard/upload/"><button class="btn" type="button">新增公告</button></a>
+                <a href="/officesys/dashboard/upload/"><button class="btn" type="button">新增公告</button></a>
                 </div>
             </td>
         </tr>
@@ -36,7 +44,7 @@
             <tr>
                 {%if i['content']!=None %}
                     <td>{{i["_id"]}}</td>
-                    <td><a href="/dashboard/{{i['title']}}">{{i["title"]}}</a></td>
+                    <td><a href="/officesys/dashboard/{{i['title']}}">{{i["title"]}}</a></td>
                     <td>{{i["by_name"]}}</td>
                     <td>{{i["time"]}}</td>
                     <td><a href="#" onclick="delete_confirm('{{i['title']}}')">刪除</a></td>
@@ -54,7 +62,7 @@
         function delete_confirm(title){
             var delete_window=confirm("確定要刪除"+title+"嗎？");
             if (delete_window==true){
-                location.href="/dashboard/"+title+"/delete"
+                location.href="/officesys/dashboard/"+title+"/delete/"
             }
         }
     </script>

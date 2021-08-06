@@ -24,7 +24,7 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="main_nav">
-		<ul class="navbar-nav">
+		<ul class="navbar-nav p-0">
 			<li class="nav-item dropdown has-megamenu me-5">
 				<a class="nav-link dropdown" href="#" id="title" data-bs-toggle="dropdown" style="white-space:pre">關於我們            學習環境            加入我們</a>
 				<div class="dropdown-menu megamenu" role="menu">
@@ -62,15 +62,20 @@
 				</div>
 			</li>
             <li class="nav-item me-5">
-                <a class="nav-link" href="/dashboard/">辦公系統</a>
+                <a class="nav-link" href="/officesys/">辦公系統</a>
             </li>
 		</ul>
         {% if 'logged_in' in session and session['logged_in'] %}
-            <span class="nav-item ms-auto pe-3">
-                {{session['current_user']['username']}}<a href="/logout">,登出</a>
-            </span>
+		<ul class="navbar-nav ms-auto p-0" width='200'>
+            <li class="nav-item me-1 border-start border-2">
+                <a class="nav-link" href="/userspace/">{{session['current_user']['username']}}</a>
+            </li>
+            <li class="nav-item me-5 border-start border-2">
+                <a  class="nav-link" href="/logout">登出</a>
+            </li>
+		</ul>
         {% else %}
-        <button class="ms-auto btn btn-outline-success me-5 {% if page=="login" or page=="register" %}active{% endif %}"
+            <button class="ms-auto btn btn-outline-success me-5 {% if page=="login" or page=="register" %}active{% endif %}"
                     onclick="javascript:location.href='/login'" type="button" style="white-space:pre">  登入  </button>
         {% endif %}
     </div>

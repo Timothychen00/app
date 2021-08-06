@@ -5,18 +5,39 @@ from user.models import User
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件
-
-client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.jyp4y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-db = client.herokuweb
+client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.m8nzl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+db = client.flaskweb
 collection=db.users
 
 app=Flask(__name__)
 app.secret_key=os.urandom(16).hex()#密鑰 csrf,session,login
 app.permanent_session_lifetime=datetime.timedelta(hours=2)
 #ROUTES---------------
+from decorators import login_required,authority_admin,authority_staff #裝飾器
 
-#裝飾器
-from decorators import login_required,authority_admin,authority_staff
+#首頁
+@app.route("/")
+def home():
+    session['from']=request.path
+    return render_template("base.html",page="home")
+
+#最新消息頁面
+@app.route("/newest")
+def newest():
+    session['from']=request.path
+    return render_template("newest.html",page="newest")
+
+#活動資訊頁面
+@app.route("/activities")
+def activities():
+    session['from']=request.path
+    return render_template("activities.html",page="activities")
+
+#加入我們頁面
+@app.route("/join")
+def join():
+    session['from']=request.path
+    return render_template("join.html",page="join")
 
 #註冊頁面
 @app.route("/register",methods=["GET","POST"])
@@ -61,35 +82,84 @@ def logout():
     User().log_out()
     return redirect('/')
 
+@app.route('/userspace/')
+@login_required
+def userspace():
+    return render_template('userspace.html')
+
 #內部行政系統——————————————————————————————————————————
+#行政系統
+@app.route('/officesys/')
+@login_required
+@authority_staff
+def office():
+    return render_template('officesys/system.html')
+
+#差遣系統
+@app.route('/officesys/attendance/')
+@login_required
+@authority_staff
+def assignment():
+    return render_template('officesys/attendance.html')
+
+#公文系統
+@app.route('/officesys/bulletin/')
+@login_required
+@authority_staff
+def bulletin():
+    return render_template('officesys/bulletin.html')
+
+#請假系統
+@app.route('/officesys/leave/')
+@login_required
+@authority_staff
+def leave():
+    return render_template('officesys/leave.html')
+
+#任務系統
+@app.route('/officesys/task/')
+@login_required
+@authority_staff
+def task():
+    return render_template('officesys/task.html')
+
+#財務系統
+@app.route('/officesys/finance/')
+@login_required
+@authority_staff
+def finance():
+    return render_template('officesys/finance.html')
+
 #布告欄
-@app.route('/dashboard/')
+@app.route('/officesys/dashboard/')
 @login_required
 @authority_staff
 def dashboard():
     collection=db.dashboard#操作users集合
     results=collection.find()
     session['from']=request.path
-    return render_template('dashboard.html',results=results)
+    return render_template('officesys/dashboard.html',results=results)
 
-@app.route('/dashboard/<title>')
+#布告欄-每個
+@app.route('/officesys/dashboard/<title>/')
 @login_required
 @authority_staff
 def contentspace(title):
     collection=db.dashboard#操作users集合
     result=collection.find_one({"title":title})
-    return render_template('dashboard-each.html',result=result)
+    return render_template('officesys/dashboard-each.html',result=result)
 
-@app.route('/dashboard/<title>/delete')
+#布告欄 刪除
+@app.route('/officesys/dashboard/<title>/delete/')
 @login_required
 @authority_admin
 def delete(title):
     collection=db.dashboard#操作users集合
     collection.remove({"title":title})
-    return redirect("/dashboard/")
+    return redirect("/officesys/dashboard/")
 
-
-@app.route('/dashboard/upload/',methods=['GET','POST'])
+#布告欄 新增
+@app.route('/officesys/dashboard/upload/',methods=['GET','POST'])
 @login_required
 @authority_admin
 def upload():
@@ -100,35 +170,11 @@ def upload():
             "time":time.strftime("%Y-%m-%d %I:%M:%S %p", time.localtime()),
             "title":form.title.data,
             "content":form.content.data,
-            "by_name":form.by_name.data
+            "by_name":session['current_user']['username']
         })
-        return redirect('/dashboard/')
+        return redirect('/officesys/dashboard/')
     session['from']=request.path
-    return render_template("upload.html",form=form)
-
-
-#首頁
-@app.route("/")
-def home():
-    session['from']=request.path
-    return render_template("base.html",page="home")
-
-#最新消息頁面
-@app.route("/newest")
-def newest():
-    session['from']=request.path
-    return render_template("newest.html",page="newest")
-#活動資訊頁面
-@app.route("/activities")
-def activities():
-    session['from']=request.path
-    return render_template("activities.html",page="activities")
-#加入我們頁面
-@app.route("/join")
-def join():
-    session['from']=request.path
-    return render_template("join.html",page="join")
-
+    return render_template("officesys/upload.html",form=form)
 
 if __name__=="__main__":
     app.run(debug=True)

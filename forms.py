@@ -3,7 +3,6 @@ from flask_wtf import FlaskForm
 from wtforms.fields.html5 import EmailField
 from wtforms.fields import StringField,PasswordField,SubmitField,BooleanField,TextAreaField
 from wtforms.validators import Email, EqualTo,Length,InputRequired,Regexp
-from wtforms.widgets.core import TextArea
 # pip3 install email_validator
 class RegisterForm(FlaskForm):
     #field(標籤文字，驗證方式)
@@ -25,5 +24,4 @@ class DashForm(FlaskForm):
     #field(標籤文字，驗證方式)
     title=StringField("標題",validators=[InputRequired("此為必填欄目")])
     content=TextAreaField("內容",validators=[InputRequired("此為必填欄目")])
-    by_name=StringField("發佈人",validators=[InputRequired("此為必填欄目")])
     submit=SubmitField("Submit")

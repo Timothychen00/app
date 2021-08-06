@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<div class="container-fluid text-center">
+    <ul class="row mt-2 row-cols-md-6 row-cols-3">
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/dashboard/'" class="btn btn-outline-success" style="white-space:pre">  公告區  </button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/attendance/'" class="btn btn-outline-success">差勤系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/bulletin/'" class="btn btn-outline-success">公文系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/leave/'" class="btn btn-outline-success">請假系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/task/'" class="btn btn-outline-success">任務系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/finance/'" class="btn btn-outline-success active">財務系統</button></li>
+    </ul>
+    <div class='row justify-content-center mt-5'>
+        <div style='font-size:5rem' class='col-lg-5 col-12 col-md-8 mb-5 border border-5 border-dark'>財務系統</div>
+    </div>
+</div>
+{% endblock main_content %}

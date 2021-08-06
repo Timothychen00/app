@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<div class="container-fluid text-center">
+    <ul class="row mt-2 row-cols-md-6 row-cols-3">
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/dashboard/'" class="btn btn-outline-success" style="white-space:pre">  公告區  </button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/attendance/'" class="btn btn-outline-success">差勤系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/bulletin/'" class="btn btn-outline-success">公文系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/leave/'" class="btn btn-outline-success">請假系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/task/'" class="btn btn-outline-success">任務系統</button></li>
+        <li class="col list-unstyled"><button onclick="javascript:location.href='/officesys/finance/'" class="btn btn-outline-success">財務系統</button></li>
+    </ul>
+    <div class='row justify-content-center mt-5'>
+        <div style='font-size:5rem' class='col-lg-5 col-12 col-md-8 mb-5 border border-5 border-dark'>行政專區</div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-lg-9 col-6 ps-lg-5 text-center">
+            <div class="h1">最新公告</div>
+            <iframe allowtransparency="false" height="300" src="https://drive.google.com/embeddedfolderview?authuser=0&hl=zh_TW&id=14Ye5beRfGcoMe8KC-PFo6wZNBGCXiPbg" width="100%"></iframe>
+        </div>
+        <div class="col-lg-3 col-6 text-center pe-lg-5">
+            <div class="h1">每天待辦事項</div>
+            <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FTaipei&amp;src=ODVmdDFicHM0anNtaDhkMWhndWQwNDJqdThAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23D50000&amp;showDate=1&amp;showNav=1&amp;showTabs=1&amp;mode=AGENDA" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </div>
+    <div class="row mt-5 px-lg-5 mb-5">
+        <div class="col-12 text-center">
+            <div class="h1">團隊每月行事曆</div>
+            <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FTaipei&amp;src=ODVmdDFicHM0anNtaDhkMWhndWQwNDJqdThAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23D50000&amp;showDate=1&amp;showNav=1&amp;showTabs=1&amp;mode=WEEK" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
+</div>
+
+
+
+{% endblock main_content %}

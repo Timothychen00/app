@@ -7,7 +7,7 @@ def login_required(a):
             return a(*args,**kwargs)
         else:
             flash('請先登錄')
-            return redirect(session['from'])
+            return redirect('/login')
     return wrap
 
 def authority_staff(f):
