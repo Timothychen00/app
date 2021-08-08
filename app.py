@@ -1,7 +1,7 @@
 from flask import Flask,render_template,redirect,request,session,flash
-from forms import RegisterForm,LoginForm,DashForm
+from forms import RegisterForm,LoginForm,DashForm,EditForm,EditPasswordForm
 import os,pymongo,time,datetime
-from user.models import User
+from user.models import User,UserData
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件
@@ -49,7 +49,7 @@ def register():
         result=User().sign_up(form)
         #email username error
         if 'name_error' in result:
-            form.username.errors.append(result['name_error'])
+            form.account.errors.append(result['name_error'])
             return render_template("register.html",form=form,page="register")
         if 'email_error' in result:
             form.email.errors.append(result['email_error'])
@@ -64,10 +64,10 @@ def login():
     form=LoginForm()
     session['from']=request.path
     if form.validate_on_submit():
-        result=User().login(form.username.data,form.password.data)
+        result=User().login(form.account.data,form.password.data)
         #用戶名或密碼錯誤
         if 'name_error' in result:
-            form.username.errors.append(result['name_error'])
+            form.account.errors.append(result['name_error'])
             return render_template("login.html",form=form,page="login")
         if 'password_error' in result:
             form.password.errors.append(result['password_error'])
@@ -85,7 +85,28 @@ def logout():
 @app.route('/userspace/')
 @login_required
 def userspace():
+    User().refresh_user()
     return render_template('userspace.html')
+
+@app.route('/userspace/edit/',methods=['POST','GET'])
+@login_required
+def userspace_edit():
+    form=EditForm()
+    if form.validate_on_submit():
+        UserData().update_basic(form)
+        flash('修改成功')
+        return redirect('/userspace/')
+    return render_template('userspace-edit.html',form=form)
+
+@app.route('/userspace/edit/password/',methods=['POST','GET'])
+@login_required
+def edit_password():
+    form=EditPasswordForm()
+    if form.validate_on_submit():
+        UserData().update_password(form)
+        flash('密碼修改成功')
+        return redirect('/userspace/')
+    return render_template('userspace-edit-password.html',form=form)
 
 #內部行政系統——————————————————————————————————————————
 #行政系統
@@ -170,7 +191,7 @@ def upload():
             "time":time.strftime("%Y-%m-%d %I:%M:%S %p", time.localtime()),
             "title":form.title.data,
             "content":form.content.data,
-            "by_name":session['current_user']['username']
+            "by_name":session['current_user']['account']
         })
         return redirect('/officesys/dashboard/')
     session['from']=request.path

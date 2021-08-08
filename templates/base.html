@@ -67,10 +67,10 @@
 		</ul>
         {% if 'logged_in' in session and session['logged_in'] %}
 		<ul class="navbar-nav ms-auto p-0" width='200'>
-            <li class="nav-item me-1 border-start border-2">
-                <a class="nav-link" href="/userspace/">{{session['current_user']['username']}}</a>
+            <li class="nav-item me-1">
+                <a class="nav-link" href="/userspace/">{% if session['current_user']['name'] %}{{session['current_user']['name']}}{%else%}{{session['current_user']['account']}}{%endif%}</a>
             </li>
-            <li class="nav-item me-5 border-start border-2">
+            <li class="nav-item me-5">
                 <a  class="nav-link" href="/logout">登出</a>
             </li>
 		</ul>

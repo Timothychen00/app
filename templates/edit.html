@@ -5,15 +5,15 @@
         <div class="col-12 h1 mt-5 mb-3">
             註冊
         </div>
-        <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/register" method="POST" novalidate>
+        <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/userspace/edit/" method="POST" novalidate>
             {{ form.csrf_token() }}
             <div class="mb-3">
-                <label for="account" class="form-label h5">用戶名稱</label>
-                {{ form.account(class_="form-control"+ (" is-invalid" if form.account.errors else ""),id="account") }}
+                <label for="name" class="form-label h5">用戶名稱</label>
+                {{ form.name(class_="form-control"+ (" is-invalid" if form.name.errors else ""),id="name") }}
                 <div class="invalid-feedback">
                     <ul>
-                        {% if form.account.errors %}
-                            {% for error in form.account.errors %}
+                        {% if form.name.errors %}
+                            {% for error in form.name.errors %}
                                 <li>{{error}}</li>
                             {% endfor %}
                         {% endif %}
@@ -35,15 +35,15 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label h5">密碼</label>
-                {{ form.password(class_="form-control"+(" is-invalid" if form.password.errors else ""),id="password") }}
+                <label for="birth" class="form-label h5">birth</label>
+                {{ form.birth(class_="form-control"+(" is-invalid" if form.birth.errors else ""),id="birth") }}
                 <div class="helper">
                     密碼長度必須介於8-20之間，且包含大小寫字母和數字
                 </div>
                 <div class="invalid-feedback">
                     <ul>
-                        {% if form.password.errors %}
-                            {% for error in form.password.errors %}
+                        {% if form.birth.errors %}
+                            {% for error in form.birth.errors %}
                                 <li>{{error}}</li>
                             {% endfor %}
                         {% endif %}
@@ -52,26 +52,15 @@
             </div>
             <div class="mb-3">
                 <label for="validationCustom04" class="form-label h5">請確認密碼</label>
-                {{ form.confirm(class_="form-control"+(" is-invalid" if form.confirm.errors else ""),id="validationCustom04") }}
+                {{ form.phone(class_="form-control"+(" is-invalid" if form.phone.errors else ""),id="validationCustom04") }}
                 <div class="invalid-feedback">
                     <ul>
-                        {% if form.confirm.errors %}
-                            {% for error in form.confirm.errors %}
+                        {% if form.phone.errors %}
+                            {% for error in form.phone.errors %}
                                 <li>{{error}}</li>
                             {% endfor %}
                         {% endif %}
                     </ul>
-                </div>
-            </div>
-            <div class="mb-3 form-check">
-                <div class="form-check">
-                    {{ form.checkbox(class_="form-check-input is-invalid",id="checkbox",onclick="CheckboxValidation()") }}
-                    <label class="form-check-label" for="checkbox">
-                        我已閱讀並同意<a href="#">用戶使用條例</a>
-                    </label>
-                    <div class="invalid-feedback">
-                        必須勾選才能繼續
-                    </div>
                 </div>
             </div>
             {{form.submit(class_="btn btn-primary mb-5",value="送出")}}

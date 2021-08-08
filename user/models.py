@@ -14,13 +14,13 @@ class User():
     def sign_up(self,form):
         user={
             '_id':uuid.uuid4().hex,
-            'username':form.username.data,
+            'account':form.account.data,
             'password':generate_password_hash(form.password.data),
             'email':form.email.data,
             'authority':'normal',
         }
         #email name 錯誤處理
-        if db.users.find_one({'username':user['username']}):
+        if db.users.find_one({'account':user['account']}):
             return {'name_error':'用戶名已存在'}
         if db.users.find_one({'email':user['email']}):
             return {'email_error':'此郵箱已經註冊'}
@@ -28,8 +28,8 @@ class User():
         # self.start_session(user)
         return user
 
-    def login(self,username,password):
-        user=db.users.find_one({'username':username})
+    def login(self,account,password):
+        user=db.users.find_one({'account':account})
         if user:
             if check_password_hash(user['password'],password):
                 self.start_session(user)
@@ -41,3 +41,26 @@ class User():
 
     def log_out(self):
         session.clear()
+
+    def refresh_user(self):
+        user=db.users.find_one({'account':session['current_user']['account']})
+        self.start_session(user)
+
+class UserData():
+    def update_basic(self,form):
+        updatedata={
+            'name':form.name.data,
+            'birth':str(form.birth.data),
+            'email':form.email.data,
+            'phone':form.phone.data
+        }
+        # for key in updatedata.keys():
+
+        db.users.update({'account':session['current_user']['account']}, {'$set': {"name":updatedata['name']}})
+        db.users.update({'account':session['current_user']['account']}, {'$set': {"email":updatedata['email']}})
+        db.users.update({'account':session['current_user']['account']}, {'$set': {"phone":updatedata['phone']}})
+        db.users.update({'account':session['current_user']['account']}, {'$set': {"birth":updatedata['birth']}})
+
+    def update_password(self,form):
+        password=generate_password_hash(form.password.data)
+        db.users.update({'account':session['current_user']['account']}, {'$set':{"password":password}})

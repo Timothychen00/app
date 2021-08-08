@@ -2,32 +2,39 @@
 {% block main_content %}
 <div class="container">
     <div class='row justify-content-center'>
-        <div class='col-7'>
+        <div class='col-12 {% if session['current_user']['authority']=='normal'%} col-md-4{%else%} col-md-10{%endif%}'>
             <div class='h1 text-center mt-5'>個人信息</div>
-            <table class='mt-3 h4 fw-normal table'>
-                <tr class='pb-5'>
-                    <td>{% if session['current_user']['authority'] in ['staff','admin'] %}<b>員工編號：</b>{{session['current_user']['_id']}}{% endif %}</td>
-                    <td><b>姓名：</b>{{session['current_user']['name']}}</td>
-                </tr>
-                {% if session['current_user']['authority'] in ['staff','admin'] %}
-                    <tr>
-                        <td><b>部門代號：</b>{{session['current_user']['class_id']}} {{session['current_user']['class']}}</td>
-                        <td><b>層級代號：</b>{{session['current_user']['layer_id']}} {{session['current_user']['layer']}}</td>
+                <table class='mt-3 fw-normal table' style='font-size:1.25rem!important;'>
+                    <tr class='pb-5'>
+                        {% if session['current_user']['authority'] in ['staff','admin'] %}<td>員工編號：{{session['current_user']['staff_id']}}</td>{% endif %}
+                        <td>帳號：{{session['current_user']['account']}}</td>
                     </tr>
-                {% endif %}
-                <tr>
-                    <td><b>電子信箱：</b>{{session['current_user']['email']}}</td>
-                </tr>
-                <tr>
-                    <td><b>手機號碼：</b>{{session['current_user']['phone']}}</td>
-                </tr>
-                <tr>
-                    <td><b>職稱：</b>{{session['current_user']['job']}}</td>
-                </tr>
-                <tr>
-                    <td><b>出生生日：</b>{{session['current_user']['birth']}}</td>
-                </tr>
-            </table>
+                    <tr>
+                        {% if session['current_user']['authority'] in ['staff','admin'] %}
+                            <td>部門代號：{{session['current_user']['class_id']}} {{session['current_user']['class']}}</td>
+                        {% endif %}
+                        <td>真實姓名：{{session['current_user']['name']}}</td>
+                    </tr>
+                    <tr>
+                        <td>電子信箱：{{session['current_user']['email']}}</td>
+                        {% if session['current_user']['authority'] in ['staff','admin'] %}
+                            <td>層級代號：{{session['current_user']['layer_id']}} {{session['current_user']['layer']}}</td>
+                        {%endif%}
+                    </tr>
+                    <tr>
+                        <td>手機號碼：{{session['current_user']['phone']}}</td>
+                    </tr>
+                    <tr>
+                    {% if session['current_user']['authority'] in ['staff','admin'] %}
+                        <td>職稱：{{session['current_user']['job']}}</td>
+                    {%endif%}
+                    </tr>
+                    <tr>
+                        <td>出生生日：{{session['current_user']['birth']}}</td>
+                    </tr>
+                </table>
+                <a href='/userspace/edit/'><button class='btn ms-3'>修改基本資料</button></a>
+                <a href='/userspace/edit/password/'><button class='btn ms-3'>修改密碼</button></a>
         </div>
     </div>
 </div>

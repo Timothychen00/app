@@ -8,12 +8,12 @@
         <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/login" method="POST" novalidate>
             {{ form.csrf_token() }}
             <div class="mb-4">
-                <label for="username" class="form-label h5">用戶名稱</label>
-                {{ form.username(class_="form-control"+ (" is-invalid" if form.username.errors else ""),id="username") }}
+                <label for="account" class="form-label h5">用戶名稱</label>
+                {{ form.account(class_="form-control"+ (" is-invalid" if form.account.errors else ""),id="account") }}
                 <div class="invalid-feedback">
                     <ul>
-                        {% if form.username.errors %}
-                            {% for error in form.username.errors %}
+                        {% if form.account.errors %}
+                            {% for error in form.account.errors %}
                                 <li>{{error}}</li>
                             {% endfor %}
                         {% endif %}

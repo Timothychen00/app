@@ -136,6 +136,9 @@ footer a:focus,footer a:hover{
     margin-top: 60px;
     margin-bottom: 150px;
 }
+.border-custom{
+    border-bottom: 2px solid #333365!important;
+}
 button{
     border-color: #333365!important;
     color:#333365!important;
@@ -143,9 +146,6 @@ button{
 button:hover{
     background-color: #333365!important;
     color:white!important;
-}
-.border-custom{
-    border-bottom: 2px solid #333365!important;
 }
 button.active{
     background-color: #333365!important;
@@ -175,4 +175,16 @@ button.active{
 }
 .dropdown-toggle::after {
     content: none;
+}
+input.btn-custom{
+    border-color: #333365!important;
+    color:#333365!important;
+}
+input.btn-custom:hover{
+    background-color: #333365!important;
+    color:white!important;
+}
+.wrong-feedback{
+    font-size:0.875rem;
+    color:#dc3545;
 }
