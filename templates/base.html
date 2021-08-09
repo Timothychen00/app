@@ -121,7 +121,7 @@
     <div class='container-fluid mt-5'>
         <div class='row px-md-5 row-cols-md-2 row-cols-1 row-cols-lg-3 justify-content-center'>
             <div class='col'>
-                <h1 style='height:55px;' class='text-center'>最新消息</h1>
+                <h3 style='height:55px;' class='text-center pt-3 home-news-title'>最新消息</h3>
                 <ul class='home-news p-1 px-2 overflow-auto'>
                 {%for i in newest_results%}
                     <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time']}}</span></li>
@@ -129,7 +129,7 @@
                 </ul>
             </div>
             <div class='col'>
-                <h1 style='height:55px;' class='text-center'>隊務公告</h1>
+                <h3 style='height:55px;' class='text-center pt-3 home-news-title'>隊務公告</h3>
                 <ul class='home-news p-1 px-2 overflow-auto'>
                 {%for i in team_results%}
                     <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time']}}</span></li>
@@ -137,7 +137,7 @@
                 </ul>
             </div>
             <div class='col'>
-                <h1 style='height:55px;' class='text-center'>招生&招募專區</h1>
+                <h3 style='height:55px;' class='text-center pt-3 home-news-title'>招生&招募專區</h3>
                 <ul class='home-news p-1 px-2 overflow-auto'>
                 {%for i in recruit_results%}
                     <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time']}}</span></li>
