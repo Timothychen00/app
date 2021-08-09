@@ -21,13 +21,18 @@ app.register_blueprint(app_officesys_routes)#辦公系統
 @app.route("/")
 def home():
     session['from']=request.path
+
+    #最新公告
     newest_results=db.announcement.find({'category':'最新公告'})
     newest_results.sort("time",pymongo.DESCENDING)
-    teams_results=db.announcement.find({'category':'隊務公告'})
-    teams_results.sort("time",pymongo.DESCENDING)
-    newest_results=db.announcement.find({'category':'最新公告'})
-    newest_results.sort("time",pymongo.DESCENDING)
-    return render_template("base.html",page="home",newest_results=newest_results)
+    #隊務公告
+    team_results=db.announcement.find({'category':'隊務公告'})
+    team_results.sort("time",pymongo.DESCENDING)
+    #招生&招募專區
+    recruit_results=db.announcement.find({'category':'招生＆招募專區'})
+    recruit_results.sort("time",pymongo.DESCENDING)
+
+    return render_template("base.html",page="home",newest_results=newest_results,team_results=team_results,recruit_results=recruit_results)
 
 #最新消息頁面
 @app.route("/newest")

@@ -24,7 +24,8 @@ class DashForm(FlaskForm):
     #field(標籤文字，驗證方式)
     title=StringField("標題",validators=[InputRequired("此為必填欄目")])
     content=TextAreaField("內容",validators=[InputRequired("此為必填欄目")])
-    duration=DateField('持續時間：格式（Y年M月D日）',validators=[InputRequired("此為必填欄目")],format='%Y年%m月%d日')
+    duration=StringField('持續時間：格式（D日）')
+    category=RadioField('推送分類',choices=['最新公告','隊務公告','招生＆招募專區'])
     collection=RadioField('推送位置',choices=['內部公告','對外公告'])
     submit=SubmitField("Submit")
 

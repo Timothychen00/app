@@ -4,8 +4,8 @@ from flask import session,request,render_template,redirect,flash
 from user.models import User,UserData
 from decorators import login_required
 app_user_routes = Blueprint('app_file1',__name__)
-@app_user_routes.route("/login",methods=["GET","POST"])
 
+@app_user_routes.route("/login",methods=["GET","POST"])
 def login():
     form=LoginForm()
     session['from']=request.path

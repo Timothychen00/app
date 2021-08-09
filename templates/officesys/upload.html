@@ -35,11 +35,31 @@
             </div>
             <div class='mb-4'>
                 {{form.duration.label}}
-                {{form.duration(class_='form-control px-5')}}
+                {{ form.duration(class_="form-control"+ (" is-invalid" if form.duration.errors else ""),id="duration") }}
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.duration.errors %}
+                            {% for error in form.duration.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
-            <!--radio checkboxes-->
+
+            <!--推送位置-->
             <div class="mb-4">
+                <div class='h5'>推送位置</div>
                 {% for subitem in form.collection%}
+                    <tr>
+                        <td>{{subitem(class_='form-check-input',onclick='RadioChecked()')}}{{subitem.label(class_='form-check-label')}}</td>
+                    </tr>
+                {% endfor %}
+            </div>
+            <!--推送分類-->
+            <div class='mb-4' id='radio-category'>
+                <div class='h5'>推送分類</div>
+                {% for subitem in form.category %}
                     <tr>
                         <td>{{subitem(class_='form-check-input')}}{{subitem.label(class_='form-check-label')}}</td>
                     </tr>
@@ -53,6 +73,18 @@
     const checkbox = document.getElementById('checkbox');
     function ResetCheckbox() {
         checkbox.checked = false;
+    }
+
+
+    const radio = document.getElementById('collection-1');
+    const radio_category=document.getElementById('radio-category')
+    function RadioChecked() {
+        //collection為‘對外公告’
+        if (radio.checked == true) {
+            radio_category.classList='mb-4'
+        } else {
+            radio_category.classList='visually-hidden'
+        }
     }
 </script>
 {% endblock main_content %}

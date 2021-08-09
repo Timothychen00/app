@@ -84,6 +84,7 @@
 
 <main>
 {% block main_content %}
+    <!--首頁橫幅-->
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
     <ol class="carousel-indicators">
         <li data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active border-0" aria-current="true" aria-label="Slide 1"></li>
@@ -116,25 +117,31 @@
         <span class="visually-hidden">Next</span>
     </button>
     </div>
-
+    <!--公告推送欄-->
     <div class='container-fluid mt-5'>
         <div class='row px-md-5 row-cols-md-2 row-cols-1 row-cols-lg-3 justify-content-center'>
             <div class='col'>
                 <h1 style='height:55px;' class='text-center'>最新消息</h1>
-                <ul class='home-news p-0 overflow-auto'>
+                <ul class='home-news p-1 px-2 overflow-auto'>
                 {%for i in newest_results%}
-                    <li class='list-unstyled justify-content-between d-flex h5'><span>{{i['title']}}</span><span>{{i['time']}}</span></li>
+                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time']}}</span></li>
                 {%endfor%}
                 </ul>
             </div>
-            <div class='col text-center'>
-                <h1 style='height:55px;'>隊務公告</h1>
-                <ul class='home-news'>
+            <div class='col'>
+                <h1 style='height:55px;' class='text-center'>隊務公告</h1>
+                <ul class='home-news p-1 px-2 overflow-auto'>
+                {%for i in team_results%}
+                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time']}}</span></li>
+                {%endfor%}
                 </ul>
             </div>
-            <div class='col text-center mb-5'>
-                <h1 style='height:55px;'>招生＆招募專區​</h1>
-                <ul class='home-news'>
+            <div class='col'>
+                <h1 style='height:55px;' class='text-center'>招生&招募專區</h1>
+                <ul class='home-news p-1 px-2 overflow-auto'>
+                {%for i in recruit_results%}
+                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time']}}</span></li>
+                {%endfor%}
                 </ul>
             </div>
         </div>
