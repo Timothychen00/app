@@ -261,7 +261,14 @@
         });
     </script>
     {% block script %}
+    <script>
+            window.onload=function(){
+            var checkbox=document.getElementById('checkbox')
+            checkbox.checked=false
+        }
+    </script>
     {% endblock script %}
+    <!--flash信息-->
     <script>
         {% with messages=get_flashed_messages() %}
             {% if messages %}
@@ -270,10 +277,6 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        window.onload=function(){
-            var checkbox=document.getElementById('checkbox')
-            checkbox.checked=false
-        }
     </script>
 </body>
 </html>

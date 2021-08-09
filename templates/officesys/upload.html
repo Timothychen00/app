@@ -88,3 +88,12 @@
     }
 </script>
 {% endblock main_content %}
+{% block script %}
+<script>
+    window.onload=function(){
+            var radio=document.getElementById('collection-0')
+            radio.checked=true
+            RadioChecked()
+        }
+</script>
+{% endblock script %}
