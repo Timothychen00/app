@@ -5,7 +5,7 @@
         <div class="col-12 h1 mt-5 mb-4">
             上傳
         </div>
-        <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/officesys/dashboard/upload/" method="POST" novalidate>
+        <form class="login border-3 border-dark col-md-6 col-9 needs-validation" action="/officesys/dashboard/upload/" method="POST" novalidate>
             {{ form.csrf_token() }}
             <div class="mb-2">
                 <label for="name" class="form-label h5">標題</label>
@@ -32,6 +32,18 @@
                         {% endif %}
                     </ul>
                 </div>
+            </div>
+            <div class='mb-4'>
+                {{form.duration.label}}
+                {{form.duration(class_='form-control px-5')}}
+            </div>
+            <!--radio checkboxes-->
+            <div class="mb-4">
+                {% for subitem in form.collection%}
+                    <tr>
+                        <td>{{subitem(class_='form-check-input')}}{{subitem.label(class_='form-check-label')}}</td>
+                    </tr>
+                {% endfor %}
             </div>
             {{form.submit(class_="btn btn-primary mb-5",onclick="ResetCheckbox();",value="送出")}}
         </form>
