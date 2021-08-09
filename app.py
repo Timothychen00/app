@@ -19,7 +19,9 @@ from decorators import login_required,authority_admin,authority_staff #裝飾器
 @app.route("/")
 def home():
     session['from']=request.path
-    return render_template("base.html",page="home")
+    newest_results=db.announcement.find({'category':'最新公告'})
+    newest_results.sort("time",pymongo.DESCENDING)
+    return render_template("base.html",page="home",newest_results=newest_results)
 
 #最新消息頁面
 @app.route("/newest")

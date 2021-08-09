@@ -3,8 +3,8 @@
 <div class="container">
     <div class='row justify-content-center'>
         <div class='col-12 {% if session['current_user']['authority']=='normal'%} col-md-4{%else%} col-md-10{%endif%}'>
-            <div class='h1 text-center mt-5'>個人信息</div>
-                <table class='mt-3 fw-normal table' style='font-size:1.25rem!important;'>
+            <div class='h1 text-center mt-5'>個人資料</div>
+                <table class='mt-3 fw-normal table {% if session['current_user']['authority']!='normal'%} offset-1{%else%}{%endif%}' style='font-size:1.25rem'>
                     <tr class='pb-5'>
                         {% if session['current_user']['authority'] in ['staff','admin'] %}<td>員工編號：{{session['current_user']['staff_id']}}</td>{% endif %}
                         <td>帳號：{{session['current_user']['account']}}</td>
@@ -30,10 +30,10 @@
                     {%endif%}
                     </tr>
                     <tr>
-                        <td>出生生日：{{session['current_user']['birth']}}</td>
+                        <td>出生日期：{{session['current_user']['birth']}}</br><span style='font-size:1rem!important;'>格式(西元)：YYYY-MM-DD</span></td>
                     </tr>
                 </table>
-                <a href='/userspace/edit/'><button class='btn ms-3'>修改基本資料</button></a>
+                <a href='/userspace/edit/' class='{% if session['current_user']['authority']!='normal'%} offset-1{%else%}{%endif%}'><button class='btn ms-3'>修改基本資料</button></a>
                 <a href='/userspace/edit/password/'><button class='btn ms-3'>修改密碼</button></a>
         </div>
     </div>
