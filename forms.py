@@ -1,7 +1,8 @@
+from typing import DefaultDict
 from flask_wtf import FlaskForm
 # from wtforms import StringField,PasswordField,SubmitField
-from wtforms.fields.html5 import EmailField
-from wtforms.fields import StringField,PasswordField,SubmitField,BooleanField,TextAreaField,DateField,RadioField
+from wtforms.fields.html5 import EmailField,URLField
+from wtforms.fields import StringField,PasswordField,SubmitField,BooleanField,TextAreaField,DateField,RadioField,IntegerField
 from wtforms.validators import Email, EqualTo,Length,InputRequired,Regexp
 # pip3 install email_validator
 class RegisterForm(FlaskForm):
@@ -24,10 +25,11 @@ class DashForm(FlaskForm):
     #field(標籤文字，驗證方式)
     title=StringField("標題",validators=[InputRequired("此為必填欄目")])
     content=TextAreaField("內容",validators=[InputRequired("此為必填欄目")])
-    duration=StringField('持續時間：格式（D日）')
-    category=RadioField('推送分類',choices=['最新公告','隊務公告','招生＆招募專區'])
+    duration=IntegerField('持續時間：（天數，數字）')
+    category=RadioField('推送分類',choices=['最新公告','隊務公告','招生＆招募專區'],default='最新公告')
     collection=RadioField('推送位置',choices=['內部公告','對外公告'])
-    submit=SubmitField("Submit")
+    link=URLField('相關連結')
+    submit=SubmitField("送出")
 
 class EditForm(FlaskForm):
     name=StringField('姓名',validators=[InputRequired("此為必填欄目")])

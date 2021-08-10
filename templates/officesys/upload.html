@@ -3,12 +3,13 @@
 <div class="container-fluid">
     <div class="row justify-content-center text-center">
         <div class="col-12 h1 mt-5 mb-4">
-            上傳
+            發佈公告
         </div>
+        
         <form class="login border-3 border-dark col-md-6 col-9 needs-validation" action="/officesys/dashboard/upload/" method="POST" novalidate>
             {{ form.csrf_token() }}
             <div class="mb-2">
-                <label for="name" class="form-label h5">標題</label>
+                <label for="name" class="form-label h5">公告主旨</label>
                 {{ form.title(class_="form-control"+(" is-invalid" if form.title.errors else ""),id="name") }}
                 <div class="invalid-feedback">
                     <ul>

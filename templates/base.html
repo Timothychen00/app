@@ -124,7 +124,7 @@
                 <h3 style='height:55px;' class='text-center pt-3 home-news-title'>最新消息</h3>
                 <ul class='home-news p-1 px-2 overflow-auto'>
                 {%for i in newest_results%}
-                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time']}}</span></li>
+                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
                 {%endfor%}
                 </ul>
             </div>
@@ -132,7 +132,7 @@
                 <h3 style='height:55px;' class='text-center pt-3 home-news-title'>隊務公告</h3>
                 <ul class='home-news p-1 px-2 overflow-auto'>
                 {%for i in team_results%}
-                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time']}}</span></li>
+                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
                 {%endfor%}
                 </ul>
             </div>
@@ -140,7 +140,7 @@
                 <h3 style='height:55px;' class='text-center pt-3 home-news-title'>招生&招募專區</h3>
                 <ul class='home-news p-1 px-2 overflow-auto'>
                 {%for i in recruit_results%}
-                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time']}}</span></li>
+                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
                 {%endfor%}
                 </ul>
             </div>

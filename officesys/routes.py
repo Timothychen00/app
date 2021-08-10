@@ -87,11 +87,13 @@ def delete(title):
 def upload():
     form=DashForm()
     if form.validate_on_submit():
+        print(1)
         data={
                 "time":time.strftime("%Y-%m-%d %I:%M:%S %p", time.localtime()),
                 "duration":form.duration.data,
                 "title":form.title.data,
                 "content":form.content.data,
+                'link':form.link.data,
                 "by_name":session['current_user']['account']
             }
         #內部公告
@@ -99,12 +101,14 @@ def upload():
             collection=db.dashboard#操作users集合
         else:#外部公告
             collection=db.announcement
-            data['time']=time.strftime("%Y-%m-%d",time.localtime())
             data['category']=form.category.data
             del data['duration']
+        #若真實姓名存在則填入
+        if session['current_user']['name']:
+            data['by_name']=session['current_user']['name']
         #上傳
         collection.insert_one(data)
 
         return redirect('/officesys/dashboard/')
     session['from']=request.path
-    return render_template("officesys/upload.html",form=form)
+    return render_template("officesys/upload1231.html",form=form)

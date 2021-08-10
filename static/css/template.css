@@ -179,6 +179,7 @@ button.active{
 input.btn-custom{
     border-color: #333365!important;
     color:#333365!important;
+    background-color:white;
 }
 input.btn-custom:hover{
     background-color: #333365!important;
@@ -199,4 +200,25 @@ input.btn-custom:hover{
 }
 .home-news-title{
     color: #003399!important;
+}
+
+@media screen and (min-width:577px) {
+    .table-left{
+        width: 6em!important;
+        background-color: #43526b!important;
+        color:white;
+    }
+}
+@media screen and (max-width:576px) {
+    .table-left{
+        width: 10%;
+        background-color: #43526b!important;
+        color:white;
+    }
+}
+.table-input:focus{
+    outline: none!important;
+}
+.table-input{
+    width: 100%;
 }

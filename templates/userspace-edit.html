@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                         <td>出生日期：{{form.birth(value=session['current_user']['birth'])}}
-                            </br><span style='font-size:1rem!important;'>格式(西元)：YYYY-MM-DD</span>
+                            </br><span style='font-size:1rem!important;'>(西元)：YYYY-MM-DD</span>
                             {% if form.birth.errors %}
                                 <ul class='wrong-feedback'>
                                 {%for error in form.birth.errors%}
