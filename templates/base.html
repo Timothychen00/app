@@ -61,9 +61,20 @@
 					</div>
 				</div>
 			</li>
-            <li class="nav-item me-5">
-                <a class="nav-link" href="/officesys/">辦公系統</a>
-            </li>
+            {%if 'logged_in' in session and session['logged_in']%}
+                {%if session['current_user']['authority'] in ['admin','staff']%}
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="/officesys/">辦公系統</a>
+                    </li>
+                {%endif%}
+            {%endif%}
+            {%if 'logged_in' in session and session['logged_in']%}
+                {%if session['current_user']['authority']=='admin'%}
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="/develop/versions/">發布版本</a>
+                    </li>
+                {%endif%}
+            {%endif%}
 		</ul>
         {% if 'logged_in' in session and session['logged_in'] %}
 		<ul class="navbar-nav ms-auto p-0" width='200'>
@@ -75,7 +86,7 @@
             </li>
 		</ul>
         {% else %}
-            <button class="ms-auto btn btn-outline-success me-5 {% if page=="login" or page=="register" %}active{% endif %}"
+            <button class="ms-auto btn btn-custom me-5 {% if page=="login" or page=="register" %}active{% endif %}"
                     onclick="javascript:location.href='/login'" type="button" style="white-space:pre">  登入  </button>
         {% endif %}
     </div>
@@ -118,13 +129,13 @@
     </button>
     </div>
     <!--公告推送欄-->
-    <div class='container-fluid mt-5'>
+    <div class='container-fluid mt-3 mb-5'>
         <div class='row px-md-5 row-cols-md-2 row-cols-1 row-cols-lg-3 justify-content-center'>
             <div class='col'>
                 <h3 style='height:55px;' class='text-center pt-3 home-news-title'>最新消息</h3>
                 <ul class='home-news p-1 px-2 overflow-auto'>
                 {%for i in newest_results%}
-                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
+                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</a></span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
                 {%endfor%}
                 </ul>
             </div>
@@ -132,7 +143,7 @@
                 <h3 style='height:55px;' class='text-center pt-3 home-news-title'>隊務公告</h3>
                 <ul class='home-news p-1 px-2 overflow-auto'>
                 {%for i in team_results%}
-                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
+                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</a></span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
                 {%endfor%}
                 </ul>
             </div>
@@ -140,7 +151,7 @@
                 <h3 style='height:55px;' class='text-center pt-3 home-news-title'>招生&招募專區</h3>
                 <ul class='home-news p-1 px-2 overflow-auto'>
                 {%for i in recruit_results%}
-                    <li class='list-unstyled justify-content-between d-flex h6'><span>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
+                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</a></span></li>
                 {%endfor%}
                 </ul>
             </div>

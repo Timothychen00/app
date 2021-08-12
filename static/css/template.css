@@ -191,7 +191,7 @@ input.btn-custom:hover{
 }
 .home-news{
     background-color: #f5f5f5;
-    color:#003399;
+    color:#003399!important;
     height: 290px;
 }
 .home-news-time{
@@ -200,6 +200,7 @@ input.btn-custom:hover{
 }
 .home-news-title{
     color: #003399!important;
+    text-decoration: none!important;
 }
 
 @media screen and (min-width:577px) {
@@ -221,4 +222,22 @@ input.btn-custom:hover{
 }
 .table-input{
     width: 100%;
+}
+.home-news-title-a{
+    color: #003399!important;
+    text-decoration: none!important;
+}
+.home-news-title-a:hover{
+    color: #586379!important;
+    text-decoration: none!important;
+}
+@media screen and (min-width:577px) {
+    .blank{
+        width: 68vw!important;
+    }
+}
+@media screen and (max-width:576px) {
+    .blank{
+        width: 55vw!important;
+    }
 }

@@ -1,7 +1,8 @@
 from flask import render_template,flash,session,request,Blueprint,redirect
 from forms import *
+from bson import ObjectId
 from decorators import login_required,authority_admin,authority_staff
-import pymongo,time
+import datetime,pymongo
 #連結mongodb
 client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.m8nzl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client.flaskweb
@@ -63,21 +64,23 @@ def dashboard():
     return render_template('officesys/dashboard.html',results=results)
 
 #布告欄-每個
-@app_officesys_routes.route('/officesys/dashboard/<title>/')
+@app_officesys_routes.route('/officesys/dashboard/<id>/')
 @login_required
 @authority_staff
-def contentspace(title):
+def contentspace(id):
     collection=db.dashboard#操作users集合
-    result=collection.find_one({"title":title})
+    result=collection.find_one(ObjectId(id))
+    result['time']=datetime.datetime.strptime(result['time'], "%Y-%m-%d %H:%M:%S")
+    result['end-time']=result['time']+datetime.timedelta(days=result['duration'])
     return render_template('officesys/dashboard-each.html',result=result)
 
 #布告欄 刪除
-@app_officesys_routes.route('/officesys/dashboard/<title>/delete/')
+@app_officesys_routes.route('/officesys/dashboard/<id>/delete/')
 @login_required
 @authority_admin
-def delete(title):
+def delete(id):
     collection=db.dashboard#操作users集合
-    collection.remove({"title":title})
+    collection.remove({"_id":ObjectId(id)})
     return redirect("/officesys/dashboard/")
 
 #布告欄 新增
@@ -87,9 +90,11 @@ def delete(title):
 def upload():
     form=DashForm()
     if form.validate_on_submit():
-        print(1)
+        print(form.duration.data)
+        # 設定為 +8 時區
+        tz = datetime.timezone(datetime.timedelta(hours=+8))
         data={
-                "time":time.strftime("%Y-%m-%d %I:%M:%S %p", time.localtime()),
+                "time":datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S"),
                 "duration":form.duration.data,
                 "title":form.title.data,
                 "content":form.content.data,
@@ -102,13 +107,14 @@ def upload():
         else:#外部公告
             collection=db.announcement
             data['category']=form.category.data
-            del data['duration']
         #若真實姓名存在則填入
         if session['current_user']['name']:
             data['by_name']=session['current_user']['name']
+        if not form.duration.data:
+            data['duration']=1
         #上傳
         collection.insert_one(data)
 
         return redirect('/officesys/dashboard/')
     session['from']=request.path
-    return render_template("officesys/upload1231.html",form=form)
+    return render_template("officesys/upload.html",form=form)

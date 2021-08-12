@@ -1,13 +1,52 @@
 {% extends 'base.html' %}
 {% block main_content %}
-<a href="/officesys/dashboard/"><button class="btn">返回</button></a>
-<div class="container-fluid text-center">
-    <div><h3>編號:</h3>{{result['_id']}}</div>
-    <div><h3>標題:</h3>{{result['title']}}</div>
-    <div><h3>內容:</h3>{{result['content']}}</div>
-    <div><h3>署名:</h3>{{result['by_name']}}</div>
-    <div><h3>時間:</h3>{{result['time']}}</div>
+<a href="{{session['from']}}" class='ms-2'><button class="btn">返回</button></a>
+<div class="container-fluid mt-2">
+    <div class="row justify-content-center text-center mb-5">
+            <table class='table table-bordered border-3 border-dark'>
+                <tr>
+                    <td class='table-left text-center'>公告主旨</td>
+                    <td class='px-1 blank text-start'>
+                        {{result['title']}}
+                    </td>
+                    <td class='table-left text-center'>
+                        公告起迄
+                    </td>
+                    <td class='px-1 text-start' style='color:#00b050;'>
+                        起：{{result['time']}}</br>
+                        迄：{{result['end-time']}}
+                    </td>
+                </tr>
+                <tr style='height:400px!important'>
+                    <td class='table-left text-center'>內文</td>
+                    <td class='px-1 text-start' colspan="3">
+                        {{result['content']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class='table-left text-center'>附件</td>
+                    <td colspan="3">
+                    </td>
+                </tr>
+                <tr>
+                    <td class='table-left text-center'>公告單位</td>
+                    <td colspan="3">
+                    </td>
+                </tr>
+                <tr>
+                    <td class='table-left text-center'>相關連結</td>
+                    <td colspan="3" class='px-1 text-start'>
+                        {{result['link']}}
+                    </td>
+                </tr>
+            </table>
+
+    </div>
 </div>
+
+
+
+
 {% endblock main_content %}
 {% block footer %}
 {% endblock footer %}
