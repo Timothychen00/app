@@ -8,7 +8,7 @@
         <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/login" method="POST" novalidate>
             {{ form.csrf_token() }}
             <div class="mb-4">
-                <label for="email" class="form-label h5">用戶名稱</label>
+                <label for="email" class="form-label h5">電子郵箱</label>
                 {{ form.email(class_="form-control"+ (" is-invalid" if form.email.errors else ""),id="email") }}
                 <div class="invalid-feedback">
                     <ul>
