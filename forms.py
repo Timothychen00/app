@@ -7,6 +7,7 @@ from wtforms.validators import Email, EqualTo,Length,InputRequired,Regexp
 # pip3 install email_validator
 class RegisterForm(FlaskForm):
     #field(標籤文字，驗證方式)
+    name=StringField('姓名',validators=[InputRequired("此為必填欄目"),Length(max=4)])
     email=EmailField("Email",validators=[InputRequired("此為必填欄目"),Email("請輸入正確的郵箱格式")])
     gender=RadioField('性別：',choices=['男','女','其他'])
     birth=DateField('出生日期',validators=[InputRequired("此為必填欄目")],format='%Y-%m-%d')

@@ -21,6 +21,19 @@
                 </div>
             </div>
             <div class="mb-3">
+                <label for="name" class="form-label h5">姓名</label>
+                {{ form.name(class_="form-control"+(" is-invalid" if form.name.errors else ""),id="name") }}
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.name.errors %}
+                            {% for error in form.name.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="mb-3">
                 <label for="birth" class="form-label h5">出生日期(YYYY-MM-DD)</label>
                 {{ form.birth(class_="form-control"+(" is-invalid" if form.birth.errors else ""),id="birth") }}
                 <div class="invalid-feedback">
