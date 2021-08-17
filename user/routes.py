@@ -10,14 +10,17 @@ def login():
     form=LoginForm()
     session['from']=request.path
     if form.validate_on_submit():
-        result=User().login(form.account.data,form.password.data)
+        result=User().login(form.email.data,form.password.data)
         #用戶名或密碼錯誤
-        if 'name_error' in result:
-            form.account.errors.append(result['name_error'])
+        if 'email_error' in result:
+            form.email.errors.append(result['email_error'])
             return render_template("login.html",form=form,page="login")
         if 'password_error' in result:
             form.password.errors.append(result['password_error'])
             return render_template("login.html",form=form,page="login")
+        #記住我選項
+        if form.remember.data==True:
+            session.permanent=True
         #成功登錄
         return redirect('/')
     return render_template("login.html",form=form,page="login")
@@ -31,9 +34,6 @@ def register():
         #sign up
         result=User().sign_up(form)
         #email username error
-        if 'name_error' in result:
-            form.account.errors.append(result['name_error'])
-            return render_template("register.html",form=form,page="register")
         if 'email_error' in result:
             form.email.errors.append(result['email_error'])
             return render_template("register.html",form=form,page="register")

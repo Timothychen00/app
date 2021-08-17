@@ -8,26 +8,43 @@
         <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/register" method="POST" novalidate>
             {{ form.csrf_token() }}
             <div class="mb-3">
-                <label for="account" class="form-label h5">用戶名稱</label>
-                {{ form.account(class_="form-control"+ (" is-invalid" if form.account.errors else ""),id="account") }}
-                <div class="invalid-feedback">
-                    <ul>
-                        {% if form.account.errors %}
-                            {% for error in form.account.errors %}
-                                <li>{{error}}</li>
-                            {% endfor %}
-                        {% endif %}
-                    </ul>
-                </div>
-                <!--{{ form.email(class="form-control" + (" is-invalid" if form.email.errors else "") + " rounded-0 shadow-none", **{"placeholder": "Your Email", "aria-describedby": "emailHelp", "autocomplete": "off"}) }}-->
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label h5">郵箱地址</label>
+                <label for="email" class="form-label h5">電子郵件</label>
                 {{ form.email(class_="form-control"+(" is-invalid" if form.email.errors else ""),id="email") }}
                 <div class="invalid-feedback">
                     <ul>
                         {% if form.email.errors %}
                             {% for error in form.email.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="birth" class="form-label h5">出生日期(YYYY-MM-DD)</label>
+                {{ form.birth(class_="form-control"+(" is-invalid" if form.birth.errors else ""),id="birth") }}
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.birth.errors %}
+                            {% for error in form.birth.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="gender" class="form-label h5 w-100">性別</label>
+                <tr>
+                    {%for subitem in form.gender%}
+                        <td>{{subitem(class_="form-check-input"+(" is-invalid" if form.gender.errors else "")) }}</td>
+                        <td>{{subitem.label(class_='form-check-label')}}</td>
+                    {%endfor%}
+                </tr>
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.birth.errors %}
+                            {% for error in form.birth.errors %}
                                 <li>{{error}}</li>
                             {% endfor %}
                         {% endif %}

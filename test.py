@@ -12,8 +12,9 @@ def after(response):
 
 @app.route('/')
 def home():
-    print(jsonify(name='timothychen',age='800yearsold'))
-    print(url_for('home',name='s'))
-    return jsonify(jsonify='timothychen',age='800yearsold')
+    next='2'
+    # print('/home' if next=='2' else 'sh')
+    return '678768768'
+
 if __name__=='__main__':
     app.run()

@@ -99,7 +99,7 @@ def upload():
                 "title":form.title.data,
                 "content":form.content.data,
                 'link':form.link.data,
-                "by_name":session['current_user']['account']
+                "by_name":session['current_user']['name']
             }
         #內部公告
         if form.collection.data=='內部公告':
@@ -107,9 +107,6 @@ def upload():
         else:#外部公告
             collection=db.announcement
             data['category']=form.category.data
-        #若真實姓名存在則填入
-        if session['current_user']['name']:
-            data['by_name']=session['current_user']['name']
         if not form.duration.data:
             data['duration']=1
         #上傳

@@ -14,22 +14,19 @@ class User():
     def sign_up(self,form):
         user={
             '_id':uuid.uuid4().hex,
-            'account':form.account.data,
             'password':generate_password_hash(form.password.data),
             'email':form.email.data,
             'authority':'normal',
         }
-        #email name 錯誤處理
-        if db.users.find_one({'account':user['account']}):
-            return {'name_error':'用戶名已存在'}
+        #email 錯誤處理
         if db.users.find_one({'email':user['email']}):
             return {'email_error':'此郵箱已經註冊'}
         db.users.insert_one(user)
         # self.start_session(user)
         return user
 
-    def login(self,account,password):
-        user=db.users.find_one({'account':account})
+    def login(self,email,password):
+        user=db.users.find_one({'email':email})
         if user:
             if check_password_hash(user['password'],password):
                 self.start_session(user)
@@ -37,30 +34,28 @@ class User():
             else:
                 return {'password_error':'密碼錯誤'}
         else:
-            return {'name_error':'用戶名錯誤'}
+            return {'email_error':'郵箱錯誤'}
 
     def log_out(self):
         session.clear()
 
     def refresh_user(self):
-        user=db.users.find_one({'account':session['current_user']['account']})
+        user=db.users.find_one({'email':session['current_user']['email']})
         self.start_session(user)
 
 class UserData():
     def update_basic(self,form):
         updatedata={
-            'name':form.name.data,
             'birth':str(form.birth.data),
-            'email':form.email.data,
             'phone':form.phone.data
         }
-        # for key in updatedata.keys():
 
-        db.users.update({'account':session['current_user']['account']}, {'$set': {"name":updatedata['name']}})
-        db.users.update({'account':session['current_user']['account']}, {'$set': {"email":updatedata['email']}})
-        db.users.update({'account':session['current_user']['account']}, {'$set': {"phone":updatedata['phone']}})
-        db.users.update({'account':session['current_user']['account']}, {'$set': {"birth":updatedata['birth']}})
+        # db.users.update({'account':session['current_user']['account']}, {'$set': {"name":updatedata['name']}})
+        # db.users.update({'account':session['current_user']['account']}, {'$set': {"email":updatedata['email']}})
+        db.users.update({'email':session['current_user']['email']}, {'$set': {"phone":updatedata['phone']}})
+        db.users.update({'email':session['current_user']['email']}, {'$set': {"birth":updatedata['birth']}})
+        # db.users.update({'account':session['current_user']['account']}, {'$set': {"gender":updatedata['gender']}})
 
     def update_password(self,form):
         password=generate_password_hash(form.password.data)
-        db.users.update({'account':session['current_user']['account']}, {'$set':{"password":password}})
+        db.users.update({'email':session['current_user']['email']}, {'$set':{"password":password}})
