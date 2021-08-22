@@ -115,3 +115,9 @@ def upload():
         return redirect('/officesys/dashboard/')
     session['from']=request.path
     return render_template("officesys/upload.html",form=form)
+
+@app_officesys_routes.route('/officesys/punch_in/')
+@login_required
+@authority_admin
+def daka():
+    return render_template('officesys/punchin.html')

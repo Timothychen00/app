@@ -1,0 +1,84 @@
+{% extends 'officesys/office_base.html' %}
+{% block main_content %}
+<div class='container-fluid mt-5'>
+	<div class='row justify-content-center text-center'>
+		<div class='col-lg-4 col-12'>
+			<div class='h4 me-lg-4 ps-lg-4' id='mday' style='white-space:pre;'></div>
+			<div class='h4' id='on_duty'>上班時間：20:00~23:30</div>
+			<div class='h4' id='off_duty'>下班時間：23:30~20:00</div>
+		</div>
+	</div>
+	<div class='row justify-content-center text-center mt-3 '>
+		<div class="col-lg-6 col-12 rounded-bottom rounded-top time-box mb-5">
+			<div class='time-box-text' id="mT"></div>
+		</div>
+	</div>
+	<div class="row justify-content-center gy-2">
+		<button onclick="send_time();" class='punchin-button btn col-lg-1 col-7 mx-2'>上班/簽到</button>
+		<button class='punchin-button btn col-lg-1 col-7 mx-2'>下班/簽退</button>
+		<button class='punchin-button btn col-lg-1 col-7 mx-2'>補打卡申請​</button>
+		<button class='punchin-button btn col-lg-1 col-7 mx-2'>記錄查詢</button>
+		<button class='punchin-button btn col-lg-1 col-7 mx-2'>設定</button>
+	</div>
+</div>
+
+<script>
+	window.onload=mTime();
+
+	function mTime(){
+		var Today = new Date();
+		var yy = Today.getFullYear();
+		var mm = Today.getMonth()+1;
+		var dd = Today.getDate();
+		var h = Today.getHours();
+		var m = Today.getMinutes();
+		var s = Today.getSeconds();
+
+		var day_inweek=Today.getDay();
+		var day_array=new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");
+
+		if(mm<10){
+			document.getElementById("mday").innerHTML = yy+"/0"+mm+"/"+dd+"    "+day_array[day_inweek];
+		}else{
+			document.getElementById("mday").innerHTML = yy+"/"+mm+"/"+dd+"    "+day_array[day_inweek];
+		}
+
+		if(h>=20 && h<=23 ){
+			//上班時間
+				document.getElementById("off_duty").classList="h4 visually-hidden";
+				document.getElementById("on_duty").classList="h4";
+			//下班
+			if(h==23 && m>30){
+				document.getElementById("on_duty").classList="h4 visually-hidden";
+				document.getElementById("off_duty").classList="h4";
+			}
+		}else{
+		document.getElementById("on_duty").classList="h4 invisible";
+		document.getElementById("off_duty").classList="h4";
+		}
+
+		var t = document.getElementById("mT");
+		if(m<10 && s<10){
+			time_formatted=h+":0"+m+":0"+s;
+		}else if(m<10 && s>=10){
+			time_formatted=h+":0"+m+":"+s;
+		}else if(m>=10 && s<10){
+			time_formatted=h+":"+m+":0"+s;
+		}else{
+			time_formatted=h+":"+m+":"+s;
+		}
+		t.innerHTML = time_formatted;
+		var tt = t.innerHTML;
+		if(h<10){
+			time_formatted="0" + tt;
+			t.innerHTML = "0" + tt;
+		}
+		setTimeout("mTime()",1000);
+	}
+
+	function send_time(){
+		var t = document.getElementById("mT").innerHTML;
+		window.location.href="/home/"+t;
+	}
+</script>
+{% endblock main_content %}

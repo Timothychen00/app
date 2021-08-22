@@ -2,7 +2,10 @@
     font-size: 0.75rem;
 }
 main{
-    min-height: calc(100vh);
+    min-height: calc(90vh);
+}
+body.bg-office{
+    background-color: #f5f5f5!important;
 }
 .header-img{
     object-fit: contain;
@@ -240,4 +243,35 @@ input.btn-custom:hover{
     .blank{
         width: 55vw!important;
     }
+}
+
+.time-box{
+    min-height: 100px;
+    background-color: #00bfff;
+}
+.time-box-text{
+    font-weight: bold;
+    color: white;
+    font-size: 5rem;
+}
+.punchin-button{
+    border-color: #00bfff!important;
+    background-color: #00bfff!important;
+    color:white!important;
+}
+.punchin-button:hover{
+    border-color:transparent!important;
+}
+.navbar-custom{
+    background-color:#00bfff!important;
+}
+.navbar-custom a{
+    color: white!important;
+}
+.navbar-custom a:hover{
+    color: #003399!important;
+}
+.office-box{
+    background-color:white!important;
+    height:43.65vh;
 }

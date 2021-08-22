@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1">
+    <title>辦公系統</title>
+    <link rel="icon" href="/static/logo-nb.ico" />
+    <link rel="stylesheet" href="/static/css/template.css">
+    <!--Bootstrap5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+</head>
+
+<body class='bg-office'>
+<nav class="navbar navbar-expand-lg navbar-custom pb-0 top-0 pt-0 vw-100 m-0">
+<div class="container-fluid border-custom">
+    <a class="gx-3 navbar-brand ms-5 me-5" href="/">
+        <img src="/static/logo-nb.ico" alt="" height="40" weight="30">
+    </a>
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="main_nav">
+		<ul class="navbar-nav p-0">
+			<li class="nav-item dropdown has-megamenu me-5">
+				<a class="nav-link dropdown" href="#" id="title" data-bs-toggle="dropdown" style="white-space:pre">首頁        人事        打卡        請假        排班        加班        核銷        簽呈</a>
+				<div class="dropdown-menu megamenu" role="menu">
+					<div class="row g-3">
+						<div class="col-lg-4 col-6">
+							<div class="col-megamenu">
+								<a href="/about" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">關於我們</h6></a>
+								<ul class="list-unstyled">
+									<li><a class="nav-link" href="#">故事</a></li>
+									<li><a class="nav-link" href="#">組織架構</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-4 col-6">
+							<div class="col-megamenu">
+                                <a href="/environment" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">學習環境</h6></a>
+								<ul class="list-unstyled">
+									<li><a class="nav-link" href="#">故事</a></li>
+									<li><a class="nav-link" href="#">故事</a></li>
+									<li><a class="nav-link" href="#">故事</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-4 col-6">
+							<div class="col-megamenu">
+                                <a href="/join" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">加入我們</h6></a>
+								<ul class="list-unstyled text-start">
+									<li><a class="nav-link" href="#">故事</a></li>
+									<li><a class="nav-link" href="#">故事</a></li>
+									<li><a class="nav-link" href="#">故事</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+        {% if 'logged_in' in session and session['logged_in'] %}
+		<ul class="navbar-nav ms-auto p-0" width='200'>
+            <li class="nav-item me-1">
+                <a class="nav-link" href="/userspace/">{{session['current_user']['name']}}</a>
+            </li>
+            <li class="nav-item me-1">
+                <a  class="nav-link" href="/logout">登出</a>
+            </li>
+		</ul>
+        {% endif %}
+        <button class=" btn btn-custom me-5" onclick="javascript:self.close();" type="button" style="white-space:pre">  離開  </button>
+    </div>
+</div>
+</nav>
+
+<main>
+{% block main_content %}
+
+
+
+
+{% endblock main_content %}
+</main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+        // make it as accordion for smaller screens
+        if (window.innerWidth > 992) {
+
+            document.querySelectorAll('.navbar .nav-item').forEach(function(everyitem){
+
+                everyitem.addEventListener('mouseover', function(e){
+
+                    let el_link = this.querySelector('a[data-bs-toggle]');
+
+                    if(el_link != null){
+                        let nextEl = el_link.nextElementSibling;
+                        el_link.classList.add('show');
+                        nextEl.classList.add('show');
+                    }
+                });
+                everyitem.addEventListener('mouseleave', function(e){
+                    let el_link = this.querySelector('a[data-bs-toggle]');
+
+                    if(el_link != null){
+                        let nextEl = el_link.nextElementSibling;
+                        el_link.classList.remove('show');
+                        nextEl.classList.remove('show');
+                    }
+                })
+            });
+        }
+        });
+    </script>
+
+    <!--flash信息-->
+    <script>
+        {% with messages=get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    alert('{{msg}}');
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </script>
+</body>
+</html>
