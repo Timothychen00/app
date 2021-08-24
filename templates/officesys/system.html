@@ -1,13 +1,69 @@
 {% extends 'officesys/office_base.html' %}
 {% block main_content %}
-<div class="container-fluid text-center bg-transparent">
+<div class="container-fluid text-center bg-transparent overflow-hidden">
     <div class='row py-2'>
         <div class='col-9 px-1'>
             <div class='office-box'>
             </div>
         </div>
         <div class='col-3 px-1'>
-            <div class='office-box'>
+            <div class='text-center justify-content-center office-box ps-1'>
+                <div class='h4 calendar-title mb-0 pt-4' style='white-space:pre;'>2021    八月</div>
+                <ul class='list-inline align mb-1'>
+                    <li class="list-inline-item calendar-title-cel me-0">一</li>
+                    <li class="list-inline-item calendar-title-cel me-0">二</li>
+                    <li class="list-inline-item calendar-title-cel me-0">三</li>
+                    <li class="list-inline-item calendar-title-cel me-0">四</li>
+                    <li class="list-inline-item calendar-title-cel me-0">五</li>
+                    <li class="list-inline-item calendar-title-cel me-0">六</li>
+                    <li class="list-inline-item calendar-title-cel me-0">日</li>
+                </ul>
+                <ul class='list-inline text-center calender-row'>
+                    <!-- 第一週 -->
+                    <li class='list-inline-item calendar-cell border me-0'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0'>2</li>
+                    <li class='list-inline-item calendar-cell border me-0'>3</li>
+                    <li class='list-inline-item calendar-cell border me-0'>4</li>
+                    <li class='list-inline-item calendar-cell border me-0'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0'>1</li>
+                    <br/>
+                    <!-- 第二週 -->
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>2</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>3</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>4</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <br/>
+                    <!-- 第三週 -->
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>2</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>3</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>4</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <br/>
+                    <!-- 第四週 -->
+                    <li class='list-inline-item calendar-cell border me-0 mt-1 active'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>2</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>3</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>4</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <br/>
+                    <!-- 第五週 -->
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>2</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>3</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>4</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                    <li class='list-inline-item calendar-cell border me-0 mt-1'>1</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -21,7 +77,16 @@
             </div>
         </div>
         <div class="col-3 px-1">
-            <div class='office-box px-1'>
+            <div class='office-box office-box-last px-1 margin-move'>
+                <ul class='text-start ps-4 office-box-list' height='90%'>
+                <span class='h4 border-5 font-deepblue border-custom'>日程:</span>
+                    <li class="h5 fw-normal ms-4 mt-3">企劃案</li>
+                    <li class="h5 fw-normal ms-4">ppt</li>
+                </ul>
+                <div class='w-100 text-end pe-2'>
+                    <button class='btn py-0 border-2'>上一頁</button>
+                    <button class='btn py-0 border-2'>下一頁</button>
+                </div>
             </div>
         </div>
     </div>

@@ -273,5 +273,44 @@ input.btn-custom:hover{
 }
 .office-box{
     background-color:white!important;
-    height:43.65vh;
+    height:44.35vh!important;
+}
+.office-box-list{
+    height:83%;
+}
+.office-box-last{
+    height: calc(44.35vh + 0.5rem)!important;
+}
+/* officesys-calendar */
+.calendar-cell{
+    border-radius: 25%!important;
+    height: 36px!important;
+    width:37px!important;
+    border-color:transparent;
+    padding-top: 5.25px;
+    color: #00bfff;
+    font-size: 1rem;
+}
+.calendar-cell.active{
+    border-color:#00bfff!important;
+    background-color: #00bfff!important;
+    color:white!important;
+}
+.calendar-title-cel{
+    width:37px!important;
+    color:#00bfff;
+}
+.calendar-title{
+    color:#00bfff;
+}
+.margin-move{
+    margin-top:-0.5rem!important;
+}
+.font-deepblue{
+    color:#003399!important;
+    border-color:#003399!important;
+}
+.font-lightblue{
+    color:#00bfff!important;
+    border-color:#00bfff!important;
 }
