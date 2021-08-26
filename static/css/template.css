@@ -280,6 +280,7 @@ input.btn-custom:hover{
 }
 .office-box-last{
     height: calc(44.35vh + 0.5rem)!important;
+    min-width: 313px!important;
 }
 /* officesys-calendar */
 .calendar-cell{
@@ -296,6 +297,9 @@ input.btn-custom:hover{
     background-color: #00bfff!important;
     color:white!important;
 }
+.calendar-cell.selected{
+    border-color:#00bfff!important;
+}
 .calendar-title-cel{
     width:37px!important;
     color:#00bfff;
@@ -303,6 +307,14 @@ input.btn-custom:hover{
 .calendar-title{
     color:#00bfff;
 }
+.calendar{
+    min-width: 313px!important;
+}
+.meeting{
+    max-width: 350px!important;
+}
+
+
 .margin-move{
     margin-top:-0.5rem!important;
 }
