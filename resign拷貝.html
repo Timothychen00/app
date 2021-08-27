@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="signin copy.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+
+    <title>註冊畫面</title>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="text-center text-white">
+    <main class="form-signin">
+        <form>
+            <h1 class="h3 mb-3 fw-normal text-white">歡迎註冊！</h1>
+
+            <div class="form-floating  text-secondary">
+                <input type="password" class="form-control border-0" name="username" id="username" placeholder="請輸入帳號" required>
+                <label for="floatingInput">請輸入帳號／Username</label>
+            </div>
+
+            <div class="form-floating  text-secondary">
+                <i class="fa fa-key" aria-hidden="true"></i>
+                <input type="password" class="form-control border-0" name="password" id="password" placeholder="請輸入密碼" required>
+                <label for="floatingInput">請輸入密碼／Password</label>
+            </div>
+
+            <div class="form-floating  text-secondary">
+                <i class="fa fa-cheak-circle-o" aria-hidden="true"></i>
+                <input type="password" class="form-control border-0" name="resetpw" id="resetpw" placeholder="請確認密碼" required>
+                <label for="floatingInput">請再次輸入密碼／Password</label>
+            </div>
+
+            <div class="form-floating  text-secondary">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <input type="email" class="form-control border-0" name="email" id="email" placeholder="請輸入電子郵件" required>
+                <label for="floatingInput">請輸入電子信箱／Email Address</label>
+            </div>
+
+            <div class="checkbox mb-3 fs-6">
+                <label>
+                    <input type="checkbox" value="remember-me"> 我已經仔細閱讀<a href="#" style="text-decoration:none;">會員服務事項條款</a>，同意並願意遵守其規定事項。
+                </label>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-outline-secondary text-white border-0">註冊／Sign
+                up</button>
+
+        </form>
+    </main>
+    <script src="bootstrap-5.0.2-dist/js/popper.min.js"></script>
+    <script src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

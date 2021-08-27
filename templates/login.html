@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
+{% block page_title %}
+    <title>登入</title>
+{% endblock page_title %}
+{% block navbar %}
+{% endblock navbar %}
+
 {% block main_content %}
-<div class="container-fluid">
-    <div class="row justify-content-center text-center">
-        <div class="col-12 h1 mt-5 mb-4">
-            登入
-        </div>
-        <form class="login border-3 border-dark col-md-4 col-9 needs-validation" action="/login" method="POST" novalidate>
+<div class=' container-fluid login-register-bg text-white'>
+    <div class='row justify-content-center align-content-center h-100 text-center'>
+        <form class="form-login-register col-md-5 col-12 col-lg-4 nees-validation" action="/login" method="POST" novalidate>
             {{ form.csrf_token() }}
-            <div class="mb-4">
-                <label for="email" class="form-label h5">電子郵箱</label>
-                {{ form.email(class_="form-control"+ (" is-invalid" if form.email.errors else ""),id="email") }}
+            <h1 class="h3 mb-3 fw-normal form-label ">登入網站會員</h1>
+
+            <div class="form-floating  text-secondary mb-2">
+                {{ form.email(class_="form-control border-0 text-white"+ (" is-invalid" if form.email.errors else ""),id="floatingEmail",placeholder='') }}
+                <label for="floatingEmail">帳號／Email address</label>
                 <div class="invalid-feedback">
                     <ul>
                         {% if form.email.errors %}
@@ -19,11 +24,11 @@
                         {% endif %}
                     </ul>
                 </div>
-
             </div>
-            <div class="mb-2">
-                <label for="password" class="form-label h5">密碼</label>
-                {{ form.password(class_="form-control"+(" is-invalid" if form.password.errors else ""),id="password") }}
+
+            <div class="form-floating  text-secondary mb-2">
+                {{ form.password(class_="form-control border-0 text-white"+ (" is-invalid" if form.password.errors else ""),id="floatingPassword",placeholder='') }}
+                <label for="floatingPassword">密碼／Password</label>
                 <div class="invalid-feedback">
                     <ul>
                         {% if form.password.errors %}
@@ -34,25 +39,69 @@
                     </ul>
                 </div>
             </div>
-            <div class="mb-3 form-check text-center">
-                <div class="form-check pe-5">
-                    {{ form.remember(class_="from-control",id="remember") }}
-                    <label class="form-check-label" for="remember">
-                        記住我
-                    </label>
+
+            <div class="form-floating  text-secondary mb-2 visually-hidden" id='authorizationCodeDiv'>
+                {{ form.authorization_code(class_="form-control border-0 text-white"+ (" is-invalid" if form.authorization_code.errors else ""),id="authorizationCode",placeholder='') }}
+                <label for="authorizationCode">授權碼／Authorization Code</label>
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.authorization_code.errors %}
+                            {% for error in form.authorization_code.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
-            <div class="mb-3">
-                <a href="/register">還沒有帳戶？註冊</a>
+
+            <div class="form-check form-switch mb-2">
+                <label for="flexSwitchCheckDefault" class='me-5'>
+                    {{ form.remember(class_="form-check-input border-0"+ (" is-invalid" if form.remember.errors else ""),id="remember",checked=false) }}
+                    記住我
+                </label>
+                <label for="flexSwitchCheckDefault">
+                    {{ form.authorization(class_="form-check-input border-0"+ (" is-invalid" if form.authorization.errors else ""),id="authorization") }}
+                    授權碼
+                </label>
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.remember.errors %}
+                            {% for error in form.remember.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+
             </div>
-            {{form.submit(class_="btn btn-custom mb-5",onclick="ResetCheckbox();",value="送出")}}
+            <a class="fs-6 mb-2" href="/register" style="text-decoration:none;">還不是會員嗎？點此註冊</a>
+            {{form.submit(class_="w-100 btn btn-lg btn-uotline-secondary border-0 text-white",value='登入／Login')}}
+            <p class="mt-5 mb-3 text-white">&copy; 總監室資訊組 2020–2021</p>
         </form>
     </div>
 </div>
+
 <script>
-    const checkbox = document.getElementById('checkbox');
-    function ResetCheckbox() {
-        checkbox.checked = false;
-    }
+    let authorization=document.getElementById('authorization');
+    let authorization_code=document.getElementById('authorizationCodeDiv');
+    let remember=document.getElementById('remember')
+    remember.checked=false
+    authorization.checked=false
+
+    authorization.addEventListener('click',function(event){//之後還要加ajax
+        if(authorization.checked){
+            authorization_code.classList.remove('visually-hidden');
+        }else{
+            authorization_code.classList.add('visually-hidden');
+        }
+    })
 </script>
 {% endblock main_content %}
+{% block footer %}
+{% endblock footer %}
+{% block script %}
+{% endblock script %}
+
+
+
+

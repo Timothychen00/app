@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     </meta>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1">
-    <title>首頁</title>
+
+    {% block page_title %}
+        <title>首頁</title>
+    {% endblock page_title %}
+
     <link rel="icon" href="/static/logo-nb.ico" />
     <link rel="stylesheet" href="/static/css/template.css">
     <!--Bootstrap5 -->
@@ -15,83 +19,87 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light top-0 pt-0 vw-100 m-0">
-<div class="container-fluid border-custom">
-    <a class="gx-3 navbar-brand ms-5 me-5" href="/">
-        <img src="/static/logo-nb.ico" alt="" height="40" weight="30">
-    </a>
-	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="main_nav">
-		<ul class="navbar-nav p-0">
-			<li class="nav-item dropdown has-megamenu me-5">
-				<a class="nav-link dropdown" href="#" id="title" data-bs-toggle="dropdown" style="white-space:pre">關於我們            學習環境            加入我們</a>
-				<div class="dropdown-menu megamenu" role="menu">
-					<div class="row g-3">
-						<div class="col-lg-4 col-6">
-							<div class="col-megamenu">
-								<a href="/about" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">關於我們</h6></a>
-								<ul class="list-unstyled">
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">組織架構</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-4 col-6">
-							<div class="col-megamenu">
-                                <a href="/environment" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">學習環境</h6></a>
-								<ul class="list-unstyled">
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-4 col-6">
-							<div class="col-megamenu">
-                                <a href="/join" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">加入我們</h6></a>
-								<ul class="list-unstyled text-start">
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</li>
-            {%if 'logged_in' in session and session['logged_in']%}
-                {%if session['current_user']['authority'] in ['admin','staff']%}
-                    <li class="nav-item me-5">
-                        <a class="nav-link" onclick="window.open('/officesys/')">辦公系統</a>
-                    </li>
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-light top-0 pt-0 vw-100 m-0">
+    <div class="container-fluid border-custom">
+        <a class="gx-3 navbar-brand ms-5 me-5" href="/">
+            <img src="/static/logo-nb.ico" alt="" height="40" weight="30">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main_nav">
+            <ul class="navbar-nav p-0">
+                <li class="nav-item dropdown has-megamenu me-5">
+                    <a class="nav-link dropdown" href="#" id="title" data-bs-toggle="dropdown" style="white-space:pre">關於我們            學習環境            加入我們</a>
+                    <div class="dropdown-menu megamenu" role="menu">
+                        <div class="row g-3">
+                            <div class="col-lg-4 col-6">
+                                <div class="col-megamenu">
+                                    <a href="/about" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">關於我們</h6></a>
+                                    <ul class="list-unstyled">
+                                        <li><a class="nav-link" href="#">故事</a></li>
+                                        <li><a class="nav-link" href="#">組織架構</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-6">
+                                <div class="col-megamenu">
+                                    <a href="/environment" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">學習環境</h6></a>
+                                    <ul class="list-unstyled">
+                                        <li><a class="nav-link" href="#">故事</a></li>
+                                        <li><a class="nav-link" href="#">故事</a></li>
+                                        <li><a class="nav-link" href="#">故事</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-6">
+                                <div class="col-megamenu">
+                                    <a href="/join" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">加入我們</h6></a>
+                                    <ul class="list-unstyled text-start">
+                                        <li><a class="nav-link" href="#">故事</a></li>
+                                        <li><a class="nav-link" href="#">故事</a></li>
+                                        <li><a class="nav-link" href="#">故事</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {%if 'logged_in' in session and session['logged_in']%}
+                    {%if session['current_user']['authority'] in ['admin','staff']%}
+                        <li class="nav-item me-5">
+                            <a class="nav-link" onclick="window.open('/officesys/')">辦公系統</a>
+                        </li>
+                    {%endif%}
                 {%endif%}
-            {%endif%}
-            {%if 'logged_in' in session and session['logged_in']%}
-                {%if session['current_user']['authority']=='admin'%}
-                    <li class="nav-item me-5">
-                        <a class="nav-link" href="/develop/versions/">發布版本</a>
-                    </li>
+                {%if 'logged_in' in session and session['logged_in']%}
+                    {%if session['current_user']['authority']=='admin'%}
+                        <li class="nav-item me-5">
+                            <a class="nav-link" href="/develop/versions/">發布版本</a>
+                        </li>
+                    {%endif%}
                 {%endif%}
-            {%endif%}
-		</ul>
-        {% if 'logged_in' in session and session['logged_in'] %}
-		<ul class="navbar-nav ms-auto p-0" width='200'>
-            <li class="nav-item me-1">
-                <a class="nav-link" href="/userspace/">{{session['current_user']['name']}}</a>
-            </li>
-            <li class="nav-item me-5">
-                <a  class="nav-link" href="/logout">登出</a>
-            </li>
-		</ul>
-        {% else %}
-            <button class="ms-auto btn btn-custom me-5 {% if page=="login" or page=="register" %}active{% endif %}"
-                    onclick="javascript:location.href='/login'" type="button" style="white-space:pre">  登入  </button>
-        {% endif %}
+            </ul>
+            {% if 'logged_in' in session and session['logged_in'] %}
+            <ul class="navbar-nav ms-auto p-0" width='200'>
+                <li class="nav-item me-1">
+                    <a class="nav-link" href="/userspace/">{{session['current_user']['name']}}</a>
+                </li>
+                <li class="nav-item me-5">
+                    <a  class="nav-link" href="/logout">登出</a>
+                </li>
+            </ul>
+            {% else %}
+                <button class="ms-auto btn btn-custom me-5 {% if page=="login" or page=="register" %}active{% endif %}"
+                        onclick="javascript:location.href='/login'" type="button" style="white-space:pre">  登入  </button>
+            {% endif %}
+        </div>
     </div>
-</div>
-</nav>
+    </nav>
+{% endblock navbar %}
+
 
 <main>
 {% block main_content %}
@@ -274,7 +282,6 @@
     {% block script %}
     <script>
             window.onload=function(){
-            var checkbox=document.getElementById('checkbox')
             checkbox.checked=false
         }
     </script>

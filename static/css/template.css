@@ -326,3 +326,27 @@ input.btn-custom:hover{
     color:#00bfff!important;
     border-color:#00bfff!important;
 }
+
+
+
+
+
+
+.login-register-bg{
+    height: 100vh;
+    background-image: url("/static/login-register-bg.jpg");
+    background-position: center 0;
+    background-repeat: no-repeat;
+}
+
+.form-login-register {
+    max-width: 330px!important;
+}
+
+.form-login-register .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-login-register input[type="email"],input[type="password"],input[type='text'] {
+    background-color: rgba(0, 0, 0, 0.411)!important;
+}
