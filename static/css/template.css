@@ -347,6 +347,10 @@ input.btn-custom:hover{
     z-index: 2;
 }
 
-.form-login-register input[type="email"],input[type="password"],input[type='text'] {
+.form-login-register input[type="email"],input[type="password"],input[type='text']{
+    background-color: rgba(0, 0, 0, 0.411)!important;
+}
+
+.form-login-register input[type='submit']:hover{
     background-color: rgba(0, 0, 0, 0.411)!important;
 }
