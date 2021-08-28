@@ -1,4 +1,3 @@
-alert(1);
 window.onload=display_calendar();
 function display_calendar()
 {

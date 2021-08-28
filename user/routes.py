@@ -10,6 +10,8 @@ def login():
     form=LoginForm()
     session['from']=request.path
     if form.validate_on_submit():
+        for each in form:
+            print(str(each.label)+str(each.data))
         result=User().login(form.email.data,form.password.data)
         #用戶名或密碼錯誤
         if 'email_error' in result:
@@ -21,6 +23,10 @@ def login():
         #記住我選項
         if form.remember.data==True:
             session.permanent=True
+
+        if form.admin_submit:
+            if form.authorization_code.data=="GoToOfficesys":
+                return redirect('/officesys/')
         #成功登錄
         return redirect('/')
     return render_template("login.html",form=form,page="login")

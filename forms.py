@@ -20,9 +20,9 @@ class LoginForm(FlaskForm):
     email=EmailField("Email",validators=[InputRequired("此為必填欄目"),Email("請輸入正確的郵箱格式")])
     password=PasswordField("Password",validators=[InputRequired("此為必填欄目"),Length(min=8,max=20,message="請輸入8至20位之間的密碼"),Regexp(regex="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d$@$!%*?&]{8,20}",message='密码至少包含1个大写字母，1个小写字母，1个数字')])
     remember=BooleanField('remember me')
-    authorization=BooleanField('是否使用授權碼')
     authorization_code=StringField('授權碼')
     submit=SubmitField("Submit")
+    admin_submit=SubmitField('Submit')
 
 class DashForm(FlaskForm):
     #field(標籤文字，驗證方式)

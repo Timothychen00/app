@@ -350,7 +350,9 @@ input.btn-custom:hover{
 .form-login-register input[type="email"],input[type="password"],input[type='text']{
     background-color: rgba(0, 0, 0, 0.411)!important;
 }
-
-.form-login-register input[type='submit']:hover{
+.btn-custom-dark:hover{
     background-color: rgba(0, 0, 0, 0.411)!important;
+}
+.bg-custom-dark{
+    background-color: rgb(36, 36, 36)!important;
 }
