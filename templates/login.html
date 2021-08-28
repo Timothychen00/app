@@ -13,7 +13,7 @@
             <h1 class="h3 mb-3 fw-normal form-label ">登入網站會員</h1>
 
             <div class="form-floating  text-secondary mb-2">
-                {{ form.email(class_="form-control border-0 text-white"+ (" is-invalid" if form.email.errors else ""),id="floatingEmail",placeholder='123') }}
+                {{ form.email(class_="form-control border-0 text-white"+ (" is-invalid" if form.email.errors else ""),id="floatingEmail",placeholder=' ') }}
                 <label for="floatingEmail">帳號／Email address</label>
                 <div class="invalid-feedback">
                     <ul>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="form-floating  text-secondary mb-2">
-                {{ form.password(class_="form-control border-0 text-white"+ (" is-invalid" if form.password.errors else ""),id="floatingPassword",placeholder='') }}
+                {{ form.password(class_="form-control border-0 text-white"+ (" is-invalid" if form.password.errors else ""),id="floatingPassword",placeholder=' ') }}
                 <label for="floatingPassword">密碼／Password</label>
                 <div class="invalid-feedback">
                     <ul>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="form-floating  text-secondary mb-2 visually-hidden" id='authorizationCodeDiv'>
-                {{ form.authorization_code(class_="form-control border-0 text-white"+ (" is-invalid" if form.authorization_code.errors else ""),id="authorizationCode",placeholder='') }}
+                {{ form.authorization_code(class_="form-control border-0 text-white"+ (" is-invalid" if form.authorization_code.errors else ""),id="authorizationCode",placeholder=' ') }}
                 <label for="authorizationCode">授權碼／Authorization Code</label>
                 <div class="invalid-feedback">
                     <ul>
