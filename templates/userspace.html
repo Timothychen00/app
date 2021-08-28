@@ -6,32 +6,32 @@
             <div class='h1 text-center mt-5 '>個人資料</div>
                 <table class='mt-3 fw-normal table {% if session['current_user']['authority']=='normal'%}{%else%} offset-1{%endif%}' style='font-size:1.25rem'>
                     <tr class='pb-5'>
-                        {% if session['current_user']['authority'] in ['staff','admin'] %}<td>員工編號：{{session['current_user']['staff_id']}}</td>{% endif %}
-                        {% if session['current_user']['authority'] in ['staff','admin'] %}<td>到職日期：{{session['current_user']['onboard_date']}}</td>{% endif %}
+                        {% if session['current_user']['authority'] =='staff' %}<td>員工編號：{{session['current_user']['staff_id']}}</td>{% endif %}
+                        {% if session['current_user']['authority'] =='staff' %}<td>到職日期：{{session['current_user']['onboard_date']}}</td>{% endif %}
                         <td>姓名：{{session['current_user']['name']}}</td>
                     </tr>
                     <tr>
-                        {% if session['current_user']['authority'] in ['staff','admin'] %}<td>部門：{{session['current_user']['class_id']}} {{session['current_user']['class']}}</td>{% endif %}
-                        {% if session['current_user']['authority'] in ['staff','admin'] %}<td>生效日：{{session['current_user']['class_active_date']}}</td>{% endif %}
+                        {% if session['current_user']['authority'] =='staff' %}<td>部門：{{session['current_user']['class_id']}} {{session['current_user']['class']}}</td>{% endif %}
+                        {% if session['current_user']['authority'] =='staff' %}<td>生效日：{{session['current_user']['class_active_date']}}</td>{% endif %}
                         <td>性別：{{session['current_user']['gender']}}</td>
                     </tr>
                     <tr>
-                        {% if session['current_user']['authority'] in ['staff','admin'] %}<td>職稱：{{session['current_user']['job']}}</td>{% endif %}
-                        {% if session['current_user']['authority'] in ['staff','admin'] %}<td>生效日：{{session['current_user']['job_active_date']}}</td>{% endif %}
+                        {% if session['current_user']['authority'] =='staff' %}<td>職稱：{{session['current_user']['job']}}</td>{% endif %}
+                        {% if session['current_user']['authority'] =='staff' %}<td>生效日：{{session['current_user']['job_active_date']}}</td>{% endif %}
                         <td>出生日期(YYYY-MM-DD)：{{session['current_user']['birth']}}</td>
                     </tr>
                     <tr>
-                        {% if session['current_user']['authority'] in ['staff','admin'] %}<td>職等：{{session['current_user']['level']}}</td>{% endif %}
-                        {% if session['current_user']['authority'] in ['staff','admin'] %}<td>生效日：{{session['current_user']['level_active_date']}}</td>{% endif %}
+                        {% if session['current_user']['authority'] =='staff' %}<td>職等：{{session['current_user']['level']}}</td>{% endif %}
+                        {% if session['current_user']['authority'] =='staff' %}<td>生效日：{{session['current_user']['level_active_date']}}</td>{% endif %}
                         <td>電子郵箱：{{session['current_user']['email']}}</td>
                     </tr>
                     <tr>
-                        {% if session['current_user']['authority'] in ['staff','admin'] %}<td>狀態：{{session['current_user']['status']}}</td>{% endif %}
-                        {% if session['current_user']['authority'] in ['staff','admin'] %}<td>認職時數：{{session['current_user']['injob_hours']}}</td>{% endif %}
+                        {% if session['current_user']['authority'] =='staff' %}<td>狀態：{{session['current_user']['status']}}</td>{% endif %}
+                        {% if session['current_user']['authority'] =='staff' %}<td>認職時數：{{session['current_user']['injob_hours']}}</td>{% endif %}
                         <td>手機號碼：{{session['current_user']['phone']}}</td>
                     </tr>
                     <tr>
-                    {% if session['current_user']['authority'] in ['staff','admin'] %}
+                    {% if session['current_user']['authority'] =='staff' %}
                         <td colspan='3'>層級代號：{{session['current_user']['hierarchy_code']}}</td>
                     {%endif%}
                     </tr>

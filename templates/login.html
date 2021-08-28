@@ -59,13 +59,11 @@
             </div>
 
             <a class="fs-6 mb-2" href="/register" style="text-decoration:none;">還不是會員嗎？點此註冊</a>
-            {{form.submit(class_="w-100 btn btn-lg btn-outline-secondary text-white border-0",value='登入／Login')}}
+            {{form.submit(class_="w-100 btn btn-lg btn-outline-secondary text-white border-0 mt-2",value='登入／Login')}}
             <p class="mt-5 mb-3 text-white">&copy; 總監室資訊組 2020–2021</p>
         </form>
 
-    <!-- Button trigger modal -->
-        <button type="button" id='111' class="btn btn-primary visually-hidden" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        </button>
+        <button type="button" class="btn btn-primary visually-hidden" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog bg-custom-dark" style='position:relative;top:35%;'>
                 <div class="modal-content bg-custom-dark">
@@ -87,7 +85,6 @@
 <script>
     let remember=document.getElementById('remember')
     remember.checked=false
-
 
     var exampleModal = document.getElementById('exampleModal')
     exampleModal.addEventListener('show.bs.modal', function (event) {
