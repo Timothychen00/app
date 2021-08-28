@@ -24,11 +24,10 @@ def login():
         if form.remember.data==True:
             session.permanent=True
 
-        if form.admin_submit:
-            if form.authorization_code.data=="GoToOfficesys":
-                return redirect('/officesys/')
+        if session['current_user']['authority']!='staff':
+            return redirect('/')
         #成功登錄
-        return redirect('/')
+
     return render_template("login.html",form=form,page="login")
 
 #註冊頁面

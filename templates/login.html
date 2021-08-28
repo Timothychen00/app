@@ -59,37 +59,35 @@
             </div>
 
             <a class="fs-6 mb-2" href="/register" style="text-decoration:none;">還不是會員嗎？點此註冊</a>
-            {{form.submit(class_="w-100 btn btn-lg btn-outline-secondary text-white border-0 btn-custom-dark",value='登入／Login')}}
-            <input type="button" class="w-100 btn btn-lg btn-outline-secondary text-white border-0 btn-custom-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="" value='行政登入'/>
+            {{form.submit(class_="w-100 btn btn-lg btn-outline-secondary text-white border-0",value='登入／Login')}}
             <p class="mt-5 mb-3 text-white">&copy; 總監室資訊組 2020–2021</p>
+        </form>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" style='position:relative;top:25%;'>
-                    <div class="modal-content bg-custom-dark">
-                        <div class="modal-header d-flex justify-content-center text-center">
-                            <h5 class="modal-title" id="exampleModalLabel">請輸入授權碼</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-floating  text-secondary mb-2" id='authorizationCodeDiv'>
-                                {{ form.authorization_code(class_="form-control border-0 text-white"+ (" is-invalid" if form.authorization_code.errors else ""),id="authorizationCode",placeholder=' ') }}
-                                <label for="authorizationCode">授權碼／Authorization Code</label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="fs-6 btn-custom-dark btn btn-lg btn-outline-secondary text-white border-0" data-bs-dismiss="modal" value='取消'>
-                            {{form.admin_submit(class_="fs-6 btn btn-lg btn-outline-secondary text-white border-0 btn-custom-dark",value='登入')}}
-                        </div>
+    <!-- Button trigger modal -->
+        <button type="button" id='111' class="btn btn-primary visually-hidden" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog bg-custom-dark" style='position:relative;top:35%;'>
+                <div class="modal-content bg-custom-dark">
+                    <div class="modal-header font-white">
+                        <h5 class="modal-title" id="exampleModalLabel">請選擇前往頁面</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type='button' class='btn btn-lg text-white btn-custom-dark fs-6' onclick="location.href='/'" value='首頁'>
+                        <input type='button' class='btn btn-lg text-white fs-6' onclick="location.href='/officesys/'" value='辦公系統'>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+
     </div>
 </div>
 
 <script>
     let remember=document.getElementById('remember')
     remember.checked=false
+
 
     var exampleModal = document.getElementById('exampleModal')
     exampleModal.addEventListener('show.bs.modal', function (event) {
@@ -100,11 +98,20 @@
     var modalBodyInput = exampleModal.querySelector('.modal-body input')
 
     })
+
 </script>
 {% endblock main_content %}
 {% block footer %}
 {% endblock footer %}
 {% block script %}
+
+<script>
+{% if 'logged_in' in session and session['current_user']['authority'] =='staff' %}
+    var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {keyboard: false})
+    myModal.toggle()
+    myModal.show()
+{% endif %}
+</script>
 {% endblock script %}
 
 

@@ -278,13 +278,7 @@
         }
         });
     </script>
-    {% block script %}
-    <script>
-            window.onload=function(){
-            checkbox.checked=false
-        }
-    </script>
-    {% endblock script %}
+
     <!--flash信息-->
     <script>
         {% with messages=get_flashed_messages() %}
@@ -296,5 +290,13 @@
         {% endwith %}
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+    {% block script %}
+    <script>
+            window.onload=function(){
+            checkbox.checked=false
+        }
+    </script>
+    {% endblock script %}
+
 </body>
 </html>
