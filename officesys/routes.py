@@ -1,7 +1,7 @@
 from flask import render_template,flash,session,request,Blueprint,redirect
 from forms import *
 from bson import ObjectId
-from decorators import login_required,authority_admin,authority_staff
+from decorators import login_required,authority_staff
 import datetime,pymongo
 #連結mongodb
 client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.m8nzl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
@@ -77,7 +77,7 @@ def contentspace(id):
 #布告欄 刪除
 @app_officesys_routes.route('/officesys/dashboard/<id>/delete/')
 @login_required
-@authority_admin
+@authority_staff
 def delete(id):
     collection=db.dashboard#操作users集合
     collection.remove({"_id":ObjectId(id)})
@@ -86,7 +86,7 @@ def delete(id):
 #布告欄 新增
 @app_officesys_routes.route('/officesys/dashboard/upload/',methods=['GET','POST'])
 @login_required
-@authority_admin
+@authority_staff
 def upload():
     form=DashForm()
     if form.validate_on_submit():
@@ -118,6 +118,6 @@ def upload():
 
 @app_officesys_routes.route('/officesys/punch_in/')
 @login_required
-@authority_admin
+@authority_staff
 def daka():
     return render_template('officesys/punchin.html')
