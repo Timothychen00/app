@@ -96,13 +96,9 @@
     // Button that triggered the modal
     var button = event.relatedTarget
     // Extract info from data-bs-* attributes
-    var recipient = button.getAttribute('data-bs-whatever')
     // If necessary, you could initiate an AJAX request here
-    var modalTitle = exampleModal.querySelector('.modal-title')
     var modalBodyInput = exampleModal.querySelector('.modal-body input')
 
-    modalTitle.textContent = 'New message to ' + recipient
-    modalBodyInput.value = recipient
     })
 </script>
 {% endblock main_content %}
