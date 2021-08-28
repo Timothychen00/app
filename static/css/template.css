@@ -356,3 +356,8 @@ input.btn-custom:hover{
 .bg-custom-dark{
     background-color: rgb(36, 36, 36)!important;
 }
+.h-custom{
+    height: 300px!important;
+
+
+}
