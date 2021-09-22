@@ -22,7 +22,7 @@
 {% block navbar %}
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#">創造娛樂工作室</a>
+
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
@@ -31,17 +31,17 @@
                     <li class="nav-item"><a class="nav-link" href="#portfolio">最新消息</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">聯絡我們</a></li>
                 </ul>
-                
+
                 <ul class="navbar-nav p-0" width='200'>
                 {%if 'logged_in' in session and session['logged_in']%}
                         {%if session['current_user']['authority'] =='staff'%}
-                            <li class="nav-item me-3">
+                            <li class="nav-item ms-3">
                                 <a class="nav-link" onclick="window.open('/officesys/')">辦公系統</a>
                             </li>
                         {%endif%}
                     {%endif%}
                 {% if 'logged_in' in session and session['logged_in'] %}
-                    <li class="nav-item">
+                    <li class="nav-item ms-0">
                         <a class="nav-link" href="/userspace/">{{session['current_user']['name']}}</a>
                     </li>
                     <li class="nav-item me-3">
