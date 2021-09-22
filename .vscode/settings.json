@@ -1,4 +1,5 @@
 {
     "appService.defaultWebAppToDeploy": "/subscriptions/a2290f80-d825-4c52-96b4-901f0b3230e0/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/flaskwebsite",
-    "appService.deploySubpath": "."
+    "appService.deploySubpath": ".",
+    "liveServer.settings.port": 5501
 }

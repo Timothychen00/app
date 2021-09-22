@@ -20,143 +20,139 @@
 <body>
 
 {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-light top-0 pt-0 vw-100 m-0">
-    <div class="container-fluid border-custom">
-        <a class="gx-3 navbar-brand ms-5 me-5" href="/">
-            <img src="/static/logo-nb.ico" alt="" height="40" weight="30">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="main_nav">
-            <ul class="navbar-nav p-0">
-                <li class="nav-item dropdown has-megamenu me-5">
-                    <a class="nav-link dropdown" href="#" id="title" data-bs-toggle="dropdown" style="white-space:pre">關於我們            學習環境            加入我們</a>
-                    <div class="dropdown-menu megamenu" role="menu">
-                        <div class="row g-3">
-                            <div class="col-lg-4 col-6">
-                                <div class="col-megamenu">
-                                    <a href="/about" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">關於我們</h6></a>
-                                    <ul class="list-unstyled">
-                                        <li><a class="nav-link" href="#">故事</a></li>
-                                        <li><a class="nav-link" href="#">組織架構</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                <div class="col-megamenu">
-                                    <a href="/environment" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">學習環境</h6></a>
-                                    <ul class="list-unstyled">
-                                        <li><a class="nav-link" href="#">故事</a></li>
-                                        <li><a class="nav-link" href="#">故事</a></li>
-                                        <li><a class="nav-link" href="#">故事</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                <div class="col-megamenu">
-                                    <a href="/join" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">加入我們</h6></a>
-                                    <ul class="list-unstyled text-start">
-                                        <li><a class="nav-link" href="#">故事</a></li>
-                                        <li><a class="nav-link" href="#">故事</a></li>
-                                        <li><a class="nav-link" href="#">故事</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#">創造娛樂工作室</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#about">關於我們</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">服務項目</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">最新消息</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">聯絡我們</a></li>
+                </ul>
+                
+                <ul class="navbar-nav p-0" width='200'>
                 {%if 'logged_in' in session and session['logged_in']%}
-                    {%if session['current_user']['authority'] =='staff'%}
-                        <li class="nav-item me-5">
-                            <a class="nav-link" onclick="window.open('/officesys/')">辦公系統</a>
-                        </li>
+                        {%if session['current_user']['authority'] =='staff'%}
+                            <li class="nav-item me-3">
+                                <a class="nav-link" onclick="window.open('/officesys/')">辦公系統</a>
+                            </li>
+                        {%endif%}
                     {%endif%}
-                {%endif%}
-                {%if 'logged_in' in session and session['logged_in']%}
-                    {%if session['current_user']['authority']=='staff'%}
-                        <li class="nav-item me-5">
-                            <a class="nav-link" href="/develop/versions/">發布版本</a>
-                        </li>
-                    {%endif%}
-                {%endif%}
-            </ul>
-            {% if 'logged_in' in session and session['logged_in'] %}
-            <ul class="navbar-nav ms-auto p-0" width='200'>
-                <li class="nav-item me-1">
-                    <a class="nav-link" href="/userspace/">{{session['current_user']['name']}}</a>
-                </li>
-                <li class="nav-item me-5">
-                    <a  class="nav-link" href="/logout">登出</a>
-                </li>
-            </ul>
-            {% else %}
-                <button class="ms-auto btn btn-custom me-5 {% if page=="login" or page=="register" %}active{% endif %}"
-                        onclick="javascript:location.href='/login'" type="button" style="white-space:pre">  登入  </button>
-            {% endif %}
+                {% if 'logged_in' in session and session['logged_in'] %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/userspace/">{{session['current_user']['name']}}</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a  class="nav-link" href="/logout">登出</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item mx-3">
+                        <a  class="nav-link {% if page=="login" or page=="register" %}active{% endif %}" href="/login">登入</a>
+                    </li>
+                {% endif %}
+                </ul>
+            </div>
         </div>
-    </div>
     </nav>
 {% endblock navbar %}
 
 
 <main>
 {% block main_content %}
-    <!--首頁橫幅-->
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active border-0" aria-current="true" aria-label="Slide 1"></li>
-        <li data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" class='border-0'></button>
-        <li data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" class='border-0'></li>
-    </ol>
-    <div class="carousel-inner" data-bs-interval="300">
-        <div class="carousel-item active">
-            <img src="/static/title.png" class="d-block w-100 header-img" alt="">
-            <div class="carousel-caption d-none d-md-block">
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 h-100">
+            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-8 align-self-end">
+                    <h1 class="text-white font-weight-bold">從ZERO開始<br>一起創造歷史</h1>
+                    <hr class="divider" />
+                </div>
+                <div class="col-lg-8 align-self-baseline">
+                    <p class="text-white-75 mb-5">不斷地失敗、改造、失敗，努力地走在人生的冒險旅途上，享受團隊合作的時光<br>現在，我們即將要開啟全新的旅程，與正在閱讀的你
+
+                    </p>
+                    <a class="btn btn-primary btn-xl" href="#about">了解更多</a>
+                </div>
             </div>
         </div>
-        <div class="carousel-item" >
-            <img src="/static/title-2.jpg" class="d-block w-100 header-img" alt="">
-            <div class="carousel-caption d-none d-md-block">
+    </header>
+        <section class="page-section bg-dark" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="text-white mt-0">我們絕對是你學習歷程上最佳的夥伴！</h2>
+                        <hr class="divider divider-light" />
+                        <p class="text-white-75 mb-4">加入我們，學習課外的能力及經驗，共同合作、學習及開發你意想不到的領域、活動及你的夢想，這就是我們！只要你願意，不必擔心結果，盡情享受過程獲取經驗並成長，這才是你我的目標！</p>
+                        <a class="btn btn-light btn-xl" href="#services">了解我們</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- Services-->
+    <section class="page-section" id="services">
+        <div class="container px-4 px-lg-5">
+            <h2 class="text-center mt-0">我們提供什麼？</h2>
+            <hr class="divider" />
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
+                        <h3 class="h4 mb-2">最有價值的學習培訓</h3>
+                        <p class="text-muted mb-0">多階段的目標任務學習，不僅能深刻理解課本的知識，更能學習課本以外的技能，學習培訓至少一年免費！</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
+                        <h3 class="h4 mb-2">資訊科技的助力</h3>
+                        <p class="text-muted mb-0">培訓學習的過程中，由最強大的AI導師『ZERO』來告訴你怎麼學習最有效，也會幫助你學習資訊科技的基礎知識，更有機會免費建立你的學習歷程網站</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
+                        <h3 class="h4 mb-2">來自各地的團隊合作</h3>
+                        <p class="text-muted mb-0">聚集全台各地的學員，彼此互相交流、教學相長，不僅能共同完成任務作品，在學習的路上也不會孤單！</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
+                        <h3 class="h4 mb-2">找到你最喜歡的方向</h3>
+                        <p class="text-muted mb-0">在這裡可以透過每週的學習、各階段的目標及研究或合作項目的製作過程中，探索自己的興趣，放眼未來</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="carousel-item">
-            <img src="/static/title-3.jpg" class="d-block w-100 header-img" alt="">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-    </div>
+    </section>
+
+
     <!--公告推送欄-->
-    <div class='container-fluid mt-3 mb-5'>
-        <div class='row px-md-5 row-cols-md-2 row-cols-1 row-cols-lg-3 justify-content-center'>
-            <div class='col'>
-                <h3 style='height:55px;' class='text-center pt-3 home-news-title'>最新消息</h3>
-                <ul class='home-news p-1 px-2 overflow-auto'>
+    <div class='container-fluid mb-4 pt-4' id='portfolio'>
+        <div class='row px-md-5 row-cols-md-2 row-cols-1 row-cols-lg-3 justify-content-center pt-0'>
+            <div class='col p-0'>
+                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>最新消息</h2>
+                <hr class="divider" />
+                <ul class='home-news pt-2 px-2 overflow-auto'>
                 {%for i in newest_results%}
                     <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</a></span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
                 {%endfor%}
                 </ul>
             </div>
-            <div class='col'>
-                <h3 style='height:55px;' class='text-center pt-3 home-news-title'>隊務公告</h3>
-                <ul class='home-news p-1 px-2 overflow-auto'>
+            <div class='col px-1'>
+                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>隊務公告</h2>
+                <hr class="divider" />
+                <ul class='home-news pt-2 px-2 overflow-auto'>
                 {%for i in team_results%}
                     <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</a></span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
                 {%endfor%}
                 </ul>
             </div>
-            <div class='col'>
-                <h3 style='height:55px;' class='text-center pt-3 home-news-title'>招生&招募專區</h3>
-                <ul class='home-news p-1 px-2 overflow-auto'>
+            <div class='col p-0'>
+                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>招生&招募專區</h2>
+                <hr class="divider" />
+                <ul class='home-news pt-2 px-2 overflow-auto'>
                 {%for i in recruit_results%}
                     <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</a></span></li>
                 {%endfor%}
@@ -164,89 +160,21 @@
             </div>
         </div>
     </div>
-
+    <!-- Call to action-->
+    <section class="page-section bg-dark text-white mt-5" id='contact'>
+        <div class="container px-4 px-lg-5 text-center">
+            <h2 class="mb-4">心動不如馬上行動，趕快加入我們吧！</h2>
+            <a class="btn btn-light btn-xl" href="#">立即加入</a>
+        </div>
+    </section>
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5">
+                <div class="small text-center text-muted">版權所有 &copy; 2021 - 創造娛樂工作室</div>
+            </div>
+        </footer>
 {% endblock main_content %}
 </main>
-
-{%block footer%}
-    <footer height="70" class="container-fluid WhiteT">
-        <div class="row pt-3 px-4 justify-content-center text-center">
-            <div class="col-md-3 col-7">
-                <ul class="p-0 text-center">
-                    <li class="h5 fw-bold border-bottom border-secondary border-2">
-                        <a href="#">關於我們</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-3 col-7">
-                <ul class="p-0 text-center">
-                    <li class="h5 fw-bold border-bottom border-secondary border-2">
-                        <a href="#">我們的服務</a>
-                    </li>
-                    <li class="h6 link-light">
-                        <a href="#">線下營隊</a>
-                    </li>
-                    <li class="h6">
-                        <a href="#">線上教育平臺</a>
-                    </li>
-                    <li class="h6">
-                        <a href="#">其他</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-3 col-7">
-                <ul class="p-0 text-center">
-                    <li class="h5 fw-bold border-bottom border-secondary border-2">
-                        <a href="#">聯絡我們</a>
-                    </li>
-                    <li class="h6 link-light">
-                        <a href="#">電話：</a>
-                    </li>
-                    <li class="h6">
-                        <a href="#">地址：</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-12 d-flex justify-content-center p-0">
-                <ul class="h-100 p-0">
-                    <!-- Sharingbutton Facebook -->
-                    <li style="float: left;">
-                        <a class="resp-sharing-button__link" href="https://www.facebook.com/CAREETEAM" target="_blank"
-                            rel="noopener" aria-label="">
-                            <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small">
-                                <div aria-hidden="true"
-                                    class="resp-sharing-button__icon resp-sharing-button__icon--solid">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                        <path
-                                            d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- Sharingbutton Twitter -->
-                    <li style="float: left;">
-                        <a class="resp-sharing-button__link"
-                            href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io"
-                            target="_blank" rel="noopener" aria-label="">
-                            <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
-                                <div aria-hidden="true"
-                                    class="resp-sharing-button__icon resp-sharing-button__icon--solid">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                        <path
-                                            d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5 0-4.55 2.04-4.55 4.54 0 .36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3 0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35 0 12.92-6.92 12.92-12.93 0-.2 0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </footer>
-{% endblock footer %}
 
     <script>
         document.addEventListener("DOMContentLoaded", function(){
@@ -289,13 +217,16 @@
             {% endif %}
         {% endwith %}
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+    <script src="static/js/script_home.js"></script>
     {% block script %}
     <script>
             window.onload=function(){
             checkbox.checked=false
         }
     </script>
+    
     {% endblock script %}
 
 </body>
