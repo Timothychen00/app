@@ -41,10 +41,10 @@ def register():
         #email username error
         if 'email_error' in result:
             form.email.errors.append(result['email_error'])
-            return render_template("register.html",form=form,page="register")
+            return render_template("register-new.html",form=form,page="register")
         #註冊沒有錯誤，引導到登錄介面
         return redirect('login')
-    return render_template("register.html",form=form,page="register")
+    return render_template("register-new.html",form=form,page="register")
 
 #登出
 @app_user_routes.route('/logout')

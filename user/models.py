@@ -14,8 +14,11 @@ class User():
     def sign_up(self,form):
         user={
             '_id':uuid.uuid4().hex,
-            'password':generate_password_hash(form.password.data),
             'email':form.email.data,
+            'password':generate_password_hash(form.password.data),
+            'birth':str(form.birth.data),
+            'gender':form.gender.data,
+            'name':form.name.data,
             'authority':'normal',
         }
         #email 錯誤處理

@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% block page_title %}
+    <title>註冊</title>
+{% endblock page_title %}
+{% block navbar %}
+{% endblock navbar %}
+
+{% block main_content %}
+<div class=' container-fluid login-register-bg text-white' style='height:auto!important;'>
+    <div class='row justify-content-center align-content-center h-100 text-center pt-5' style='height:auto!important;'>
+        <form class="form-login-register col-md-5 col-12 col-lg-4 nees-validation mt-5" action="/register" method="POST" novalidate style='height:auto!important;'>
+            {{ form.csrf_token() }}
+            <h1 class="h3 mb-3 fw-normal form-label">註冊會員</h1>
+
+            <div class="form-floating  text-secondary mb-2">
+                {{ form.email(class_="form-control border-0 text-white"+ (" is-invalid" if form.email.errors else ""),id="floatingEmail",placeholder=' ') }}
+                <label for="floatingEmail">帳號／Email address</label>
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.email.errors %}
+                            {% for error in form.email.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="form-floating  text-secondary mb-2">
+                {{ form.name(class_="form-control border-0 text-white"+ (" is-invalid" if form.name.errors else ""),id="floatingEmail",placeholder=' ') }}
+                <label for="floatingEmail">姓名／Name</label>
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.name.errors %}
+                            {% for error in form.name.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="form-floating  text-secondary mb-2">
+                {{ form.birth(class_="form-control border-0 text-white"+ (" is-invalid" if form.birth.errors else ""),id="floatingEmail",placeholder=' ') }}
+                <label for="floatingEmail">出生日期(YYYY-MM-DD)</label>
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.birth.errors %}
+                            {% for error in form.birth.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="gender" class="form-label h5 w-100">性別</label>
+                <tr>
+                    {%for subitem in form.gender%}
+                        <td>{{subitem(class_="form-check-input"+(" is-invalid" if form.gender.errors else "")) }}</td>
+                        <td>{{subitem.label(class_='form-check-label')}}</td>
+                    {%endfor%}
+                </tr>
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.birth.errors %}
+                            {% for error in form.birth.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-floating  text-secondary mb-2">
+                {{ form.password(class_="form-control border-0 text-white"+ (" is-invalid" if form.password.errors else ""),id="floatingEmail",placeholder=' ') }}
+                <label for="floatingEmail">密碼／Password</label>
+                <div class="helper pt-1">
+                    密碼長度必須介於8-20之間，且包含大小寫字母和數字
+                </div>
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.password.errors %}
+                            {% for error in form.password.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-floating  text-secondary mb-2">
+                {{ form.confirm(class_="form-control border-0 text-white"+ (" is-invalid" if form.confirm.errors else ""),id="floatingEmail",placeholder=' ') }}
+                <label for="floatingEmail">請確認密碼/Confirm</label>
+                <div class="invalid-feedback">
+                    <ul>
+                        {% if form.confirm.errors %}
+                            {% for error in form.confirm.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-3 form-check">
+                <div class="form-check">
+                    {{ form.checkbox(class_="form-check-input is-invalid",id="checkbox",onclick="CheckboxValidation()") }}
+                    <label class="form-check-label" for="checkbox">
+                        我已閱讀並同意<a href="#">用戶使用條例</a>
+                    </label>
+                    <div class="invalid-feedback">
+                        必須勾選才能繼續
+                    </div>
+                </div>
+            </div>
+
+            {{form.submit(class_="w-100 btn btn-lg btn-outline-secondary text-white border-0 mt-2",value='註冊／Register')}}
+            <p class="mt-5 mb-3 text-white">&copy; 總監室資訊組 2020–2021</p>
+        </form>
+
+        <button type="button" class="btn btn-primary visually-hidden" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog bg-custom-dark" style='position:relative;top:35%;'>
+                <div class="modal-content bg-custom-dark">
+                    <div class="modal-header font-white">
+                        <h5 class="modal-title" id="exampleModalLabel">請選擇前往頁面</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type='button' class='btn btn-lg text-white btn-custom-dark fs-6' onclick="location.href='/'" value='首頁'>
+                        <input type='button' class='btn btn-lg text-white fs-6' onclick="location.href='/officesys/'" value='辦公系統'>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let remember=document.getElementById('remember')
+    remember.checked=false
+
+    var exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+    // Button that triggered the modal
+    var button = event.relatedTarget
+    // Extract info from data-bs-* attributes
+    // If necessary, you could initiate an AJAX request here
+    var modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+    })
+    
+</script>
+
+{% endblock main_content %}
+{% block script %}
+<script>
+    const checkbox = document.getElementById('checkbox');
+
+    function CheckboxValidation() {
+        if (checkbox.checked == true) {
+            checkbox.className = 'form-check-input is-valid';
+        } else {
+            checkbox.className = 'form-check-input is-invalid';
+        }
+    }
+</script>
+<script>
+{% if 'logged_in' in session and session['current_user']['authority'] =='staff' %}
+    var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {keyboard: false})
+    myModal.toggle()
+    myModal.show()
+{% endif %}
+</script>
+{% endblock script %}
+
+
+
+

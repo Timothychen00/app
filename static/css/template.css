@@ -338,7 +338,7 @@ input.btn-custom:hover{
     height: 100vh;
     background-image: url("/static/login-register-bg.jpg");
     background-position: center 0;
-    background-repeat: no-repeat;
+    background-repeat: space;
 }
 
 .form-login-register {
