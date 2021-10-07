@@ -6,7 +6,7 @@ from officesys.routes import app_officesys_routes
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件
-
+# test1123
 client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.m8nzl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client.flaskweb
 collection=db.users
