@@ -26,9 +26,9 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">最新消息</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">關於我們</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">服務項目</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">最新消息</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">聯絡我們</a></li>
                 </ul>
 
@@ -77,6 +77,42 @@
             </div>
         </div>
     </header>
+
+    <!--公告推送欄-->
+    <div id='portfolio' style="margin-top:-100px;margin-bottom:150px;"></div>
+    <div class='container-fluid mb-5 pt-4' id='portfolio'>
+        <div class='row px-md-5 row-cols-md-2 row-cols-1 row-cols-lg-3 justify-content-center pt-0'>
+            <div class='col p-0'>
+                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>最新消息</h2>
+                <hr class="divider" />
+                <ul class='home-news pt-2 px-2 overflow-auto'>
+                {%for i in newest_results%}
+                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</a></span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
+                {%endfor%}
+                </ul>
+            </div>
+            <div class='col px-1'>
+                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>隊務公告</h2>
+                <hr class="divider" />
+                <ul class='home-news pt-2 px-2 overflow-auto'>
+                {%for i in team_results%}
+                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</a></span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
+                {%endfor%}
+                </ul>
+            </div>
+            <div class='col p-0'>
+                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>招生&招募專區</h2>
+                <hr class="divider" />
+                <ul class='home-news pt-2 px-2 overflow-auto'>
+                {%for i in recruit_results%}
+                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</a></span></li>
+                {%endfor%}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id='about' style="height:10px!important;margin-top:-150px;margin-bottom:150px"></div>
+    <!--about-->
         <section class="page-section bg-dark" id="about_">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -90,7 +126,8 @@
             </div>
         </section>
 <!-- Services-->
-    <section class="page-section" id="services">
+    <div id='services' style="margin-top:-100px;margin-bottom:75px;"></div>
+    <section class="page-section" id="services_">
         <div class="container px-4 px-lg-5">
             <h2 class="text-center mt-0">我們提供什麼？</h2>
             <hr class="divider" />
@@ -131,39 +168,6 @@
         </div>
     </section>
 
-
-    <!--公告推送欄-->
-    <div class='container-fluid mb-4 pt-4' id='portfolio'>
-        <div class='row px-md-5 row-cols-md-2 row-cols-1 row-cols-lg-3 justify-content-center pt-0'>
-            <div class='col p-0'>
-                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>最新消息</h2>
-                <hr class="divider" />
-                <ul class='home-news pt-2 px-2 overflow-auto'>
-                {%for i in newest_results%}
-                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</a></span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
-                {%endfor%}
-                </ul>
-            </div>
-            <div class='col px-1'>
-                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>隊務公告</h2>
-                <hr class="divider" />
-                <ul class='home-news pt-2 px-2 overflow-auto'>
-                {%for i in team_results%}
-                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</a></span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
-                {%endfor%}
-                </ul>
-            </div>
-            <div class='col p-0'>
-                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>招生&招募專區</h2>
-                <hr class="divider" />
-                <ul class='home-news pt-2 px-2 overflow-auto'>
-                {%for i in recruit_results%}
-                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</a></span></li>
-                {%endfor%}
-                </ul>
-            </div>
-        </div>
-    </div>
     <!-- Call to action-->
     <section class="page-section bg-dark text-white mt-5" id='contact'>
         <div class="container px-4 px-lg-5 text-center">
