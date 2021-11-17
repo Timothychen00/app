@@ -18,8 +18,6 @@ window.addEventListener('DOMContentLoaded', event => {
         if (window.scrollY === 0) {
             navbarCollapsible.classList.remove('navbar-shrink')
         } else {
-            console.log(window.scrollY);
-            console.log(window.scrollBy);
             navbarCollapsible.classList.add('navbar-shrink')
         }
 
@@ -51,11 +49,6 @@ window.addEventListener('DOMContentLoaded', event => {
                 navbarToggler.click();
             }
         });
-    });
-
-    // Activate SimpleLightbox plugin for portfolio items
-    new SimpleLightbox({
-        elements: '#portfolio a.portfolio-box'
     });
 
 });
