@@ -478,7 +478,7 @@ header .btn:hover{
     #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link {
         color: #212529;
     }
-    #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link:hover {
+    #mainNav.navbar-shrink .non-touch .navbar-nav .nav-item .nav-link:hover {
         color: #f4623a;
     }
 }
