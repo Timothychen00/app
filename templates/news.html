@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block navbar %}{% endblock navbar %}
+{% block main_content %}
+<ul class="nav nav-tabs mt-5 px-5" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">最新消息</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">隊務公告</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">招生&招募專區</button>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="d-flex justify-content-center">
+            <div class='col-8 p-0'>
+                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>最新消息</h2>
+                <hr class="divider" />
+                <ul class='home-news pt-2 px-2 overflow-auto'>
+                {%for i in newest_results%}
+                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</a></span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
+                {%endfor%}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="d-flex justify-content-center">
+                <div class='col-8 px-1'>
+                    <h2 style='height:55px;' class='text-center pt-3 home-news-title'>隊務公告</h2>
+                    <hr class="divider" />
+                    <ul class='home-news pt-2 px-2 overflow-auto'>
+                    {%for i in team_results%}
+                        <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</a></span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
+                    {%endfor%}
+                    </ul>
+                </div>
+            </div>
+
+    </div>
+    <div class="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="d-flex justify-content-center">
+            <div class="col-8 p-0">
+                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>招生&招募專區</h2>
+                <hr class="divider" />
+                <ul class='home-news pt-2 px-2 overflow-auto'>
+                {%for i in recruit_results%}
+                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</a></span></li>
+                {%endfor%}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main_content %}

@@ -1,10 +1,10 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 content = MIMEMultipart()  #建立MIMEMultipart物件
-content["subject"] = "Learn Code With Mike"  #郵件標題
+content["subject"] = "sdgjhfgjsh"  #郵件標題
 content["from"] = "timothychenpc@gmail.com"  #寄件者
-content["to"] = "timothychenpc@gmail.com" #收件者
-content.attach(MIMEText("Demo python send email"))  #郵件內容
+content["to"] = "tim20060112@gmail.com" #收件者
+content.attach(MIMEText("HHHHHHHHHHHHHHHH為什麼留著你的～～～微信不刪掉～～～"))  #郵件內容
 
 import smtplib
 with smtplib.SMTP(host="smtp.gmail.com", port="587") as smtp:  # 設定SMTP伺服器

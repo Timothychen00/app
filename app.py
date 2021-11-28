@@ -52,10 +52,24 @@ def home():
     return render_template("base.html",page="home",newest_results=newest_results,team_results=team_results,recruit_results=recruit_results)
 
 #最新消息頁面
-@app.route("/newest/")
+@app.route("/news/")
 def newest():
     session['from']=request.path
-    return render_template("newest.html",page="newest")
+    
+    #最新公告
+    newest_results=db.announcement.find({'category':'最新公告'})
+    newest_results.sort("time",pymongo.DESCENDING)#按照時間降序排列
+    newest_results.limit(10)#限制數量
+    #隊務公告
+    team_results=db.announcement.find({'category':'隊務公告'})
+    team_results.sort("time",pymongo.DESCENDING)#按照時間降序排列
+    team_results.limit(10)#限制數量
+    #招生&招募專區
+    recruit_results=db.announcement.find({'category':'招生＆招募專區'})
+    recruit_results.sort("time",pymongo.DESCENDING)#按照時間降序排列
+    recruit_results.limit(10)#限制數量
+    
+    return render_template("news.html",page="news",newest_results=newest_results,team_results=team_results,recruit_results=recruit_results)
 
 #活動資訊頁面
 @app.route("/activities/")
@@ -68,7 +82,6 @@ def activities():
 def join():
     session['from']=request.path
     return render_template("join.html",page="join")
-
 
 @app.route('/develop/versions/')
 def versions():

@@ -81,7 +81,7 @@
     <div id='portfolio' style="margin-top:-100px;margin-bottom:190px;"></div>
     <div class='container-fluid mb-5 pt-4' id='portfolio'>
         <div class='row px-md-5 row-cols-md-2 row-cols-1 row-cols-lg-3 justify-content-center pt-0'>
-            <div class='col p-0'>
+            <div class='col-12 col-lg-10 p-0'>
                 <h2 style='height:55px;' class='text-center pt-3 home-news-title'>最新消息</h2>
                 <hr class="divider" />
                 <ul class='home-news pt-2 px-2 overflow-auto'>
@@ -90,24 +90,7 @@
                 {%endfor%}
                 </ul>
             </div>
-            <div class='col px-1'>
-                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>隊務公告</h2>
-                <hr class="divider" />
-                <ul class='home-news pt-2 px-2 overflow-auto'>
-                {%for i in team_results%}
-                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</a></span><span class='home-news-time'>{{i['time'].split()[0]}}</span></li>
-                {%endfor%}
-                </ul>
-            </div>
-            <div class='col p-0'>
-                <h2 style='height:55px;' class='text-center pt-3 home-news-title'>招生&招募專區</h2>
-                <hr class="divider" />
-                <ul class='home-news pt-2 px-2 overflow-auto'>
-                {%for i in recruit_results%}
-                    <li class='list-unstyled justify-content-between d-flex h6'><span><a href='/announcement/{{i["_id"]}}/' class='home-news-title-a'>{{i['title']}}</span><span class='home-news-time'>{{i['time'].split()[0]}}</a></span></li>
-                {%endfor%}
-                </ul>
-            </div>
+            <a href="/news/" class='col-lg-3 col-6 offset-lg-1 offset-md-3 offset-0' >按此，查看更多相關訊息</a>
         </div>
     </div>
     <div id='about' style="height:10px!important;margin-top:-150px;margin-bottom:160px"></div>
