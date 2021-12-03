@@ -1,5 +1,11 @@
 Flask==2.0.1
 Flask-WTF==0.15.1
 WTForms==2.3.3
+<<<<<<< HEAD
 email_validator==1.1.3
 pymongo[srv]==3.12.0
+=======
+email_validator
+pymongo[srv]
+Flask-login
+>>>>>>> parent of b0f0707 (Update requirements.txt)
