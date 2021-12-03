@@ -138,7 +138,7 @@ def clockin(data):
         flash("今日已經打卡")
     else:
         result[date]={'clockin':time,'clockout':0,"worktime":0}
-        collection.update({'name':session['current_user']['name']},{'$set':result})
+        collection.update({'name':session['current_user']['name']},{'$set':{date:{"clockin":time,'clockout':0,"worktime":0}}})
         flash("上班打卡成功")
     return render_template('officesys/punchin.html')
 #下班打卡
