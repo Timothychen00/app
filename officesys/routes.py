@@ -134,11 +134,11 @@ def clockin(data):
     result=collection.find_one({"name":session["current_user"]['name']})
     if(not result):#不存在
         collection.insert_one({'name':session['current_user']['name']})
-    elif(date in result.keys()):#重複打上班卡
+    if(date in result.keys()):#重複打上班卡
         flash("今日已經打卡")
     else:
         result[date]={'clockin':time,'clockout':0,"worktime":0}
-        # collection.update({'name':session['current_user']['name']},result)
+        collection.update({'name':session['current_user']['name']},{'$set':result})
         flash("上班打卡成功")
     return render_template('officesys/punchin.html')
 #下班打卡
@@ -151,13 +151,13 @@ def clockout(data):
     result=collection.find_one({"name":session["current_user"]['name']})
     if(not result):#不存在
         collection.insert_one({'name':session['current_user']['name']})
-    elif(not date in result.keys()):#沒打上班卡
+    if(not date in result.keys()):#沒打上班卡
         flash("請先上班打卡")
     elif(result[date]['clockout']):#重複打下班卡
         flash("今日已經完成下班打卡")
     else:
         result[date]['clockout']=time
         result[date]['worktime']=str(datetime.datetime.strptime(result[date]['clockout'],"%H:%M:%S")-datetime.datetime.strptime(result[date]['clockin'],"%H:%M:%S"))
-        # collection.update({'name':session['current_user']['name']},result)
+        collection.update({'name':session['current_user']['name']},{'$set':result})
         flash("下班打卡成功")
     return render_template('officesys/punchin.html')
