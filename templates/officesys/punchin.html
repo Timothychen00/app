@@ -14,8 +14,8 @@
 		</div>
 	</div>
 	<div class="row justify-content-center gy-2">
-		<button onclick="send_time();" class='punchin-button btn col-lg-1 col-7 mx-2'>上班/簽到</button>
-		<button class='punchin-button btn col-lg-1 col-7 mx-2'>下班/簽退</button>
+		<button onclick="send_time_in();" class='punchin-button btn col-lg-1 col-7 mx-2'>上班/簽到</button>
+		<button onclick="send_time_out();" class='punchin-button btn col-lg-1 col-7 mx-2'>下班/簽退</button>
 		<button class='punchin-button btn col-lg-1 col-7 mx-2'>補打卡申請​</button>
 		<button class='punchin-button btn col-lg-1 col-7 mx-2'>記錄查詢</button>
 		<button class='punchin-button btn col-lg-1 col-7 mx-2'>設定</button>
@@ -76,9 +76,34 @@
 		setTimeout("mTime()",1000);
 	}
 	//用夾帶網址信息的方式送出
-	function send_time(){0
+	function send_time_in(){
 		var t = document.getElementById("mT").innerHTML;
-		window.location.href="/home/"+t;
+		var now = new Date();
+		var yyy = now.getFullYear();
+		var mmm = now.getMonth()+1;
+		var ddd = now.getDate();
+		var date;
+		if(mmm<10){
+			date= yyy+"-0"+mmm+"-"+ddd;
+		}else{
+			date = yyy+"-"+mmm+"-"+ddd;
+		}
+		window.location.href="/officesys/punch_in/clockin/"+date+" "+t;
+	}
+
+	function send_time_out(){
+		var t = document.getElementById("mT").innerHTML;
+		var now = new Date();
+		var yyy = now.getFullYear();
+		var mmm = now.getMonth()+1;
+		var ddd = now.getDate();
+		var date;
+		if(mmm<10){
+			date= yyy+"-0"+mmm+"-"+ddd;
+		}else{
+			date = yyy+"-"+mmm+"-"+ddd;
+		}
+		window.location.href="/officesys/punch_in/clockout/"+date+" "+t;
 	}
 </script>
 {% endblock main_content %}

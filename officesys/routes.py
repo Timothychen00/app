@@ -121,3 +121,43 @@ def upload():
 @authority_staff
 def daka():
     return render_template('officesys/punchin.html')
+
+
+#打卡系統
+#上班打卡
+@app_officesys_routes.route('/officesys/punch_in/clockin/<data>',methods=['GET'])
+@login_required
+@authority_staff
+def clockin(data):
+    date,time=data.split(' ')
+    collection=db.clockin#操作users集合
+    result=collection.find_one({"name":session["current_user"]['name']})
+    if(not result):#不存在
+        collection.insert_one({'name':session['current_user']['name']})
+    elif(date in result.keys()):#重複打上班卡
+        flash("今日已經打卡")
+    else:
+        result[date]={'clockin':time,'clockout':0,"worktime":0}
+        collection.update({'name':session['current_user']['name']},result)
+        flash("上班打卡成功")
+    return render_template('officesys/punchin.html')
+#下班打卡
+@app_officesys_routes.route('/officesys/punch_in/clockout/<data>',methods=['GET'])
+@login_required
+@authority_staff
+def clockout(data):
+    date,time=data.split(' ')
+    collection=db.clockin#操作users集合
+    result=collection.find_one({"name":session["current_user"]['name']})
+    if(not result):#不存在
+        collection.insert_one({'name':session['current_user']['name']})
+    elif(not date in result.keys()):#沒打上班卡
+        flash("請先上班打卡")
+    elif(result[date]['clockout']):#重複打下班卡
+        flash("今日已經完成下班打卡")
+    else:
+        result[date]['clockout']=time
+        result[date]['worktime']=str(datetime.datetime.strptime(result[date]['clockout'],"%H:%M:%S")-datetime.datetime.strptime(result[date]['clockin'],"%H:%M:%S"))
+        collection.update({'name':session['current_user']['name']},result)
+        flash("下班打卡成功")
+    return render_template('officesys/punchin.html')
