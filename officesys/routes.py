@@ -134,6 +134,7 @@ def clockin(data):
     result=collection.find_one({"name":session["current_user"]['name']})
     if(not result):#不存在
         collection.insert_one({'name':session['current_user']['name']})
+    result=collection.find_one({"name":session["current_user"]['name']})
     if(date in result.keys()):#重複打上班卡
         flash("今日已經打卡")
     else:
@@ -141,6 +142,7 @@ def clockin(data):
         collection.update_one({'name':session['current_user']['name']},{'$set':{date:{"clockin":time,'clockout':0,"worktime":0}}})
         flash("上班打卡成功")
     return render_template('officesys/punchin.html')
+
 #下班打卡
 @app_officesys_routes.route('/officesys/punch_in/clockout/<data>',methods=['GET'])
 @login_required
