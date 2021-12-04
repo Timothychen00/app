@@ -156,7 +156,7 @@ def clockout(data):
     if(not result):#不存在
         collection.insert_one({'name':session['current_user']['name']})
     result=collection.find_one({"name":session["current_user"]['name']})
-    
+
     if(not date in result.keys()):#沒打上班卡
         flash("請先上班打卡")
     elif(result[date]['clockout']):#重複打下班卡
