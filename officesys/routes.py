@@ -132,11 +132,9 @@ def clockin(data):
     date,time=data.split(' ')
     collection=db.clockin#操作users集合
     result=collection.find_one({"name":session["current_user"]['name']})
-    #create user
     if(not result):#不存在
         collection.insert_one({'name':session['current_user']['name']})
     result=collection.find_one({"name":session["current_user"]['name']})
-    
     if(date in result.keys()):#重複打上班卡
         flash("今日已經打卡")
     else:
@@ -155,8 +153,6 @@ def clockout(data):
     result=collection.find_one({"name":session["current_user"]['name']})
     if(not result):#不存在
         collection.insert_one({'name':session['current_user']['name']})
-    result=collection.find_one({"name":session["current_user"]['name']})
-    
     if(not date in result.keys()):#沒打上班卡
         flash("請先上班打卡")
     elif(result[date]['clockout']):#重複打下班卡
