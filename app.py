@@ -40,8 +40,8 @@ def home_each(id):
 def home():
     
     session['from']=request.path
-    flash(os.getenv("DB_URL"))
-    flash(os.getenv("SOURCE_CODE_RELEASE_URL"))
+    # flash(os.getenv("DB_URL"))
+    # flash(os.getenv("SOURCE_CODE_RELEASE_URL"))
     #最新公告
     newest_results=db.announcement.find({'category':'最新公告'})
     newest_results.sort("time",pymongo.DESCENDING)#按照時間降序排列
