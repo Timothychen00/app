@@ -61,5 +61,5 @@ jobs:
           app-name: 'flaskwebb'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_09946f2b852c46c680a6f52402341e9f }}
-          env:
-            DB_URL: ${{ secrets.DB_URL }}
+        env:
+          DB_URL: ${{ secrets.DB_URL }}
