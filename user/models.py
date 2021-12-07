@@ -1,8 +1,8 @@
 from flask import session
-import uuid,pymongo
+import uuid,pymongo,os
 from werkzeug.security import check_password_hash, generate_password_hash
 
-client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.m8nzl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = pymongo.MongoClient(os.getenv('DB_URL'))
 db = client.flaskweb
 
 class User():

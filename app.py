@@ -5,13 +5,13 @@ from bson import ObjectId
 from user.routes import app_user_routes
 from officesys.routes import app_officesys_routes
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv()#載入環境變量（從env檔）
 
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件
 # test1123
-client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.m8nzl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = pymongo.MongoClient(os.getenv('DB_URL'))
 db = client.flaskweb
 collection=db.users
 #定義主程序
@@ -89,7 +89,7 @@ def join():
 
 @app.route('/develop/versions/')
 def versions():
-    return redirect('https://github.com/Timothychen00/app/releases')
+    return redirect(os.getenv("SOURCE_CODE_URL"))
 
 if __name__=="__main__":
     app.run(debug=True)
