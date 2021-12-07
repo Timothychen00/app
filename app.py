@@ -3,6 +3,8 @@ import os,pymongo,datetime
 from bson import ObjectId
 from user.routes import app_user_routes
 from officesys.routes import app_officesys_routes
+import test_tmail
+test_tmail.send_em()
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件

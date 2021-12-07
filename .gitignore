@@ -5,3 +5,4 @@ static/.DS_Store
 *Icon
 user/__pycache__
 *.pyc
+.env
