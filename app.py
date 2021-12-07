@@ -5,7 +5,7 @@ from bson import ObjectId
 from user.routes import app_user_routes
 from officesys.routes import app_officesys_routes
 from dotenv import load_dotenv
-load_dotenv()#載入環境變量（從env檔）
+load_dotenv()
 
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command
@@ -39,6 +39,7 @@ def home_each(id):
 @app.route("/")
 def home():
     session['from']=request.path
+    flash(os.getenv("HOST_EMAIL",0))
     #最新公告
     newest_results=db.announcement.find({'category':'最新公告'})
     newest_results.sort("time",pymongo.DESCENDING)#按照時間降序排列
@@ -88,7 +89,7 @@ def join():
 
 @app.route('/develop/versions/')
 def versions():
-    return redirect(os.getenv("SOURCE_CODE_URL"))
+    return redirect(os.getenv('SOURCE_CODE_RELEASE_URL'))
 
 if __name__=="__main__":
     app.run(debug=True)
