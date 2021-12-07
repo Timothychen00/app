@@ -46,6 +46,8 @@ jobs:
     environment:
       name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      DB_URL: ${{DB_URL}}
+      SOURCE_CODE_RELEASE_URL: ${{SOURCE_CODE_RELEASE_URL}}
 
     steps:
       - name: Download artifact from build job
