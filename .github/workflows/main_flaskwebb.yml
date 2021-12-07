@@ -53,9 +53,6 @@ jobs:
         with:
           name: python-app
           path: .
-        env:
-          DB_URL: ${{DB_URL}}
-          SOURCE_CODE_RELEASE_URL: ${{SOURCE_CODE_RELEASE_URL}}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
@@ -63,3 +60,6 @@ jobs:
           app-name: 'flaskwebb'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_09946f2b852c46c680a6f52402341e9f }}
+        env:
+          DB_URL: ${{DB_URL}}
+          SOURCE_CODE_RELEASE_URL: ${{SOURCE_CODE_RELEASE_URL}}
