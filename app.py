@@ -1,10 +1,12 @@
+import dotenv
 from flask import Flask,render_template,redirect,request,session,flash
 import os,pymongo,datetime
 from bson import ObjectId
 from user.routes import app_user_routes
 from officesys.routes import app_officesys_routes
-import test_tmail
-test_tmail.send_em()
+from dotenv import load_dotenv
+load_dotenv()
+
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件
@@ -37,7 +39,7 @@ def home_each(id):
 @app.route("/")
 def home():
     session['from']=request.path
-
+    flash(os.getenv("HOST_EMAIL",0))
     #最新公告
     newest_results=db.announcement.find({'category':'最新公告'})
     newest_results.sort("time",pymongo.DESCENDING)#按照時間降序排列
