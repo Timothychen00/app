@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件
 # test1123
-client = pymongo.MongoClient(os.getenv('DB_URL'))
+client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.m8nzl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client.flaskweb
 collection=db.users
 #定義主程序
@@ -38,8 +38,10 @@ def home_each(id):
 #首頁
 @app.route("/")
 def home():
+    
     session['from']=request.path
-    flash(os.getenv("HOST_EMAIL",0))
+    flash(os.getenv("DB_URL"))
+    flash(os.getenv("SOURCE_CODE_RELEASE_URL"))
     #最新公告
     newest_results=db.announcement.find({'category':'最新公告'})
     newest_results.sort("time",pymongo.DESCENDING)#按照時間降序排列
@@ -89,7 +91,7 @@ def join():
 
 @app.route('/develop/versions/')
 def versions():
-    return redirect(os.getenv('SOURCE_CODE_RELEASE_URL'))
+    return redirect('https://github.com/Timothychen00/app/releases')
 
 if __name__=="__main__":
     app.run(debug=True)
