@@ -62,4 +62,3 @@ jobs:
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_09946f2b852c46c680a6f52402341e9f }}
         env:
           DB_URL: ${{DB_URL}}
-          SOURCE_CODE_RELEASE_URL: ${{SOURCE_CODE_RELEASE_URL}}
