@@ -39,7 +39,6 @@ def home_each(id):
 @app.route("/")
 def home():
     session['from']=request.path
-    flash(os.getenv("HOST_EMAIL",0))
     #最新公告
     newest_results=db.announcement.find({'category':'最新公告'})
     newest_results.sort("time",pymongo.DESCENDING)#按照時間降序排列

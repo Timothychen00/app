@@ -7,3 +7,5 @@ user/__pycache__
 *.pyc
 .env
 
+officesys/__pycache__/routes.cpython-36.pyc
+*.pyc
