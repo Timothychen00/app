@@ -8,8 +8,7 @@ on:
   push:
     branches:
       - main
-  env:
-    DB_URL: ${{ env.DB_URL }}
+
   workflow_dispatch:
 
 jobs:
@@ -28,10 +27,13 @@ jobs:
       run: |
         python -m venv venv
         source venv/bin/activate
+      env:
+        DB_URL: ${{ env.DB_URL }}
 
     - name: Install dependencies
       run: pip install -r requirements.txt
-
+      env:
+        DB_URL: ${{ env.DB_URL }}
     # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
     - name: Upload artifact for deployment jobs
