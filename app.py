@@ -1,11 +1,10 @@
-import dotenv
 from flask import Flask,render_template,redirect,request,session,flash
 import os,pymongo,datetime
 from bson import ObjectId
 from user.routes import app_user_routes
 from officesys.routes import app_officesys_routes
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command

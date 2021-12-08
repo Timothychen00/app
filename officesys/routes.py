@@ -9,7 +9,6 @@ db = client.flaskweb
 #設定藍圖
 app_officesys_routes = Blueprint('app_file2',__name__)
 
-
 #內部行政系統——————————————————————————————————————————
 #行政系統
 @app_officesys_routes.route('/officesys/')
