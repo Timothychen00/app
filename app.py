@@ -22,6 +22,7 @@ app.permanent_session_lifetime=datetime.timedelta(hours=2)
 app.register_blueprint(app_user_routes)#用戶系統
 app.register_blueprint(app_officesys_routes)#辦公系統
 
+
 @app.before_first_request
 def do_something():
     flash('這個一個新版本')
