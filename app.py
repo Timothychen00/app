@@ -37,7 +37,6 @@ def home_each(id):
 #首頁
 @app.route("/")
 def home():
-    # flash(os.environ['DB_URL'])
     session['from']=request.path
     # flash(os.getenv("DB_URL"))
     # flash(os.getenv("SOURCE_CODE_RELEASE_URL"))
