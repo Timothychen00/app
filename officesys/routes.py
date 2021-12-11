@@ -4,7 +4,7 @@ from bson import ObjectId
 from decorators import login_required,authority_staff
 import datetime,pymongo,os
 #連結mongodb
-client = pymongo.MongoClient('mongodb+srv://admin:admin@cluster0.m8nzl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+client = pymongo.MongoClient(os.getenv('DB_URL',0))
 db = client.flaskweb
 #設定藍圖
 app_officesys_routes = Blueprint('app_file2',__name__)

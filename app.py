@@ -10,7 +10,7 @@ from officesys.routes import app_officesys_routes
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件
 # test1123
-client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.m8nzl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = pymongo.MongoClient(os.getenv("DB_URL",0))
 db = client.flaskweb
 collection=db.users
 #定義主程序
@@ -39,7 +39,6 @@ def home_each(id):
 @app.route("/")
 def home():
     session['from']=request.path
-    flash(os.getenv("DB_URL",0))
     # flash(os.getenv("SOURCE_CODE_RELEASE_URL"))
     #最新公告
     newest_results=db.announcement.find({'category':'最新公告'})
@@ -90,7 +89,7 @@ def join():
 
 @app.route('/develop/versions/')
 def versions():
-    return redirect('https://github.com/Timothychen00/app/releases')
+    return redirect(os.getenv('SOURCE_CODE_RELEASE_URL',0))
 
 if __name__=="__main__":
     app.run(debug=True)
