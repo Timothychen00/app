@@ -39,7 +39,7 @@ def home_each(id):
 @app.route("/")
 def home():
     session['from']=request.path
-    flash(os.getenv("DB_URL",0))
+    flash(os.getenv("APPINSIGHTS_INSTRUMENTATIONKEY",0))
     # flash(os.getenv("SOURCE_CODE_RELEASE_URL"))
     #最新公告
     newest_results=db.announcement.find({'category':'最新公告'})
