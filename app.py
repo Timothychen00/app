@@ -1,16 +1,16 @@
 from flask import Flask,render_template,redirect,request,session,flash
 import os,pymongo,datetime
 from bson import ObjectId
+from dotenv import load_dotenv
+load_dotenv()
 from user.routes import app_user_routes
 from officesys.routes import app_officesys_routes
-# from dotenv import load_dotenv
-# load_dotenv()
 
 #pip3 install 'pymongo[srv]'
 #/Applications/Python\ 3.6/Install\ Certificates.command
 #建立app物件
 # test1123
-client = pymongo.MongoClient(os.getenv("DB_URL",0))
+client = pymongo.MongoClient(os.getenv('DB_URL'))
 db = client.flaskweb
 collection=db.users
 #定義主程序
