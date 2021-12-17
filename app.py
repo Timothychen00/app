@@ -87,6 +87,12 @@ def join():
     session['from']=request.path
     return render_template("join.html",page="join")
 
+@app.route("/about/")
+def about():
+    session['from']=request.path
+    return render_template("about.html",page="about")
+
+
 @app.route('/develop/versions/')
 def versions():
     return redirect(os.getenv('SOURCE_CODE_RELEASE_URL',0))
