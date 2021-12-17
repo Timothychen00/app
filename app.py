@@ -109,5 +109,13 @@ def story():
 def history():
     return render_template('history.html')
 
+@app.route('/about/architecture')
+def architecture():
+    return render_template("architecture.html")
+
+@app.route('/services/')
+def services():
+    return render_template("services.html")
+
 if __name__=="__main__":
     app.run(debug=True)
