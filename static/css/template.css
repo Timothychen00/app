@@ -170,6 +170,23 @@ button.active{
       margin-top:10px!important;
   }
 }
+
+.navbar .megamenu{ padding: 1rem; }
+@media all and (min-width: 600px) {
+  .navbar .has-megamenu{position:static!important;}
+  .navbar .megamenu{
+      left: 40%; right:0; width:170px; margin-top:0;
+      top:44px;
+    }
+
+}
+@media(max-width: 991px){
+  .navbar.fixed-top .navbar-collapse, .navbar.sticky-top .navbar-collapse{
+    overflow-y: auto!important;
+      max-height: 90vh!important;
+      margin-top:10px!important;
+  }
+}
 #heig{
     height:10px;
 }
@@ -482,6 +499,36 @@ header .btn:hover{
         color: #f4623a;
     }
 }
+
+#main_Nav .nav-link{
+    color: rgba(255, 255, 255, 0.7);
+    font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 700;
+}
+#main_Nav .nav-link:hover{
+    color:white;
+}
+
+.nav-link-p{
+    color:rgb(6, 6, 6);
+    text-decoration: none;
+}
+.nav-link-p:hover{
+    color:#f4623a;
+    text-decoration: none;
+}
+
+.nav-link-x{
+    color:rgb(6, 6, 6);
+    text-decoration-line: 3px;
+}
+.nav-link-x:hover{
+    color:#f4623a;
+}
+
+
+
+
 
 header.masthead h1,
 header.masthead .h1 {

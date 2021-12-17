@@ -97,5 +97,17 @@ def about():
 def versions():
     return redirect(os.getenv('SOURCE_CODE_RELEASE_URL',0))
 
+@app.route('/develop/test/')
+def test():
+    return render_template('k.html')
+
+@app.route('/about/story/')
+def story():
+    return render_template('story.html')
+
+@app.route('/about/history/')
+def history():
+    return render_template('history.html')
+
 if __name__=="__main__":
     app.run(debug=True)
