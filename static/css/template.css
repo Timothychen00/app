@@ -65,32 +65,27 @@ footer a:focus,footer a:hover{
 .resp-sharing-button__icon {
     display: inline-block
 }
-
 .resp-sharing-button__link {
     text-decoration: none;
     color: #fff;
     margin: 0.5em
 }
-
 .resp-sharing-button {
     border-radius: 5px;
     transition: 25ms ease-out;
     padding: 0.5em 0.75em;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif
 }
-
 .resp-sharing-button__icon svg {
     width: 1em;
     height: 1em;
     margin-right: 0.4em;
     vertical-align: top
 }
-
 .resp-sharing-button--small svg {
     margin: 0;
     vertical-align: middle
 }
-
 /* Non solid icons get a stroke */
 .resp-sharing-button__icon {
     stroke: #fff;
@@ -175,10 +170,9 @@ button.active{
 @media all and (min-width: 600px) {
   .navbar .has-megamenu{position:static!important;}
   .navbar .megamenu{
-      left: 40%; right:0; width:170px; margin-top:0;
+      left: 40%;right:0; width:170px; margin-top:0;
       top:44px;
     }
-
 }
 @media(max-width: 991px){
   .navbar.fixed-top .navbar-collapse, .navbar.sticky-top .navbar-collapse{
@@ -804,4 +798,8 @@ header.masthead .h1 {
 #portfolio .container-xl .portfolio-box:hover .portfolio-box-caption,
 #portfolio .container-xxl .portfolio-box:hover .portfolio-box-caption {
     opacity: 1;
+}
+
+.nav-link-first{
+    /* margin-left: 120px!important; */
 }

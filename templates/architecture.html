@@ -1,63 +1,7 @@
-{% extends 'base.html' %}
-{% block navbar %}
-
-<nav class="navbar navbar-expand-lg navbar-light pb-0 top-0 pt-0 vw-100 m-0" style='background-color:#212529;height:52px' >
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_Nav"  aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="main_Nav">
-            <ul class="navbar-nav p-0 mx-auto">
-                <li class="nav-item ms-5"{%if 'logged_in' in session and session['logged_in']%}style='margin-left:130px!important'{%endif%}><a class="nav-link" href="/#portfolio">最新消息</a></li>
-                <li class="nav-item dropdown has-megamenu">
-                    <a class="nav-link dropdown" href="#" id="title" data-bs-toggle="dropdown" style="white-space:pre">關於我們</a>
-                    <div class="dropdown-menu megamenu" role="menu">
-                        <div class="row g-3">
-                            <div class="col-lg-12 col-12">
-                                <div class="col-megamenu">
-                                    <a href="/about" class="nav-link-x border-bottom border-3 pb-0"><h6 class="title">關於我們</h6></a>
-                                    <ul class="list-unstyled">
-                                        <li><a class="nav-link-p" href="/about/history">團隊歷史</a></li>
-                                        <li><a class="nav-link-p" href="/about/story">故事</a></li>
-                                        <li><a class="nav-link-p" href="/about/architecture">組織架構</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/#services">服務項目</a></li>
-                <li class="nav-item"><a class="nav-link" href="/#contact">聯絡我們</a></li>
-            </ul>
-            <ul class="navbar-nav p-0" width='200'>
-                {%if 'logged_in' in session and session['logged_in']%}
-                        {%if session['current_user']['authority'] =='staff'%}
-                            <li class="nav-item ms-3">
-                                <a class="nav-link" onclick="window.open('/officesys/')">辦公系統</a>
-                            </li>
-                        {%endif%}
-                    {%endif%}
-                {% if 'logged_in' in session and session['logged_in'] %}
-                    <li class="nav-item ms-0">
-                        <a class="nav-link" href="/userspace/">{{session['current_user']['name']}}</a>
-                    </li>
-                    <li class="nav-item me-5">
-                        <a  class="nav-link" href="/logout">登出</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item mx-3 me-5">
-                        <a  class="nav-link {% if page=="login" or page=="register" %}active{% endif %}" href="/login">登入</a>
-                    </li>
-                {% endif %}
-                </ul>
-        </div>
-    </div>
-    </nav>
-{% endblock navbar %}
-
+{% extends 'about_base.html' %}
 {% block main_content %}
 <div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
         <div class="col-12 d-flex justify-content-center">
             <h1 class='mt-5'>創造娛樂工作室下的核心團隊</h1>
         </div>

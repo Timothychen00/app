@@ -1,64 +1,72 @@
 {% extends 'base.html' %}
 {% block navbar %}
 
-<nav class="navbar navbar-expand-lg navbar-light pb-0 top-0 pt-0 vw-100 m-0" style='background-color:#212529;height:52px' >
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_Nav"  aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="main_Nav">
-            <ul class="navbar-nav p-0 mx-auto">
-                <li class="nav-item ms-5"{%if 'logged_in' in session and session['logged_in']%}style='margin-left:130px!important'{%endif%}><a class="nav-link" href="/#portfolio">最新消息</a></li>
-                <li class="nav-item dropdown has-megamenu">
-                    <a class="nav-link dropdown" href="#" id="title" data-bs-toggle="dropdown" style="white-space:pre">關於我們</a>
-                    <div class="dropdown-menu megamenu" role="menu">
-                        <div class="row g-3">
-                            <div class="col-lg-12 col-12">
-                                <div class="col-megamenu">
-                                    <a href="/about" class="nav-link-x border-bottom border-3 pb-0"><h6 class="title">關於我們</h6></a>
-                                    <ul class="list-unstyled">
-                                        <li><a class="nav-link-p" href="#">團隊歷史</a></li>
-                                        <li><a class="nav-link-p" href="#">故事</a></li>
-                                        <li><a class="nav-link-p" href="#">組織架構</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/#services">服務項目</a></li>
-                <li class="nav-item"><a class="nav-link" href="/#contact">聯絡我們</a></li>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style='background-color:#212529;height:52px'>
+    <div class="container px-4 px-lg-5">
+
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav mx-auto my-2 my-lg-0">
+                <li class="nav-item ms-5"><a class="nav-link" href="#portfolio">最新消息</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/about" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      關於我們
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="nav-link-p ms-3" href="/about/history">團隊歷史</a></li>
+                        <li><a class="nav-link-p ms-3" href="/about/story">故事</a></li>
+                        <li><a class="nav-link-p ms-3" href="/about/architecture">組織架構</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="nav-link-p ms-3" href="/about">關於我們</a></li>
+                    </ul>
+                  </li>
+                <li class="nav-item"><a class="nav-link" href="#about">關於我們</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">服務項目</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">聯絡我們</a></li>
             </ul>
+
             <ul class="navbar-nav p-0" width='200'>
-                {%if 'logged_in' in session and session['logged_in']%}
-                        {%if session['current_user']['authority'] =='staff'%}
-                            <li class="nav-item ms-3">
-                                <a class="nav-link" onclick="window.open('/officesys/')">辦公系統</a>
-                            </li>
-                        {%endif%}
+            {%if 'logged_in' in session and session['logged_in']%}
+                    {%if session['current_user']['authority'] =='staff'%}
+                        <li class="nav-item ms-3">
+                            <a class="nav-link" onclick="window.open('/officesys/')">辦公系統</a>
+                        </li>
                     {%endif%}
-                {% if 'logged_in' in session and session['logged_in'] %}
-                    <li class="nav-item ms-0">
-                        <a class="nav-link" href="/userspace/">{{session['current_user']['name']}}</a>
-                    </li>
-                    <li class="nav-item me-5">
-                        <a  class="nav-link" href="/logout">登出</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item mx-3 me-5">
-                        <a  class="nav-link {% if page=="login" or page=="register" %}active{% endif %}" href="/login">登入</a>
-                    </li>
-                {% endif %}
-                </ul>
+                {%endif%}
+            {% if 'logged_in' in session and session['logged_in'] %}
+                <li class="nav-item ms-0">
+                    <a class="nav-link" href="/userspace/">{{session['current_user']['name']}}</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a  class="nav-link" href="/logout">登出</a>
+                </li>
+            {% else %}
+                <li class="nav-item mx-3">
+                    <a  class="nav-link {% if page=="login" or page=="register" %}active{% endif %}" href="/login">登入</a>
+                </li>
+            {% endif %}
+            </ul>
         </div>
     </div>
-    </nav>
-
-
-
+</nav>
 {% endblock navbar %}
-{% block main_content %}{% endblock main_content %}
-
-
-
-
+{% block main_content %}
+<div class="container-fluid main-contents">
+<div class='row justify-content-center mt-5'>
+    <div class='col-7 mt-5'>
+        <div class="ratio ratio-16x9 video">
+            <iframe src="https://www.youtube.com/embed/D2QhaFg6dP8?autoplay=1&mute=1&loop=1" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-12 text-center mt-5">
+        <h1 class='mt-5'>關於我們</h1>
+        <img src='/static/team-intro-0.jpeg'></img>
+        <img src='/static/team-intro-1.jpeg' style='max-height:400px!important'></img>
+    </div>
+</div>
+</div>
+{% endblock main_content %}
