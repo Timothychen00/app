@@ -12,13 +12,7 @@ def send_email():
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <body>
-        <table stye=\'width:200px\'>
-            <tr>
-                <td>123</td><td>123</td>
-            </tr>
-            <tr>
-                <td>345</td><td>345</td>
-            </tr>
+        <table>
         </table>
     </body>
 </html>
@@ -34,7 +28,7 @@ def send_email():
         try:
             smtp.ehlo()  # 驗證SMTP伺服器
             smtp.starttls()  # 建立加密傳輸
-            smtp.login("timothychenpc@gmail.com", "")  # 登入寄件者gmail
+            smtp.login("timothychenpc@gmail.com", "jsamanwwevgfgbsq")  # 登入寄件者gmail
             smtp.send_message(content)  # 寄送郵件
             print("Complete!")
         except Exception as e:
