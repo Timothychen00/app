@@ -28,7 +28,7 @@ def send_email():
         try:
             smtp.ehlo()  # 驗證SMTP伺服器
             smtp.starttls()  # 建立加密傳輸
-            smtp.login("timothychenpc@gmail.com", "jsamanwwevgfgbsq")  # 登入寄件者gmail
+            smtp.login("timothychenpc@gmail.com", os.getenv("PASS",'123123123123'))  # 登入寄件者gmail
             smtp.send_message(content)  # 寄送郵件
             print("Complete!")
         except Exception as e:
