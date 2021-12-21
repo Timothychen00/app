@@ -13,7 +13,7 @@
             <h1 class="h3 mb-3 fw-normal form-label ">登入網站會員</h1>
 
             <div class="form-floating  text-secondary mb-2">
-                {{ form.email(class_="form-control border-0 text-white"+ (" is-invalid" if form.email.errors else ""),id="floatingEmail",placeholder=' ') }}
+                {{ form.email(class_="form-control border-0 text-white black-bg"+ (" is-invalid" if form.email.errors else ""),id="floatingEmail",placeholder=' ') }}
                 <label for="floatingEmail">帳號／Email address</label>
                 <div class="invalid-feedback">
                     <ul>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="form-floating  text-secondary mb-2">
-                {{ form.password(class_="form-control border-0 text-white"+ (" is-invalid" if form.password.errors else ""),id="floatingPassword",placeholder=' ') }}
+                {{ form.password(class_="form-control border-0 text-white black-bg"+ (" is-invalid" if form.password.errors else ""),id="floatingPassword",placeholder=' ') }}
                 <label for="floatingPassword">密碼／Password</label>
                 <div class="invalid-feedback">
                     <ul>
@@ -59,7 +59,7 @@
             </div>
 
             <a class="fs-6 mb-2" href="/register" style="text-decoration:none;">還不是會員嗎？點此註冊</a>
-            {{form.submit(class_="w-100 btn btn-lg btn-outline-secondary text-white border-0 mt-2",value='登入／Login')}}
+            {{form.submit(class_="w-100 btn btn-lg btn-outline-secondary text-white border-0 mt-2 black-bg",value='登入／Login')}}
             <p class="mt-5 mb-3 text-white"> &copy; 創造娛樂工作室資訊部 2020–2021</p>
         </form>
 

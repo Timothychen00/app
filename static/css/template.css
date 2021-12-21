@@ -360,10 +360,10 @@ input.btn-custom:hover{
     z-index: 2;
 }
 
-.form-login-register input[type="email"],input[type="password"],input[type='text']{
+.form-login-register input[type="email"],input[type="password"],input[type='text'].black-bg{
     background-color: rgba(0, 0, 0, 0.411)!important;
 }
-input[type='button'],input[type='submit']:hover{
+input[type='button'],input[type='submit'].black-bg:hover{
     background-color: rgba(0, 0, 0, 0.411)!important;
 }
 .bg-custom-dark{
@@ -798,8 +798,4 @@ header.masthead .h1 {
 #portfolio .container-xl .portfolio-box:hover .portfolio-box-caption,
 #portfolio .container-xxl .portfolio-box:hover .portfolio-box-caption {
     opacity: 1;
-}
-
-.nav-link-first{
-    /* margin-left: 120px!important; */
 }
