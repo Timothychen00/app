@@ -24,42 +24,15 @@
 	</button>
 	<div class="collapse navbar-collapse" id="main_nav">
 		<ul class="navbar-nav p-0">
-			<li class="nav-item dropdown has-megamenu me-5">
-				<a class="nav-link dropdown" href="#" id="title" data-bs-toggle="dropdown" style="white-space:pre">首頁        人事        打卡        請假        排班        加班        核銷        簽呈</a>
-				<div class="dropdown-menu megamenu" role="menu">
-					<div class="row g-3">
-						<div class="col-lg-4 col-6">
-							<div class="col-megamenu">
-								<a href="/about" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">關於我們</h6></a>
-								<ul class="list-unstyled">
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">組織架構</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-4 col-6">
-							<div class="col-megamenu">
-                                <a href="/environment" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">學習環境</h6></a>
-								<ul class="list-unstyled">
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-4 col-6">
-							<div class="col-megamenu">
-                                <a href="/join" class="nav-link border-bottom border-3 pb-0 me-5"><h6 class="title">加入我們</h6></a>
-								<ul class="list-unstyled text-start">
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-									<li><a class="nav-link" href="#">故事</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</li>
+            <li class="nav-item"><a class="nav-link" href="/">首頁</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">人事</a></li>
+            <li class="nav-item"><a class="nav-link" href="/officesys/punch_in">打卡</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">請假</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">排班</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">加班</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">核銷</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">簽呈</a></li>
+            <li class="nav-item"><a class="nav-link" href="/officesys/dashboard">公告</a></li>
 		</ul>
         {% if 'logged_in' in session and session['logged_in'] %}
 		<ul class="navbar-nav ms-auto p-0" width='200'>
